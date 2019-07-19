@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {SettingsService} from "../../../../../projects/pro-layout/src/lib/core/settings.service";
 
 @Component({
   selector: 'app-user-layout',
@@ -14,11 +15,9 @@ export class UserLayoutComponent implements OnInit {
   @ViewChild('linkIconTemplate', {static: true})
   linkIconTemplate: TemplateRef<void>;
 
-  logo:string = 'assets/logo.svg';
-
   footer:any;
 
-  constructor() {
+  constructor(private settingService: SettingsService) {
   }
 
   ngOnInit() {
@@ -33,17 +32,17 @@ export class UserLayoutComponent implements OnInit {
         {
           key: 'github',
           title: this.linkIconTemplate,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/CK110/ant-design-pro-angular',
           blankTarget: true,
         },
         {
           key: 'Ant Design',
           title: 'Ant Design',
-          href: 'https://ant.design',
+          href: 'https://ng.ant.design',
           blankTarget: true,
         },
       ],
-      copyright: '2019 蚂蚁金服体验技术部出品'
+      copyright: '2019 CK110出品'
     }
   }
 }

@@ -50,17 +50,17 @@ export class BasicLayoutComponent implements OnInit, AfterViewInit {
         {
           key: 'github',
           title: this.linkIconTemplate,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/CK110/ant-design-pro-angular',
           blankTarget: true,
         },
         {
           key: 'Ant Design',
           title: 'Ant Design',
-          href: 'https://ant.design',
+          href: 'https://ng.ant.design',
           blankTarget: true,
         },
       ],
-      copyright: '2019 蚂蚁金服体验技术部出品'
+      copyright: '2019 CK110出品'
     }
   }
 
