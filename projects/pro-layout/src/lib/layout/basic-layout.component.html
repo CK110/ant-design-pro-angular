@@ -1,0 +1,97 @@
+<div [ngClass]="['ant-design-pro','basicLayout']">
+  <nz-layout>
+    <ng-container *ngIf="!(layout === 'topmenu' && !isMobile)">
+      <nz-sider *ngIf="!isMobile"
+                class="ant-pro-sider-menu"
+                [nzCollapsible]="true"
+                [nzTrigger]="null"
+                [(nzCollapsed)]="collapsed"
+                [nzBreakpoint]="'lg'"
+                (nzCollapsedChange)="collapsedChange($event)"
+                [nzWidth]="siderWidth"
+                [nzTheme]="navTheme"
+                [ngClass]="{'ant-pro-sider-menu-sider': true,'fix-sider-bar': fixSiderbar,'light': navTheme=='light'}">
+        <ng-container [ngTemplateOutlet]="siderMenuTemplate"></ng-container>
+      </nz-sider>
+      <nz-drawer *ngIf="isMobile"
+                 [nzClosable]="false"
+                 [nzVisible]="!collapsed"
+                 [nzPlacement]="'left'"
+                 [nzWrapClassName]="'ant-pro-sider-menu'"
+                 (nzOnClose)="onDrawerClose($event)"
+                 [ngStyle]="{padding: 0,height: '100vh'}">
+        <nz-sider [nzCollapsible]="true"
+                  [nzTrigger]="null"
+                  [nzCollapsed]="isMobile ? false : collapsed"
+                  (nzCollapsedChange)="collapsedChange($event)"
+                  [nzWidth]="siderWidth"
+                  [nzTheme]="navTheme"
+                  style="display: block"
+                  [ngClass]="{'ant-pro-sider-menu-sider': true,'fix-sider-bar': fixSiderbar,'light': navTheme=='light'}">
+          <ng-container [ngTemplateOutlet]="siderMenuTemplate"></ng-container>
+        </nz-sider>
+      </nz-drawer>
+    </ng-container>
+
+    <nz-layout [ngStyle]="{'padding-left':getPaddingLeft(),'min-height': '100vh' }">
+      <nz-header *ngIf="visible"
+                 [ngStyle]="{ padding: 0,width: getHeadWidth(),zIndex: 2 }"
+                 [ngClass]="{'ant-pro-fixed-header': fixedHeader}">
+        <ng-container *ngTemplateOutlet="headerRender ? headerRender: defaultDomTemplate"></ng-container>
+        <ng-template #defaultDomTemplate>
+          <ng-container *ngIf="layout === 'topmenu' && !isMobile;else: globalHeader">
+            <pro-top-nav-header [theme]="navTheme"
+                                [menuData]="menuData"
+                                [logo]="logo"
+                                [title]="title"
+                                [contentWidth]="contentWidth"
+                                [rightContentRender]="rightContentRender">
+            </pro-top-nav-header>
+          </ng-container>
+          <ng-template #globalHeader>
+            <pro-global-header [isMobile]="isMobile"
+                               [(collapsed)]="collapsed"
+                               [logo]="logo"
+                               [rightContentRender]="rightContentRender">
+            </pro-global-header>
+          </ng-template>
+        </ng-template>
+      </nz-header>
+
+      <nz-content class="ant-pro-basicLayout-content" [style.padding-top]="!fixedHeader? '0px': ''">
+        <ng-content></ng-content>
+      </nz-content>
+
+      <nz-footer *ngIf="footerRender !== false" style="padding: 0">
+        <ng-container *ngIf="footerRender;else: globalFooter">
+          <ng-container [ngTemplateOutlet]="footerRender"></ng-container>
+        </ng-container>
+        <ng-template #globalFooter>
+          <pro-global-footer [links]="links" [copyright]="copyright"></pro-global-footer>
+        </ng-template>
+      </nz-footer>
+
+    </nz-layout>
+  </nz-layout>
+</div>
+
+<ng-template #siderMenuTemplate>
+  <div class="ant-pro-sider-menu-logo" id="logo">
+    <a>
+      <ng-container *nzStringTemplateOutlet="logo">
+        <img [src]="logo" alt="logo"/>
+      </ng-container>
+      <h1>
+        <ng-container *nzStringTemplateOutlet="title">{{title}}</ng-container>
+      </h1>
+    </a>
+  </div>
+  <pro-base-menu [style]="{'width': '100%','padding': '16px 0'}"
+                 [menuData]="menuData"
+                 [mode]="'inline'"
+                 [theme]="navTheme"
+                 [openKeys]="openKeys"
+                 [selectedKey]="selectedKey"
+                 [collapsed]="isMobile ? false : collapsed">
+  </pro-base-menu>
+</ng-template>

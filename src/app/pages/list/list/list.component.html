@@ -1,0 +1,20 @@
+<pro-page-header-wrapper [content]="mainSearch"
+                         [tabActiveKey]="tabActiveKey"
+                         [tabList]="tabList"
+                         (onTabChange)="handleTabChange($event)">
+  <router-outlet></router-outlet>
+</pro-page-header-wrapper>
+
+<ng-template #mainSearch>
+  <div style="text-align: center">
+    <nz-input-group nzSearch
+                    nzSize="large"
+                    [nzAddOnAfter]="suffixButton"
+                    style="max-width: 522px;width: 100%;">
+      <input type="text" nz-input placeholder="请输入"/>
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="handleFormSubmit()">搜索</button>
+    </ng-template>
+  </div>
+</ng-template>

@@ -1,0 +1,27 @@
+<pro-result class="{{prefixedClassName}}-registerResult"
+            [status]="'success'"
+            [title]="titleTemplate"
+            [subTitle]="'user-register-result.register-result.activation-email' | translate"
+            [extra]="extraTemplate">
+</pro-result>
+
+<ng-template #titleTemplate>
+  <div class="{{prefixedClassName}}-title">
+    {{ 'user-register-result.register-result.msg' | translate:params}}
+  </div>
+</ng-template>
+
+<ng-template #extraTemplate>
+  <div class="{{prefixedClassName}}-actions">
+    <a href="">
+      <button nz-button nzType="primary">
+        {{ 'user-register-result.register-result.view-mailbox' | translate}}
+      </button>
+    </a>
+    <a [routerLink]="'/'">
+      <button nz-button nzSize="large">
+        {{ 'user-register-result.register-result.back-home' | translate}}
+      </button>
+    </a>
+  </div>
+</ng-template>

@@ -1,0 +1,31 @@
+<pro-basic-layout [logo]="settings.logo"
+                  [title]="settings.title"
+                  [navTheme]="settings.navTheme"
+                  [fixSiderbar]="settings.fixSiderbar"
+                  [fixedHeader]="settings.fixedHeader"
+                  [autoHideHeader]="settings.autoHideHeader"
+                  [contentWidth]="settings.contentWidth"
+                  [layout]="settings.layout"
+                  [menuData]="menuData"
+                  [rightContentRender]="rightContentRender"
+
+                  [links]="footer.links"
+                  [copyright]="copyRightTemplate">
+  <router-outlet></router-outlet>
+</pro-basic-layout>
+
+<pro-setting-drawer [settings]="settings" (onSettingChange)="settingChange($event)"></pro-setting-drawer>
+
+<ng-template #rightContentRender>
+  <pro-right-content [theme]="settings.navTheme" [layout]="settings.layout"></pro-right-content>
+</ng-template>
+
+<ng-template #linkIconTemplate>
+  <i nz-icon nzType="github" nzTheme="outline"></i>
+</ng-template>
+
+<ng-template #copyRightTemplate>
+  <ng-container>
+    Copyright <i nz-icon nzType="copyright"></i> {{footer.copyright}}
+  </ng-container>
+</ng-template>

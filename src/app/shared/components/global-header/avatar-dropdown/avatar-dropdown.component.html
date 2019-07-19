@@ -1,0 +1,31 @@
+<ng-container *ngIf="currentUser">
+    <span nz-dropdown [nzDropdownMenu]="menu">
+      <nz-avatar [nzSize]="'small'"
+                 [nzSrc]="currentUser.avatar"
+                 [ngClass]="['avatar']"
+                 [nzAlt]="'avatar'">
+      </nz-avatar>
+      <span class="name">{{currentUser.name}}</span>
+    </span>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item>
+        <i nz-icon nzType="user"></i>
+        <span>{{ 'menu.account.center' | translate }}</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="setting"></i>
+        <span>{{ 'menu.account.settings'| translate}}</span>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="logout"></i>
+        <span>{{ 'menu.account.logout'| translate}}</span>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</ng-container>
+<ng-container *ngIf="!currentUser">
+  <div class="action">
+    <nz-spin nzSimple nzSize="small"></nz-spin>
+  </div>
+</ng-container>

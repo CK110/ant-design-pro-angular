@@ -1,0 +1,15 @@
+<div class="ant-pro-global-header">
+  <ng-container *ngIf="isMobile">
+    <a class="ant-pro-global-header-logo" key="logo">
+      <ng-container *nzStringTemplateOutlet="logo">
+        <img [src]="logo" alt="logo"/>
+      </ng-container>
+    </a>
+  </ng-container>
+
+  <span class="ant-pro-global-header-trigger" (click)="toggle()">
+    <i nz-icon [nzType]="collapsed ? 'menu-unfold' : 'menu-fold'"></i>
+  </span>
+
+  <ng-container *ngTemplateOutlet="rightContentRender"></ng-container>
+</div>

@@ -2,13 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AntDesignProAngular</title>
+  <title>Ant Design Pro</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="https://img.alicdn.com/tfs/TB1Jr2ASQvoK1RjSZFDXXXY3pXa-200-200.png">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <style>
+      .page-loading-warp {
+        padding: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <div class="page-loading-warp">
+      <div class="ant-spin ant-spin-lg ant-spin-spinning">
+          <span class="ant-spin-dot ant-spin-dot-spin">
+            <i class="ant-spin-dot-item"></i>
+            <i class="ant-spin-dot-item"></i>
+            <i class="ant-spin-dot-item"></i>
+            <i class="ant-spin-dot-item"></i>
+          </span>
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>

@@ -1,0 +1,80 @@
+<ul nz-menu
+    [ngStyle]="style"
+    [nzMode]="mode"
+    [nzTheme]="theme"
+    [ngClass]="{'top-nav-menu': mode === 'horizontal'}"
+    [nzInlineCollapsed]="collapsed">
+  <!--第一层-->
+  <ng-container *ngFor="let menuData of menuData">
+    <ng-container *ngIf="menuData.children; else: elseTemplate1">
+      <li nz-submenu
+          *aclIf="menuData.guard"
+          (nzOpenChange)="onOpenChange($event, menuData)"
+          [nzOpen]="openKeys.indexOf(menuData.path) !== -1 && mode !== 'horizontal'">
+        <span title>
+            <i *ngIf="menuData.icon;" nz-icon [type]="menuData.icon"></i>
+              <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+              <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+        </span>
+        <!--第二层-->
+        <ul>
+          <ng-container *ngFor="let menuData of menuData.children">
+            <ng-container *ngIf="menuData.children; else: elseTemplate2">
+              <li nz-submenu
+                  *aclIf="menuData.guard"
+                  (nzOpenChange)="onOpenChange($event, menuData)"
+                  [nzOpen]="openKeys.indexOf(menuData.path) !== -1 && mode !== 'horizontal'">
+                  <span title>
+                    <i *ngIf="menuData.icon;" nz-icon [type]="menuData.icon"></i>
+                    <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                    <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                  </span>
+                <!--第三层,只有 nz-menu-item -->
+                <ul>
+                  <ng-container *ngFor="let menuData of menuData.children">
+                    <li nz-menu-item
+                        *aclIf="menuData.guard"
+                        [nzSelected]="menuData.path === selectedKey ? true : false">
+                      <a [routerLink]="menuData.path">
+                        <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+                        <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                        <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+            <ng-template #elseTemplate2>
+              <li nz-menu-item
+                  *aclIf="menuData.guard"
+                  [nzSelected]="menuData.path === selectedKey ? true : false">
+                <a [routerLink]="menuData.path">
+                  <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+                  <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                  <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                </a>
+              </li>
+            </ng-template>
+          </ng-container>
+        </ul>
+      </li>
+    </ng-container>
+    <ng-template #elseTemplate1>
+      <li nz-menu-item
+          *aclIf="menuData.guard"
+          [nzSelected]="menuData.path === selectedKey ? true : false">
+        <a [routerLink]="menuData.path">
+          <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+          <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+          <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+        </a>
+      </li>
+    </ng-template>
+  </ng-container>
+</ul>
+
+
+
+
+

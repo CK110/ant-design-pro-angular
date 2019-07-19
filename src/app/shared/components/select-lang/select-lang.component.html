@@ -1,0 +1,18 @@
+<span class="dropDown" nz-dropdown [nzDropdownMenu]="menu">
+  <i nz-icon nzType="global" [title]="'navBar.lang'| translate"></i>
+</span>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <ng-container *ngFor="let locale of locales">
+      <li nz-menu-item
+          [nzSelected]="locale === currentLocale"
+          (click)="changeLang(locale)">
+        <span role="img" attr.aria-label="{{languages[locale].label}}">
+          {{languages[locale].icon}}
+        </span>
+        {{ languages[locale].label }}
+      </li>
+    </ng-container>
+  </ul>
+</nz-dropdown-menu>
+

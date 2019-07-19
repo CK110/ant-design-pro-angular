@@ -17,7 +17,18 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@pro-layout": ["dist/pro-layout"],
+      "@pro-layout/*": ["dist/pro-layout/*"],
+      "@shared": [ "src/app/shared" ],
+      "@shared/*": [ "src/app/shared/*" ],
+      "@core": [ "src/app/core" ],
+      "@core/*": [ "src/app/core/*" ],
+      "@page": [ "src/app/page" ],
+      "@page/*": [ "src/app/page/*" ],
+      "@env/*": [ "src/environments/*" ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -1,0 +1,115 @@
+<pro-page-header-wrapper title="单号：234231029431"
+                         [extra]="extraTemplate"
+                         [content]="contentTemplate"
+                         [extraContent]="extraContentTemplate"
+                         tabActiveKey="detail"
+                         [tabList]="tabList">
+  <pro-grid-content>
+    <nz-card nzTitle="流程进度" style="margin-bottom: 24px">
+      <nz-steps>
+        <nz-step nzTitle="创建项目"></nz-step>
+        <nz-step nzTitle="部门初审"></nz-step>
+        <nz-step nzTitle="财务复核"></nz-step>
+        <nz-step nzTitle="完成"></nz-step>
+      </nz-steps>
+    </nz-card>
+    <nz-card nzTitle="用户信息" style="margin-bottom: 24px" [nzBordered]="false">
+      <nz-descriptions style="margin-bottom: 24px">
+        <nz-descriptions-item nzTitle="用户姓名">付小小</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="会员卡号">32943898021309809423</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="身份证">3321944288191034921</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="联系方式">18112345678</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="联系地址">
+          曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
+        </nz-descriptions-item>
+      </nz-descriptions>
+      <nz-descriptions nzTitle="信息组" style="margin-bottom: 24px">
+        <nz-descriptions-item nzTitle="某某数据">725</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="该数据更新时间">2017-08-08</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="数据说明">725</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="该数据更新时间">2017-08-08</nz-descriptions-item>
+      </nz-descriptions>
+      <h4 style="margin-bottom: 16px ">信息组</h4>
+      <nz-card nzType="inner" nzTitle="多层级信息组">
+        <nz-descriptions style="margin-bottom: 16px" nzTitle="组名称">
+          <nz-descriptions-item nzTitle="负责人">林东东</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="角色码">1234567</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="所属部门">XX公司 - YY部</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="过期时间">2017-08-08</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="描述">
+            这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
+          </nz-descriptions-item>
+        </nz-descriptions>
+        <nz-divider style="margin: 16px 0 "></nz-divider>
+        <nz-descriptions style="margin-bottom: 16px" nzTitle="组名称" [nzColumn]="1">
+          <nz-descriptions-item nzTitle="学名">
+            Citrullus lanatus (Thunb.) Matsum. et
+            Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
+          </nz-descriptions-item>
+        </nz-descriptions>
+        <nz-divider style="margin: 16px 0 "></nz-divider>
+        <nz-descriptions nzTitle="组名称">
+          <nz-descriptions-item nzTitle="负责人">付小小</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="角色码">1234568</nz-descriptions-item>
+        </nz-descriptions>
+      </nz-card>
+    </nz-card>
+    <nz-card nzTitle="用户近半年来电记录" style="margin-bottom: 24px" [nzBordered]="false">
+      <div class="noData">
+        <i nz-icon nzType="frown"></i>暂无数据
+      </div>
+    </nz-card>
+    <!-- TODO-->
+    <nz-card class="tabsCard"
+             [nzBordered]="false">
+      <nz-card-tab>
+        <nz-tabset nzSize="large" [(nzSelectedIndex)]="operationKey">
+          <nz-tab nzTitle="操作日志一"></nz-tab>
+          <nz-tab nzTitle="操作日志二"></nz-tab>
+          <nz-tab nzTitle="操作日志三"></nz-tab>
+        </nz-tabset>
+      </nz-card-tab>
+      content{{ operationKey }}
+    </nz-card>
+  </pro-grid-content>
+
+</pro-page-header-wrapper>
+
+<ng-template #extraTemplate>
+  <nz-button-group>
+    <button nz-button>操作</button>
+    <button nz-button>操作</button>
+    <!--TODO-->
+    <button nz-button>
+      <i nz-icon nzType="ellipsis"></i>
+    </button>
+  </nz-button-group>
+  <button nz-button nzType="primary">主操作</button>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <nz-descriptions class="headerList" nzSize="small" [nzColumn]="2">
+    <nz-descriptions-item nzTitle="创建人">曲丽丽</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="订购产品">XX 服务</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="创建时间">2017-07-07</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="关联单据">
+      <a href="">12421</a>
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="生效日期">2017-07-07 ~ 2017-08-08</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="备注">请于两个工作日内确认</nz-descriptions-item>
+  </nz-descriptions>
+</ng-template>
+
+<ng-template #extraContentTemplate>
+  <div nz-row style="min-width: 400px">
+    <div nz-col nzXs="24" nzSm="12">
+      <div class="textSecondary">状态</div>
+      <div class="heading">待审批</div>
+    </div>
+    <div nz-col nzXs="24" nzSm="12">
+      <span class="textSecondary">订单金额</span>
+      <p class="heading">¥ 568.08</p>
+    </div>
+  </div>
+</ng-template>
+

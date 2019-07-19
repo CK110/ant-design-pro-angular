@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="lang">
+      <pro-select-lang></pro-select-lang>
+  </div>
+  <div class="content">
+    <div class="top">
+      <div class="header">
+        <a routerLink="/">
+          <img alt="logo" class="logo" [src]="logo">
+          <span class="title">Ant Design</span>
+        </a>
+      </div>
+      <div class="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+
+  <nz-footer style="padding: 0px;">
+    <pro-global-footer [links]="footer.links" [copyright]="copyRightTemplate"></pro-global-footer>
+  </nz-footer>
+</div>
+
+<ng-template #linkIconTemplate>
+  <i nz-icon nzType="github" nzTheme="outline"></i>
+</ng-template>
+<ng-template #copyRightTemplate>
+  <ng-container>
+    Copyright <i nz-icon nzType="copyright"></i> {{footer.copyright}}
+  </ng-container>
+</ng-template>

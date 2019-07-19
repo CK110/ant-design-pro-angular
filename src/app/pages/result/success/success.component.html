@@ -1,0 +1,62 @@
+<pro-grid-content>
+  <nz-card [nzBordered]="false">
+    <pro-result status="success"
+                title="提交成功"
+                subTitle="提交结果页用于反馈一系列操作任务的处理结果， 如果仅是简单操作，使用 Message 全局提示反馈即可。 本文字区域可以展示简单的补充说明，如果有类似展示 “单据”的需求，下面这个灰色区域可以呈现比较复杂的内容。"
+                [extra]="extraTemplate"
+                style="margin-bottom: 16px">
+      <nz-descriptions nzTitle="项目名称">
+        <nz-descriptions-item nzTitle="项目 ID">23421</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="负责人">曲丽丽</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="生效时间">2016-12-12 ~ 2017-12-12</nz-descriptions-item>
+      </nz-descriptions>
+      <br>
+      <nz-steps [nzCurrent]="1" nzProgressDot>
+        <nz-step [nzTitle]="step1" [nzDescription]="desc1"></nz-step>
+        <nz-step [nzTitle]="step2" [nzDescription]="desc2"></nz-step>
+        <nz-step [nzTitle]="step3"></nz-step>
+        <nz-step [nzTitle]="step4"></nz-step>
+      </nz-steps>
+    </pro-result>
+  </nz-card>
+</pro-grid-content>
+
+<ng-template #step1>
+  <span style="font-size: 14px">创建项目</span>
+</ng-template>
+<ng-template #step2>
+  <span style="font-size: 14px">部门初审</span>
+</ng-template>
+<ng-template #step3>
+  <span style="font-size: 14px">财务复核</span>
+</ng-template>
+<ng-template #step4>
+  <span style="font-size: 14px">完成</span>
+</ng-template>
+
+<ng-template #desc1>
+  <div class="title">
+    <div style="margin: 8px 0 4px">
+      曲丽丽
+      <i nz-icon style="margin-left: 8px;color: #00A0E9" nzType="dingding-o"></i>
+    </div>
+    <div>2016-12-12 12:32</div>
+  </div>
+</ng-template>
+<ng-template #desc2>
+  <div style="font-size: 12px" class="title">
+    <div style="margin: 8px 0 4px">
+      周毛毛
+      <a href="">
+        <i nz-icon style="margin-left: 8px;color: #00A0E9" nzType="dingding-o"></i>
+        催一下
+      </a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #extraTemplate>
+  <button nz-button nzType="primary">返回列表</button>
+  <button nz-button>查看项目</button>
+  <button nz-button>打印</button>
+</ng-template>

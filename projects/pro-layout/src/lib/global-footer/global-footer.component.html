@@ -1,0 +1,25 @@
+<div class="ant-pro-global-footer {{className}}">
+  <div class="ant-pro-global-footer-links">
+    <ng-container *ngIf="links && links.length > 0">
+      <a *ngFor="let link of links"
+         [title]="link.key"
+         [target]="link.blankTarget? '_blank' : '_self'"
+         [href]="link.href">
+        <ng-container *ngIf="isString(link.title);else titleTemplate ">
+          {{link.title}}
+        </ng-container>
+        <ng-template #titleTemplate>
+          <ng-container [ngTemplateOutlet]="link.title"></ng-container>
+        </ng-template>
+      </a>
+    </ng-container>
+  </div>
+  <div *ngIf="copyright" class="ant-pro-global-footer-copyright">
+    <ng-container *ngIf="isString(copyright);else copyrightTemplate ">
+      {{copyright}}
+    </ng-container>
+    <ng-template #copyrightTemplate>
+      <ng-container [ngTemplateOutlet]="copyright"></ng-container>
+    </ng-template>
+  </div>
+</div>
