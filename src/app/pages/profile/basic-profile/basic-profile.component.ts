@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {SettingsService} from "../../../../../projects/pro-layout/src/lib/core/settings.service";
+import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-basic-profile',

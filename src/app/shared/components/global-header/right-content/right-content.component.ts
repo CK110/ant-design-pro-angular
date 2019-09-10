@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {MenuTheme} from "../../../../../../projects/pro-layout/src/lib/core/default-settings";
+import {MenuTheme} from "@pro-layout";
 
 @Component({
   selector: 'pro-right-content',

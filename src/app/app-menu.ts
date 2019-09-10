@@ -1,4 +1,4 @@
-import {MenuDataItem} from "../../projects/pro-layout/src/lib/sider-menu/base-menu.component";
+import {MenuDataItem} from "@pro-layout";
 
 export const menuData: MenuDataItem[] = [
   {

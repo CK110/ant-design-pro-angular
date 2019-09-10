@@ -3,7 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter, map, mergeMap} from "rxjs/operators";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
-import {SettingsService} from "../../projects/pro-layout/src/lib/core/settings.service";
+import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-root',

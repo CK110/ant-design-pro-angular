@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NzMessageService} from "ng-zorro-antd";
-import {SettingsService} from "../../../../../projects/pro-layout/src/lib/core/settings.service";
+import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-analysic',

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {SettingsService} from "../../../../../projects/pro-layout/src/lib/core/settings.service";
+import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-user-layout',
@@ -17,7 +17,7 @@ export class UserLayoutComponent implements OnInit {
 
   footer:any;
 
-  constructor(private settingService: SettingsService) {
+  constructor(public settingService: SettingsService) {
   }
 
   ngOnInit() {

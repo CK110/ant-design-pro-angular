@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -18,9 +17,9 @@
       "es2018",
       "dom"
     ],
+    "baseUrl": ".",
     "paths": {
-      "@pro-layout": ["dist/pro-layout"],
-      "@pro-layout/*": ["dist/pro-layout/*"],
+      "@pro-layout": ["projects/pro-layout/src/public-api.ts"],
       "@shared": [ "src/app/shared" ],
       "@shared/*": [ "src/app/shared/*" ],
       "@core": [ "src/app/core" ],

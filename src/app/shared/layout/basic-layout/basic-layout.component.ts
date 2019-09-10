@@ -6,11 +6,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {menuData} from '../../../app-menu';
-// @ts-ignore
-import {Settings} from "@pro-layout/lib/default-settings";
+import {Settings} from "@pro-layout";
+import {SettingsService} from "@pro-layout";
 import themeColorClient from '../../components/setting-drawer/theme-color-client';
-import {SettingsService} from "../../../../../projects/pro-layout/src/lib/core/settings.service";
-
 
 @Component({
   selector: 'app-basic-layout',

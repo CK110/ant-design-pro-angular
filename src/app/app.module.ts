@@ -14,7 +14,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {UserModule} from "./pages/user/user.module";
 import {DelonMockModule} from "@delon/mock";
 import * as MOCKDATA from '../../_mock';
-import {PRO_LAYOUT} from "../../projects/pro-layout/src/lib/core/settings.service";
+import {PRO_LAYOUT} from "@pro-layout";
 
 
 export function StartupServiceFactory(startupService: StartupService) {
