@@ -12,7 +12,7 @@
           (nzOpenChange)="onOpenChange($event, menuData)"
           [nzOpen]="openKeys.indexOf(menuData.path) !== -1 && mode !== 'horizontal'">
         <span title>
-            <i *ngIf="menuData.icon;" nz-icon [type]="menuData.icon"></i>
+            <i *ngIf="menuData.icon;" nz-icon [nzType]="menuData.icon"></i>
               <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
               <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
         </span>
@@ -25,7 +25,7 @@
                   (nzOpenChange)="onOpenChange($event, menuData)"
                   [nzOpen]="openKeys.indexOf(menuData.path) !== -1 && mode !== 'horizontal'">
                   <span title>
-                    <i *ngIf="menuData.icon;" nz-icon [type]="menuData.icon"></i>
+                    <i *ngIf="menuData.icon;" nz-icon [nzType]="menuData.icon"></i>
                     <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
                     <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
                   </span>
@@ -36,7 +36,7 @@
                         *aclIf="menuData.guard"
                         [nzSelected]="menuData.path === selectedKey ? true : false">
                       <a [routerLink]="menuData.path">
-                        <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+                        <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                         <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
                         <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
                       </a>
@@ -50,7 +50,7 @@
                   *aclIf="menuData.guard"
                   [nzSelected]="menuData.path === selectedKey ? true : false">
                 <a [routerLink]="menuData.path">
-                  <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+                  <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                   <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
                   <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
                 </a>
@@ -65,7 +65,7 @@
           *aclIf="menuData.guard"
           [nzSelected]="menuData.path === selectedKey ? true : false">
         <a [routerLink]="menuData.path">
-          <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
+          <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
           <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
           <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
         </a>
