@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-lib": "ng build pro-layout --prod",
+    "build-lib": "ng build pro-layout",
     "npm-pack": "cd dist/pro-layout && npm pack",
     "package": "npm run build-lib && npm run npm-pack",
     "publish": "npm publish ./dist/pro-layout/*.tgz",
