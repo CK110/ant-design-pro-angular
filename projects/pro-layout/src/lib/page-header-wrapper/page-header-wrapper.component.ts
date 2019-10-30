@@ -165,7 +165,7 @@ export class PageHeaderWrapperComponent implements OnInit, AfterViewInit, OnDest
   }
 
   selectChange(event) {
-    const selectedTab = this.tabList[event['global.less']];
+    const selectedTab = this.tabList[event['index']];
     this.onTabChange.emit(selectedTab);
   }
 
