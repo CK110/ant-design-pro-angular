@@ -7,7 +7,6 @@
                 [nzTrigger]="null"
                 [(nzCollapsed)]="collapsed"
                 [nzBreakpoint]="'lg'"
-                (nzCollapsedChange)="collapsedChange($event)"
                 [nzWidth]="siderWidth"
                 [nzTheme]="navTheme"
                 [ngClass]="{'ant-pro-sider-menu-sider': true,'fix-sider-bar': fixSiderbar,'light': navTheme=='light'}">
@@ -24,7 +23,6 @@
         <nz-sider [nzCollapsible]="true"
                   [nzTrigger]="null"
                   [nzCollapsed]="isMobile ? false : collapsed"
-                  (nzCollapsedChange)="collapsedChange($event)"
                   [nzWidth]="siderWidth"
                   [nzTheme]="navTheme"
                   style="display: block"
@@ -46,14 +44,18 @@
                                 [logo]="logo"
                                 [title]="title"
                                 [contentWidth]="contentWidth"
-                                [rightContentRender]="rightContentRender">
+                                [rightContentRender]="rightContentRender"
+                                (onMenuHeaderClick)="menuHeaderClick($event)"
+                                [menuHeaderRender]="menuHeaderRender">
             </pro-top-nav-header>
           </ng-container>
           <ng-template #globalHeader>
             <pro-global-header [isMobile]="isMobile"
                                [(collapsed)]="collapsed"
                                [logo]="logo"
-                               [rightContentRender]="rightContentRender">
+                               [collapsedButtonRender]="collapsedButtonRender"
+                               [rightContentRender]="rightContentRender"
+                               (collapsedChange)="collapsedChange($event)">
             </pro-global-header>
           </ng-template>
         </ng-template>
@@ -77,15 +79,19 @@
 </div>
 
 <ng-template #siderMenuTemplate>
-  <div class="ant-pro-sider-menu-logo" id="logo">
-    <a>
-      <ng-container *nzStringTemplateOutlet="logo">
-        <img [src]="logo" alt="logo"/>
-      </ng-container>
-      <h1>
-        <ng-container *nzStringTemplateOutlet="title">{{title}}</ng-container>
-      </h1>
-    </a>
+  <div class="ant-pro-sider-menu-logo" id="logo" (click)="menuHeaderClick($event)">
+    <ng-container *ngTemplateOutlet="menuHeaderRender ? menuHeaderRender: defaultHeaderTemplate"
+                  [ngTemplateOutlet]="{logo:logo,title:title}"></ng-container>
+    <ng-template #defaultHeaderTemplate>
+      <a href="/">
+        <ng-container *nzStringTemplateOutlet="logo">
+          <img [src]="logo" alt="logo"/>
+        </ng-container>
+        <h1>
+          <ng-container *nzStringTemplateOutlet="title">{{title}}</ng-container>
+        </h1>
+      </a>
+    </ng-template>
   </div>
   <pro-base-menu [style]="{'width': '100%','padding': '16px 0'}"
                  [menuData]="menuData"

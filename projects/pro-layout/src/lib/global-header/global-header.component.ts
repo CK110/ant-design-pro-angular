@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'pro-global-header',
@@ -12,13 +21,10 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output,
 export class GlobalHeaderComponent implements OnInit {
 
   @Input() isMobile: boolean;
-
   @Input() logo: TemplateRef<void> | string;
-
   @Input() collapsed: boolean;
-
+  @Input() collapsedButtonRender: TemplateRef<boolean>;
   @Input() rightContentRender: TemplateRef<void>;
-
   @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {

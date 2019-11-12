@@ -1,17 +1,16 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
-  EventEmitter, HostListener,
+  Component, EventEmitter,
+  HostListener,
   Input,
-  OnInit,
-  Output, Renderer2,
+  OnInit, Output,
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {GlobalFooterProps} from '../global-footer/global-footer.component';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {ContentWidth} from '../core/default-settings';
 import {InputBoolean, InputNumber} from 'ng-zorro-antd';
 import {MenuDataItem} from "../sider-menu/base-menu.component";
@@ -31,6 +30,8 @@ export class BasicLayoutComponent implements OnInit {
   // side menu
   @Input() title: TemplateRef<void> | string = 'Ant Design Pro';   // layout 的 左上角 的 title
   @Input() logo: TemplateRef<void> | string; // layout 的 左上角 logo 的 url
+  @Input() menuHeaderRender: TemplateRef<void>;
+  @Output() onMenuHeaderClick = new EventEmitter<any>();
 
   @Input() mode = 'inline';
 
@@ -51,13 +52,12 @@ export class BasicLayoutComponent implements OnInit {
 
   @Input() @InputNumber() siderWidth = 256; // 侧边菜单宽度
   @Input() @InputBoolean() collapsed = true; // 控制菜单的收起和展开
-  // @Output() onCollapse: EventEmitter<any> = new EventEmitter(); // 菜单的折叠收起事件
+  @Output() onCollapse = new EventEmitter<boolean>(); // 菜单的折叠收起事件
 
   // header
   @Input() headerRender: TemplateRef<void>; // 自定义头的 render 方法
-  // @Input() collapsedButtonRender: TemplateRef<void>; // 自定义 collapsed button 的方法
-  @Input() rightContentRender: TemplateRef<void>;
-
+  @Input() rightContentRender: TemplateRef<void>; // 自定义头右部的 render 方法
+  @Input() collapsedButtonRender: TemplateRef<boolean>;  // 自定义 collapsed button 的方法
 
   // footer
   @Input() footerRender: TemplateRef<void> | false;
@@ -70,15 +70,13 @@ export class BasicLayoutComponent implements OnInit {
   selectedKey: string;
   openKeys: Array<string> = [];
 
-
   visible: boolean = true;
   ticking: boolean = false;
   oldScrollTop: number = 0;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private cdf: ChangeDetectorRef,
-              private router: Router,
-              private renderer: Renderer2) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -105,8 +103,8 @@ export class BasicLayoutComponent implements OnInit {
     });
   }
 
-  collapsedChange(event) {
-    console.log(event);
+  collapsedChange(event: boolean) {
+    this.onCollapse.emit(event);
   }
 
   @HostListener('window:scroll')
@@ -146,9 +144,11 @@ export class BasicLayoutComponent implements OnInit {
     return this.collapsed ? 'calc(100% - 80px)' : `calc(100% - ${this.siderWidth}px)`;
   }
 
-  onDrawerClose(event: any) {
+  onDrawerClose(event: Event) {
     this.collapsed = !this.collapsed;
-    // this.onCollapse.emit(event);
   }
 
+  menuHeaderClick(event: Event) {
+    this.onMenuHeaderClick.emit(event);
+  }
 }

@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewEncapsulation
+} from '@angular/core';
 import {ContentWidth, MenuTheme} from '../core/default-settings';
 import {isBrowser} from '../utils/utils';
 import {MenuDataItem} from "../sider-menu/base-menu.component";
@@ -20,6 +29,9 @@ export class TopNavHeaderComponent implements OnInit {
   @Input() title: TemplateRef<void> | string;
   @Input() contentWidth: ContentWidth;
   @Input() rightContentRender: TemplateRef<void>;
+  @Input() menuHeaderRender: TemplateRef<void>;
+
+  @Output() onMenuHeaderClick = new EventEmitter<any>();
 
   baseClassName = 'ant-pro-top-nav-header';
 
@@ -32,5 +44,9 @@ export class TopNavHeaderComponent implements OnInit {
     const innerWidth = isBrowser() ? window.innerWidth : 0;
 
     this.maxWidth = (this.contentWidth === 'Fixed' && innerWidth > 1200 ? 1200 : innerWidth) - 280 - 120;
+  }
+
+  menuHeaderClick(event: Event) {
+    this.onMenuHeaderClick.emit(event);
   }
 }

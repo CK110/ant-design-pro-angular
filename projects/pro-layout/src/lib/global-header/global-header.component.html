@@ -6,10 +6,15 @@
       </ng-container>
     </a>
   </ng-container>
+  <!-- collapsedButton -->
+  <ng-container [ngTemplateOutlet]="collapsedButtonRender? collapsedButtonRender: defaultCollapsedButtonTemplate"
+                [ngTemplateOutletContext]="collapsed"></ng-container>
 
-  <span class="ant-pro-global-header-trigger" (click)="toggle()">
+  <ng-template #defaultCollapsedButtonTemplate>
+      <span class="ant-pro-global-header-trigger" (click)="toggle()">
     <i nz-icon [nzType]="collapsed ? 'menu-unfold' : 'menu-fold'"></i>
   </span>
-
+  </ng-template>
+  <!--rightContentRender-->
   <ng-container *ngTemplateOutlet="rightContentRender"></ng-container>
 </div>
