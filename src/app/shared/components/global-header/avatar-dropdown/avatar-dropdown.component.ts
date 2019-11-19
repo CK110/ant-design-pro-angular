@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {CurrentUser} from '../../../models/user';
 
 export interface GlobalHeaderRightProps {
@@ -10,12 +10,10 @@ export interface GlobalHeaderRightProps {
   selector: 'pro-avatar-dropdown',
   templateUrl: 'avatar-dropdown.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  exportAs: 'proAvatarDropdown',
-  preserveWhitespaces: false
 })
 export class AvatarDropdownComponent implements OnInit {
 
+  @Input() className: any = 'action';
   @Input() currentUser: GlobalHeaderRightProps['currentUser'];
   @Input() menu = true;
 
@@ -32,7 +30,7 @@ export class AvatarDropdownComponent implements OnInit {
     }, 2000);
   }
 
-  onMenuClick() {
+  logout() {
 
   }
 }

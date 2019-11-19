@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import ngZh from '@angular/common/locales/zh';
 import ngZhTw from '@angular/common/locales/zh-Hant';
 import ngEn from '@angular/common/locales/en';
@@ -64,19 +64,12 @@ const LANGS: { [key: string]: LangData } = {
 };
 
 @Component({
-  selector: 'pro-select-lang',
+  selector: 'pro-select-lang,[pro-select-lang]',
   templateUrl: 'select-lang.component.html',
-  styleUrls: ['select-lang.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.Emulated,
-  exportAs: 'proSelectLang',
-  preserveWhitespaces: false
+  styleUrls: ['select-lang.component.less']
 })
 export class SelectLangComponent implements OnInit {
 
-  @Input() className: string;
-
-  prefixedClassName = 'antd-pro-components-select-lang-index';
   locales = Object.keys(LANGS);
   languages = LANGS;
   currentLocale: string;

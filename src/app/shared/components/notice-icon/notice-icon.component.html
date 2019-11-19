@@ -1,0 +1,29 @@
+<div nz-dropdown
+     [nzDropdownMenu]="noticeMenu"
+     nzTrigger="click"
+     nzPlacement="bottomRight"
+     [nzOverlayClassName]="['popover']"
+     [nzVisible]="popupVisible"
+     (nzVisibleChange)="handleVisibleChange($event)">
+  <ng-container [ngTemplateOutlet]="triggerTpl"></ng-container>
+</div>
+<nz-dropdown-menu #noticeMenu="nzDropdownMenu">
+  <nz-spin [nzSpinning]="loading" [nzDelay]="300">
+    <nz-tabset nzSelectedIndex="0" class="tabs" style="background: #fff">
+      <nz-tab *ngFor="let i of data" [nzTitle]="i.title">
+        <pro-notice-list [data]="i.list"
+                         [clearText]="i.clearText"
+                         [viewMoreText]="i.viewMoreText">
+        </pro-notice-list>
+      </nz-tab>
+    </nz-tabset>
+  </nz-spin>
+</nz-dropdown-menu>
+
+<ng-template #triggerTpl>
+  <span [ngClass]="{'noticeButton':true,'open': popupVisible}">
+    <nz-badge [nzCount]="count" [nzStyle]="{ 'box-shadow': 'none' }" class="badge">
+      <i nz-icon nzType="bell" class="icon"></i>
+    </nz-badge>
+  </span>
+</ng-template>

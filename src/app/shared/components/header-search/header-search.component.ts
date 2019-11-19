@@ -7,17 +7,13 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
   selector: 'pro-header-search',
   templateUrl: 'header-search.component.html',
   styleUrls: ['header-search.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.Emulated,
-  exportAs: 'proHeaderSearch',
-  preserveWhitespaces: false
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderSearchComponent implements OnInit {
 
@@ -26,7 +22,6 @@ export class HeaderSearchComponent implements OnInit {
   @Output() search: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('input', {static: true}) inputRef: ElementRef;
-  prefixedClassName = 'antd-pro-components-header-search-index';
   searchMode = false;
   inputValue = '';
   options = [];
@@ -39,7 +34,7 @@ export class HeaderSearchComponent implements OnInit {
   }
 
   onInput(event): void {
-    this.inputValue = event.target && event.target.value ;
+    this.inputValue = event.target && event.target.value;
   }
 
   onSearch(option) {
@@ -51,7 +46,7 @@ export class HeaderSearchComponent implements OnInit {
 
   }
 
-  enterSearchMode(): void {
+  enterSearchMode(event: Event): void {
     this.searchMode = true;
     if (this.searchMode && this.inputRef) {
       this.inputRef.nativeElement.focus();

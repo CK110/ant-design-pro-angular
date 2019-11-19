@@ -1,5 +1,7 @@
 <div class="right" [ngClass]="{'dark':theme === 'dark' && layout === 'topmenu'}">
 
+<!--  <pro-header-search></pro-header-search>-->
+
   <!--tip-->
   <a nz-tooltip [nzTitle]="'component.globalHeader.help' | translate"
      target="_blank"
@@ -9,39 +11,7 @@
     <i nz-icon nzType="question-circle-o"></i>
   </a>
 
-  <!--avatar-dropdown-->
-  <ng-container *ngIf="currentUser">
-    <span class="action account" nz-dropdown [nzDropdownMenu]="menu">
-      <nz-avatar [nzSize]="'small'"
-                 [nzSrc]="currentUser.avatar"
-                 [ngClass]="['avatar']"
-                 [nzAlt]="'avatar'">
-      </nz-avatar>
-      <span class="name">{{currentUser.name}}</span>
-    </span>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul nz-menu nzSelectable>
-        <li nz-menu-item>
-          <i nz-icon nzType="user"></i>
-          <span>{{ 'menu.account.center' | translate }}</span>
-        </li>
-        <li nz-menu-item>
-          <i nz-icon nzType="setting"></i>
-          <span>{{ 'menu.account.settings'| translate}}</span>
-        </li>
-        <li nz-menu-item>
-          <i nz-icon nzType="logout"></i>
-          <span>{{ 'menu.account.logout'| translate}}</span>
-        </li>
-      </ul>
-    </nz-dropdown-menu>
-  </ng-container>
-  <ng-container *ngIf="!currentUser">
-    <div class="action">
-      <nz-spin nzSimple nzSize="small"></nz-spin>
-    </div>
-  </ng-container>
-
-  <!--select-lang-->
-  <pro-select-lang class="action"></pro-select-lang>
+  <pro-notice-icon-view></pro-notice-icon-view>
+  <pro-avatar-dropdown></pro-avatar-dropdown>
+  <pro-select-lang></pro-select-lang>
 </div>

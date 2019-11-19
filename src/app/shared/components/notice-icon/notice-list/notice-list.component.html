@@ -1,0 +1,33 @@
+<nz-list class="list"
+         [nzDataSource]="data"
+         [nzRenderItem]="item">
+  <ng-template #item let-item>
+    <nz-list-item [ngClass]="{'item':true,'read': item.read}" (click)="handleClick(item) ">
+      <nz-list-item-meta class="meta"
+                         [nzAvatar]="item.avatar"
+                         [nzTitle]="titleTemplate"
+                         [nzDescription]="descriptionTemplate">
+        <ng-template #titleTemplate>
+          <div class="title">
+            {{item.title}}
+            <div class="extra" *ngIf="item.extra">
+              {{item.extra}}
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #descriptionTemplate>
+          <div *ngIf="item.description" class="description">{{item.description}}</div>
+          <div *ngIf="item.datetime" class="datetime">{{item.datetime}}</div>
+        </ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
+<div class="bottomBar">
+  <div (click)="clearNotice($event)">
+    {{clearText}} {{title}}
+  </div>
+  <div (click)="viewMore($event)">
+    {{viewMoreText}}
+  </div>
+</div>

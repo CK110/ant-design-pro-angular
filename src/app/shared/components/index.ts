@@ -9,6 +9,7 @@ import {CopyBlockComponent} from "./copy-block/copy-block.component";
 import {PageLoadingComponent} from "./page-loading/page-loading.component";
 import {NoticeIconComponent} from "./notice-icon/notice-icon.component";
 import {ResultComponent} from "@shared/components/result/result.component";
+import {NoticeListComponent} from "@shared/components/notice-icon/notice-list/notice-list.component";
 
 export const Components = [
   BasicLayoutComponent,
@@ -21,5 +22,6 @@ export const Components = [
   CopyBlockComponent,
   PageLoadingComponent,
   NoticeIconComponent,
-  ResultComponent
+  ResultComponent,
+  NoticeListComponent
 ];

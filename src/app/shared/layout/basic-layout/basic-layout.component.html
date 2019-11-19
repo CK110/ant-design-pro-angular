@@ -8,7 +8,9 @@
                   [layout]="settings.layout"
                   [menuData]="menuData"
                   [rightContentRender]="rightContentRender"
-                  [mode]="'vertical'"
+                  [mode]="'inline'"
+                  (onMenuHeaderClick)="menuHeaderClick($event)"
+                  (onCollapse)="collapse($event)"
                   [links]="footer.links"
                   [copyright]="copyRightTemplate">
   <router-outlet></router-outlet>

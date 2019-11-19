@@ -16,7 +16,10 @@ import themeColorClient from '../../components/setting-drawer/theme-color-client
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'appBasicLayout',
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  host: {
+    '[class.colorweak]': 'settings.colorWeak',
+  }
 })
 export class BasicLayoutComponent implements OnInit, AfterViewInit {
 
@@ -27,17 +30,17 @@ export class BasicLayoutComponent implements OnInit, AfterViewInit {
 
   menuData = menuData;
 
-  footer:any;
+  footer: any;
 
   constructor(private settingService: SettingsService,
-              private cdr:ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
 
     this.settings = this.settingService.settings;
 
-    this.footer ={
+    this.footer = {
       links: [
         {
           key: 'Ant Design Pro',
@@ -65,15 +68,25 @@ export class BasicLayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
-  settingChange(event){
+  settingChange(event) {
+
+    console.log(this.settings);
 
     console.log(event['primaryColor']);
-    if(event['primaryColor']){
-      themeColorClient.changeColor(event['primaryColor']).finally(() =>{
+    if (event['primaryColor']) {
+      themeColorClient.changeColor(event['primaryColor']).finally(() => {
         console.log('修改完成');
       });
     }
-
     this.cdr.markForCheck();
   }
+
+  menuHeaderClick(event: Event) {
+    console.log(`onMenuHeaderClick:${event}`);
+  }
+
+  collapse(event) {
+    console.log(`onCollapse:${event}`);
+  }
+
 }

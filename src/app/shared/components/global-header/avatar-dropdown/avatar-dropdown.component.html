@@ -1,5 +1,5 @@
 <ng-container *ngIf="currentUser">
-    <span nz-dropdown [nzDropdownMenu]="menu">
+    <span class="action account" nz-dropdown [nzDropdownMenu]="menu">
       <nz-avatar [nzSize]="'small'"
                  [nzSrc]="currentUser.avatar"
                  [ngClass]="['avatar']"
@@ -17,7 +17,7 @@
         <i nz-icon nzType="setting"></i>
         <span>{{ 'menu.account.settings'| translate}}</span>
       </li>
-      <li nz-menu-item>
+      <li nz-menu-item (click)="logout()">
         <i nz-icon nzType="logout"></i>
         <span>{{ 'menu.account.logout'| translate}}</span>
       </li>

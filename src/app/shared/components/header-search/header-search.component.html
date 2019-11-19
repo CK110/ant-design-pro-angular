@@ -1,5 +1,3 @@
-<i nz-icon nzType="search" (click)="enterSearchMode()"></i>
-
 <!--<div class="{{prefixedClassName}}-input" [ngClass]="{'antd-pro-components-header-search-index-show':searchMode }">-->
 <!--  <input nz-input-->
 <!--         [(ngModel)]="inputValue"-->
@@ -15,3 +13,8 @@
 <!--    {{option}}-->
 <!--  </nz-auto-option>-->
 <!--</nz-autocomplete>-->
+
+<span class="action search headerSearch"
+      (click)="enterSearchMode($event)">
+  <i nz-icon nzType="search"></i>
+</span>

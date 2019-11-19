@@ -8,6 +8,7 @@ import {ProLayoutModule} from "@pro-layout";
 import {LayoutComponents} from "./layout";
 import {DelonACLModule} from "@delon/acl";
 import {TranslateModule} from "@ngx-translate/core";
+import {DelonChartModule} from "@delon/chart";
 
 const Modules = [
   CommonModule,
@@ -19,6 +20,7 @@ const Modules = [
   NzAddOnModule,
   ProLayoutModule,
   DelonACLModule,
+  DelonChartModule,
   TranslateModule
 ];
 
