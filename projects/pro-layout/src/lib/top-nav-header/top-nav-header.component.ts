@@ -10,16 +10,20 @@ import {
 } from '@angular/core';
 import {ContentWidth, MenuTheme} from '../core/default-settings';
 import {isBrowser} from '../utils/utils';
-import {MenuDataItem} from "../sider-menu/base-menu.component";
+import {MenuDataItem} from '../sider-menu/base-menu.component';
 
 @Component({
-  selector: 'pro-top-nav-header',
+  selector: 'pro-top-nav-header,[pro-top-nav-header]',
   templateUrl: 'top-nav-header.component.html',
   styleUrls: ['top-nav-header.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proTopNavHeader',
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  host: {
+    '[class]': `baseClassName`,
+    '[class.light]': `theme === 'light'`
+  }
 })
 export class TopNavHeaderComponent implements OnInit {
 

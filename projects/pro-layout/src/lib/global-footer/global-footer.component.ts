@@ -13,17 +13,20 @@ export interface GlobalFooterProps {
 }
 
 @Component({
-  selector: 'pro-global-footer',
+  selector: 'pro-global-footer,[pro-global-footer]',
   templateUrl: 'global-footer.component.html',
   styleUrls: ['global-footer.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proGlobalFooter',
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  host: {
+    '[class]': `'ant-pro-global-footer ' + className`
+  }
 })
 export class GlobalFooterComponent implements OnInit {
 
-  @Input() className: string;
+  @Input() className = '';
   @Input() links: GlobalFooterProps['links'];
   @Input() copyright: TemplateRef<void> | string;
 
