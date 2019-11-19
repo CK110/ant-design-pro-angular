@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component, EventEmitter,
   HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit, Output,
   TemplateRef,
   ViewEncapsulation
@@ -15,7 +15,8 @@ import {ContentWidth} from '../core/default-settings';
 import {InputBoolean, InputNumber} from 'ng-zorro-antd';
 import {MenuDataItem} from "../sider-menu/base-menu.component";
 import {urlToList} from "../utils/path-tools";
-import {filter} from "rxjs/operators";
+import {filter, takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'pro-basic-layout',
@@ -26,7 +27,7 @@ import {filter} from "rxjs/operators";
   exportAs: 'proBasicLayout',
   preserveWhitespaces: false
 })
-export class BasicLayoutComponent implements OnInit {
+export class BasicLayoutComponent implements OnInit, OnDestroy {
   // side menu
   @Input() title: TemplateRef<void> | string = 'Ant Design Pro';   // layout 的 左上角 的 title
   @Input() logo: TemplateRef<void> | string; // layout 的 左上角 logo 的 url
@@ -64,6 +65,9 @@ export class BasicLayoutComponent implements OnInit {
   @Input() links: GlobalFooterProps['links'];
   @Input() copyright: TemplateRef<void>;
 
+  // 是否禁用移动端模式，有的管理系统不需要移动端模式，此属性设置为true即可
+  // @Input() @InputBoolean() disableMobile: boolean;
+
   // wrapper
   @Input() menuData: MenuDataItem[];
   isMobile = false;
@@ -73,6 +77,7 @@ export class BasicLayoutComponent implements OnInit {
   visible: boolean = true;
   ticking: boolean = false;
   oldScrollTop: number = 0;
+  destroy$ = new Subject();
 
   constructor(private breakpointObserver: BreakpointObserver,
               private cdf: ChangeDetectorRef,
@@ -82,20 +87,23 @@ export class BasicLayoutComponent implements OnInit {
   ngOnInit() {
     this.breakpointObserver
       .observe(['(max-width: 599px)'])
+      .pipe(takeUntil(this.destroy$))
       .subscribe((state: BreakpointState) => {
+        // if (!this.disableMobile) {
         if (state.matches) {
           this.isMobile = true;
         } else {
           this.isMobile = false;
         }
         this.cdf.markForCheck();
+        // }
       });
-
 
     // 监听路由
     this.openKeys = urlToList(this.router.url);
     this.selectedKey = this.router.url;
     this.router.events.pipe(
+      takeUntil(this.destroy$),
       filter(event => event instanceof NavigationEnd),
     ).subscribe((event) => {
       this.selectedKey = event['url'];
@@ -103,8 +111,9 @@ export class BasicLayoutComponent implements OnInit {
     });
   }
 
-  collapsedChange(event: boolean) {
-    this.onCollapse.emit(event);
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   @HostListener('window:scroll')
@@ -146,9 +155,5 @@ export class BasicLayoutComponent implements OnInit {
 
   onDrawerClose(event: Event) {
     this.collapsed = !this.collapsed;
-  }
-
-  menuHeaderClick(event: Event) {
-    this.onMenuHeaderClick.emit(event);
   }
 }

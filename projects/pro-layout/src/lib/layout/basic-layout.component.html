@@ -46,7 +46,7 @@
                  [title]="title"
                  [contentWidth]="contentWidth"
                  [rightContentRender]="rightContentRender"
-                 (onMenuHeaderClick)="menuHeaderClick($event)"
+                 (onMenuHeaderClick)="onMenuHeaderClick.emit($event)"
                  [menuHeaderRender]="menuHeaderRender">
             </div>
           </ng-container>
@@ -57,7 +57,7 @@
                  [logo]="logo"
                  [collapsedButtonRender]="collapsedButtonRender"
                  [rightContentRender]="rightContentRender"
-                 (collapsedChange)="collapsedChange($event)">
+                 (collapsedChange)="onCollapse.emit($event)">
             </div>
           </ng-template>
         </ng-template>
@@ -81,7 +81,7 @@
 </div>
 
 <ng-template #siderMenuTemplate>
-  <div class="ant-pro-sider-menu-logo" id="logo" (click)="menuHeaderClick($event)">
+  <div class="ant-pro-sider-menu-logo" id="logo" (click)="onMenuHeaderClick.emit($event)">
     <ng-container *ngTemplateOutlet="menuHeaderRender ? menuHeaderRender: defaultHeaderTemplate"
                   [ngTemplateOutlet]="{logo:logo,title:title}"></ng-container>
     <ng-template #defaultHeaderTemplate>
