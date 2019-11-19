@@ -39,24 +39,26 @@
         <ng-container *ngTemplateOutlet="headerRender ? headerRender: defaultDomTemplate"></ng-container>
         <ng-template #defaultDomTemplate>
           <ng-container *ngIf="layout === 'topmenu' && !isMobile;else: globalHeader">
-            <pro-top-nav-header [theme]="navTheme"
-                                [menuData]="menuData"
-                                [logo]="logo"
-                                [title]="title"
-                                [contentWidth]="contentWidth"
-                                [rightContentRender]="rightContentRender"
-                                (onMenuHeaderClick)="menuHeaderClick($event)"
-                                [menuHeaderRender]="menuHeaderRender">
-            </pro-top-nav-header>
+            <div pro-top-nav-header
+                 [theme]="navTheme"
+                 [menuData]="menuData"
+                 [logo]="logo"
+                 [title]="title"
+                 [contentWidth]="contentWidth"
+                 [rightContentRender]="rightContentRender"
+                 (onMenuHeaderClick)="menuHeaderClick($event)"
+                 [menuHeaderRender]="menuHeaderRender">
+            </div>
           </ng-container>
           <ng-template #globalHeader>
-            <pro-global-header [isMobile]="isMobile"
-                               [(collapsed)]="collapsed"
-                               [logo]="logo"
-                               [collapsedButtonRender]="collapsedButtonRender"
-                               [rightContentRender]="rightContentRender"
-                               (collapsedChange)="collapsedChange($event)">
-            </pro-global-header>
+            <div pro-global-header
+                 [isMobile]="isMobile"
+                 [(collapsed)]="collapsed"
+                 [logo]="logo"
+                 [collapsedButtonRender]="collapsedButtonRender"
+                 [rightContentRender]="rightContentRender"
+                 (collapsedChange)="collapsedChange($event)">
+            </div>
           </ng-template>
         </ng-template>
       </nz-header>
@@ -70,7 +72,7 @@
           <ng-container [ngTemplateOutlet]="footerRender"></ng-container>
         </ng-container>
         <ng-template #globalFooter>
-          <pro-global-footer [links]="links" [copyright]="copyright"></pro-global-footer>
+          <div pro-global-footer [links]="links" [copyright]="copyright"></div>
         </ng-template>
       </nz-footer>
 

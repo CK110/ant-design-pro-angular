@@ -10,13 +10,16 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'pro-global-header',
+  selector: 'pro-global-header,[pro-global-header]',
   templateUrl: 'global-header.component.html',
   styleUrls: ['global-header.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proGlobalHeader',
-  preserveWhitespaces: false
+  preserveWhitespaces: false,
+  host: {
+    '[class]': `'ant-pro-global-header'`
+  }
 })
 export class GlobalHeaderComponent implements OnInit {
 
