@@ -1,6 +1,6 @@
 {
   "name": "pro-layout",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^8.1.0",
     "@angular/core": "^8.1.0"
