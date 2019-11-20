@@ -14,7 +14,7 @@ import {isEmpty} from 'ng-zorro-antd';
 import {ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET, Router} from '@angular/router';
 import {filter, takeUntil, startWith} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import {ContentWidth} from "../core/default-settings";
+import {ContentWidth} from '../core/default-settings';
 
 export const ROUTE_DATA_BREADCRUMB_NAME = 'name';
 
@@ -45,18 +45,24 @@ export const DefaultLocation: BreadcrumbOption = {
 })
 export class PageHeaderWrapperComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  // nz-page-header原有属性
+  @Input() ghost = true;
   @Input() title: TemplateRef<void> | string;
+  @Input() subtitle: TemplateRef<void> | string;
+  @Input() backIcon: string | TemplateRef<void> | null = null;
+  @Output() back = new EventEmitter<void>();
+
   @Input() extra: TemplateRef<void> | string;
   @Input() tags: TemplateRef<void>;
   @Input() content: TemplateRef<void> | string;
   @Input() extraContent: TemplateRef<void> | string;
   @Input() pageHeaderRender: TemplateRef<void>;
-  @Input() location: BreadcrumbOption = DefaultLocation;
+  @Input() location: BreadcrumbOption = DefaultLocation; // 首页
 
   @Input() tabList: { key: string; tab: string; }[];
   @Input() tabActiveKey: string;
-  @Output() onTabChange: EventEmitter<{ key: string; tab: string; }> = new EventEmitter<{ key: string; tab: string; }>();
   @Input() tabBarExtraContent: TemplateRef<void>;
+  @Output() onTabChange: EventEmitter<{ key: string; tab: string; }> = new EventEmitter<{ key: string; tab: string; }>();
 
   @Input() contentWidth: ContentWidth;
 
@@ -165,18 +171,16 @@ export class PageHeaderWrapperComponent implements OnInit, AfterViewInit, OnDest
   }
 
   selectChange(event) {
-    const selectedTab = this.tabList[event['index']];
+    const selectedTab = this.tabList[event.index];
     this.onTabChange.emit(selectedTab);
   }
 
   getSelectedIndex() {
     const idx = this.tabList.findIndex(w => w.key === this.tabActiveKey);
     if (idx !== -1) {
-      return idx
+      return idx;
     } else {
-      return 0
+      return 0;
     }
   }
-
-
 }

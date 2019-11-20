@@ -5,51 +5,59 @@
         <ng-template [ngTemplateOutlet]="pageHeaderRender"></ng-template>
       </ng-container>
       <ng-template #defaultPageHeader>
-          <nz-page-header [nzTitle]="title">
-            <!-- breadcrumb -->
-            <nz-breadcrumb nz-page-header-breadcrumb>
-              <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
-                <a [attr.href]="breadcrumb.path"
-                   (click)="navigate(breadcrumb.path, $event)">
-                  {{ breadcrumb.name }}
-                </a>
-              </nz-breadcrumb-item>
-            </nz-breadcrumb>
-            <!-- header-extra -->
-            <nz-page-header-tags *ngIf="tags">
-              <ng-container *ngTemplateOutlet="tags"></ng-container>
-            </nz-page-header-tags>
-            <!-- header-extra -->
-            <nz-page-header-extra *ngIf="extra">
-              <ng-container *nzStringTemplateOutlet="extra">{{extra}}</ng-container>
-            </nz-page-header-extra>
-            <!-- renderPageHeader -->
-            <nz-page-header-content *ngIf="content || extraContent">
-                <div class="{{prefixedClassName}}-detail">
-                  <div class="{{prefixedClassName}}-main">
-                    <div class="{{prefixedClassName}}-row">
-                      <div *ngIf="content" class="{{prefixedClassName}}-content">
-                        <ng-container *nzStringTemplateOutlet="content">{{content}}</ng-container>
-                      </div>
-                      <div *ngIf="extraContent" class="{{prefixedClassName}}-extraContent">
-                        <ng-container *nzStringTemplateOutlet="extraContent">{{extraContent}}</ng-container>
-                      </div>
-                    </div>
+        <nz-page-header [nzTitle]="title"
+                        [nzGhost]="ghost"
+                        [nzSubtitle]="subtitle"
+                        [nzBackIcon]="backIcon"
+                        (nzBack)="back.emit($event)">
+          <!-- breadcrumb -->
+          <nz-breadcrumb nz-page-header-breadcrumb>
+            <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
+              <a [attr.href]="breadcrumb.path"
+                 (click)="navigate(breadcrumb.path, $event)">
+                {{ breadcrumb.name }}
+              </a>
+            </nz-breadcrumb-item>
+          </nz-breadcrumb>
+
+          <!-- header-extra -->
+          <nz-page-header-tags *ngIf="tags">
+            <ng-container *ngTemplateOutlet="tags"></ng-container>
+          </nz-page-header-tags>
+
+          <!-- header-extra -->
+          <nz-page-header-extra *ngIf="extra">
+            <ng-container *nzStringTemplateOutlet="extra">{{extra}}</ng-container>
+          </nz-page-header-extra>
+
+          <!-- renderPageHeader -->
+          <nz-page-header-content *ngIf="content || extraContent">
+            <div class="{{prefixedClassName}}-detail">
+              <div class="{{prefixedClassName}}-main">
+                <div class="{{prefixedClassName}}-row">
+                  <div *ngIf="content" class="{{prefixedClassName}}-content">
+                    <ng-container *nzStringTemplateOutlet="content">{{content}}</ng-container>
+                  </div>
+                  <div *ngIf="extraContent" class="{{prefixedClassName}}-extraContent">
+                    <ng-container *nzStringTemplateOutlet="extraContent">{{extraContent}}</ng-container>
                   </div>
                 </div>
-            </nz-page-header-content>
-            <!-- renderFooter -->
-            <nz-page-header-footer *ngIf="tabList && tabList.length">
-              <nz-tabset class="{{prefixedClassName}}-tabs"
-                         [nzSelectedIndex]="getSelectedIndex()"
-                         (nzSelectChange)="selectChange($event)"
-                         [nzTabBarExtraContent]="tabBarExtraContent">
-                <ng-container *ngFor="let tab of tabList">
-                  <nz-tab [nzTitle]="tab.tab"></nz-tab>
-                </ng-container>
-              </nz-tabset>
-            </nz-page-header-footer>
-          </nz-page-header>
+              </div>
+            </div>
+          </nz-page-header-content>
+
+          <!-- renderFooter -->
+          <nz-page-header-footer *ngIf="tabList && tabList.length">
+            <nz-tabset class="{{prefixedClassName}}-tabs"
+                       [nzSelectedIndex]="getSelectedIndex()"
+                       (nzSelectChange)="selectChange($event)"
+                       [nzTabBarExtraContent]="tabBarExtraContent">
+              <ng-container *ngFor="let tab of tabList">
+                <nz-tab [nzTitle]="tab.tab"></nz-tab>
+              </ng-container>
+            </nz-tabset>
+          </nz-page-header-footer>
+        </nz-page-header>
       </ng-template>
     </pro-grid-content>
   </div>
