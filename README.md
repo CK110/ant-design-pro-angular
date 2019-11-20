@@ -1,3 +1,6 @@
+[![NPM version](https://img.shields.io/npm/v/pro-layout.svg)](https://www.npmjs.com/package/pro-layout)
+
+
 <h1 align="center">Ant Design Pro Angular</h1>
 
 <div align="center">
@@ -6,7 +9,7 @@
 
 开箱即用的中台前端/设计解决方案。此仓库是 Angular 版本的 Ant Design Pro 的 layout, 是为了方便快速的使用 layout 而开发。
 
-样式对应 `@ant-design/pro-layout:4.5.11` 
+样式对应 `@ant-design/pro-layout:4.6.2` 
 
 
 </div>
@@ -31,22 +34,39 @@ export class AppModule {
 
 ## API
 
+> `x` 标识的参数是对应于react版本未实现的属性,`menuData`为Angular版本新增属性
+
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | `[title]` | layout 的 左上角 的 title | `string \| TemplateRef<void>` | `'Ant Design Pro'` |
 | `[logo]` | layout 的 左上角 logo 的 url | `string \| TemplateRef<void>` | - |
+| `[menuHeaderRender]` | 渲染 logo 和 title | `TemplateRef<void>` | - |
+| `(onMenuHeaderClick)` | menu 菜单的头部点击事件 | `EventEmitter<Event>` | - |
 | `[layout]` | layout 的菜单模式,sidemenu：右侧导航，topmenu：顶部导航 | `'sidemenu' \| 'topmenu'` | `'sidemenu'` |
 | `[contentWidth]` | layout 的内容模式,Fluid：定宽 1200px，Fixed：自适应 | `'Fluid' \| 'Fixed'` | `'Fluid'` |
 | `[navTheme]` | 导航的主题 | `'light' \| 'dark'` | `'dark'` |
 | `[fixedHeader]` | 是否固定 header 到顶部 | `boolean` | `false` |
 | `[fixSiderbar]` | 是否固定导航 | `boolean` | `false` |
 | `[autoHideHeader]` | 是否下滑时自动隐藏 header | `boolean` | `false` |
+| `[menu]` | x | x | x |
+| `[iconfontUrl]` | x | x | x |
+| `[locale]` | x | x | x | x |
+| `[settings]` | x | x | x | x |
 | `[siderWidth]` | 侧边菜单宽度 | `number` | 256 |
 | `[collapsed]` | 控制菜单的收起和展开 | `boolean` | true |
+| `[onCollapse]` | 菜单的折叠收起事件	 | `EventEmitter<boolean>` | - |
 | `[headerRender]` | 自定义头的 render 方法 | `TemplateRef<void>` | - |
 | `[rightContentRender]` | 自定义头右部的 render 方法 | `TemplateRef<void>` | - |
-| `[footerRender]` | 自定义页脚的 render 方法 | `TemplateRef<void> \| false` | - |
+| `[collapsedButtonRender]` | 自定义 collapsed button 的方法 | `TemplateRef<boolean>` | - |
+| `[footerRender]` | 自定义页脚的 render 方法 | `TemplateRef<void>`| false` | - |
 | `[menuData]` | 菜单数据 | `MenuDataItem[]` | - |
+| `[menuRender]` | x | x | x |
+| `[menuItemRender]` | x | x | x |
+| `[menuDataRender]` | x | x | x | x |
+| `[breadcrumbRender]` | x | x | x | x |
+| `[route]` | x | x | x | x |
+| `[disableMobile]` | x | x | x | x |
+| `[menuProps]` | x | x | x | x |
 
 
 ### SettingDrawer
@@ -103,4 +123,8 @@ export interface MenuDataItem {
 - [ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)
 - [@delon/auth](https://ng-alain.com/auth/getting-started/zh)
 - [@delon/acl](https://ng-alain.com/acl/getting-started/zh)
+- [@delon/chart](https://ng-alain.com/chart/getting-started/zh)
+- [@delon/mock](https://ng-alain.com/mock/getting-started/zh)
+- [@ngx-translate/core](https://github.com/ngx-translate/core)
+
 
