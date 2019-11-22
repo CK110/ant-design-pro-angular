@@ -52,7 +52,7 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
   // @Input() settings: any; // layout 的设置
 
   @Input() @InputNumber() siderWidth = 256; // 侧边菜单宽度
-  @Input() @InputBoolean() collapsed = true; // 控制菜单的收起和展开
+  @Input() @InputBoolean() collapsed; // 控制菜单的收起和展开
   @Output() onCollapse = new EventEmitter<boolean>(); // 菜单的折叠收起事件
 
   // header
