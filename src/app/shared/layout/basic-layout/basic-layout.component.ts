@@ -6,8 +6,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {menuData} from '../../../app-menu';
-import {Settings} from "@pro-layout";
-import {SettingsService} from "@pro-layout";
+import {Settings} from '@pro-layout';
+import {SettingsService} from '@pro-layout';
 import themeColorClient from '../../components/setting-drawer/theme-color-client';
 
 @Component({
@@ -62,23 +62,20 @@ export class BasicLayoutComponent implements OnInit, AfterViewInit {
         },
       ],
       copyright: '2019 CK110出品'
-    }
+    };
   }
 
   ngAfterViewInit(): void {
   }
 
   settingChange(event) {
-
-    console.log(this.settings);
-
-    console.log(event['primaryColor']);
-    if (event['primaryColor']) {
-      themeColorClient.changeColor(event['primaryColor']).finally(() => {
-        console.log('修改完成');
-      });
-    }
-    this.cdr.markForCheck();
+    console.log(event);
+    // if (event.primaryColor) {
+    //   themeColorClient.changeColor(event.primaryColor).finally(() => {
+    //     console.log('修改完成');
+    //   });
+    // }
+    // this.cdr.markForCheck();
   }
 
   menuHeaderClick(event: Event) {

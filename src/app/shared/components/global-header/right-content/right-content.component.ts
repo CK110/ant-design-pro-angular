@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {MenuTheme} from "@pro-layout";
+import {MenuTheme} from '@pro-layout';
 
 @Component({
   selector: 'pro-right-content',

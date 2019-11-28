@@ -18,8 +18,8 @@
 
 <pro-setting-drawer [settings]="settings" (onSettingChange)="settingChange($event)"></pro-setting-drawer>
 
-<ng-template #rightContentRender>
-  <pro-right-content [theme]="settings.navTheme" [layout]="settings.layout"></pro-right-content>
+<ng-template #rightContentRender let-context>
+  <pro-right-content [theme]="context.theme" [layout]="context.layout"></pro-right-content>
 </ng-template>
 
 <ng-template #linkIconTemplate>

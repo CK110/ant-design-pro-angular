@@ -21,16 +21,12 @@ export class AvatarDropdownComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.currentUser = {
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-        name: 'ant design'
-      };
-      this.cdf.markForCheck();
-    }, 2000);
+    this.currentUser = {
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+      name: 'ant design'
+    };
   }
 
   logout() {
-
   }
 }

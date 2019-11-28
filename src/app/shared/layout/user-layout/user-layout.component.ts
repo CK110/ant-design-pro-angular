@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {SettingsService} from "@pro-layout";
+import {SettingsService} from '@pro-layout';
 
 @Component({
   selector: 'app-user-layout',
@@ -15,13 +15,13 @@ export class UserLayoutComponent implements OnInit {
   @ViewChild('linkIconTemplate', {static: true})
   linkIconTemplate: TemplateRef<void>;
 
-  footer:any;
+  footer: any;
 
   constructor(public settingService: SettingsService) {
   }
 
   ngOnInit() {
-    this.footer ={
+    this.footer = {
       links: [
         {
           key: 'Ant Design Pro',
@@ -43,6 +43,6 @@ export class UserLayoutComponent implements OnInit {
         },
       ],
       copyright: '2019 CK110出品'
-    }
+    };
   }
 }
