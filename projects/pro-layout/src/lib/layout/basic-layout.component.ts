@@ -3,8 +3,8 @@ import {
   ChangeDetectorRef,
   Component, EventEmitter,
   HostListener,
-  Input, OnDestroy,
-  OnInit, Output,
+  Input, OnChanges, OnDestroy,
+  OnInit, Output, SimpleChanges,
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
@@ -13,10 +13,10 @@ import {GlobalFooterProps} from '../global-footer/global-footer.component';
 import {NavigationEnd, Router} from '@angular/router';
 import {ContentWidth} from '../core/default-settings';
 import {InputBoolean, InputNumber} from 'ng-zorro-antd';
-import {MenuDataItem} from "../sider-menu/base-menu.component";
-import {urlToList} from "../utils/path-tools";
-import {filter, takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {MenuDataItem} from '../sider-menu/base-menu.component';
+import {urlToList} from '../utils/path-tools';
+import {filter, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'pro-basic-layout',
@@ -27,7 +27,7 @@ import {Subject} from "rxjs";
   exportAs: 'proBasicLayout',
   preserveWhitespaces: false
 })
-export class BasicLayoutComponent implements OnInit, OnDestroy {
+export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
   // side menu
   @Input() title: TemplateRef<void> | string = 'Ant Design Pro';   // layout 的 左上角 的 title
   @Input() logo: TemplateRef<void> | string; // layout 的 左上角 logo 的 url
@@ -74,9 +74,9 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
   selectedKey: string;
   openKeys: Array<string> = [];
 
-  visible: boolean = true;
-  ticking: boolean = false;
-  oldScrollTop: number = 0;
+  visible = true;
+  ticking = false;
+  oldScrollTop = 0;
   destroy$ = new Subject();
 
   constructor(private breakpointObserver: BreakpointObserver,
@@ -98,17 +98,12 @@ export class BasicLayoutComponent implements OnInit, OnDestroy {
         this.cdf.markForCheck();
         // }
       });
+  }
 
-    // 监听路由
-    this.openKeys = urlToList(this.router.url);
-    this.selectedKey = this.router.url;
-    this.router.events.pipe(
-      takeUntil(this.destroy$),
-      filter(event => event instanceof NavigationEnd),
-    ).subscribe((event) => {
-      this.selectedKey = event['url'];
-      this.cdf.markForCheck();
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.layout) {
+      this.openKeys = urlToList(this.router.url);
+    }
   }
 
   ngOnDestroy(): void {

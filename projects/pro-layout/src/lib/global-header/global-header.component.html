@@ -15,4 +15,5 @@
   </span>
 </ng-template>
 <!--rightContentRender-->
-<ng-container *ngTemplateOutlet="rightContentRender"></ng-container>
+<ng-container [ngTemplateOutlet]="rightContentRender"
+              [ngTemplateOutletContext]="{ $implicit: {theme: 'light',layout: 'sidemenu'} }"></ng-container>

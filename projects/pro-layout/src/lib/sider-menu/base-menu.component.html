@@ -34,7 +34,7 @@
                   <ng-container *ngFor="let menuData of menuData.children">
                     <li nz-menu-item
                         *aclIf="menuData.guard"
-                        [nzSelected]="menuData.path === selectedKey ? true : false">
+                        [nzMatchRouter]="true">
                       <a [routerLink]="menuData.path">
                         <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                         <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
@@ -48,7 +48,7 @@
             <ng-template #elseTemplate2>
               <li nz-menu-item
                   *aclIf="menuData.guard"
-                  [nzSelected]="menuData.path === selectedKey ? true : false">
+                  [nzMatchRouter]="true">
                 <a [routerLink]="menuData.path">
                   <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                   <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
@@ -63,7 +63,7 @@
     <ng-template #elseTemplate1>
       <li nz-menu-item
           *aclIf="menuData.guard"
-          [nzSelected]="menuData.path === selectedKey ? true : false">
+          [nzMatchRouter]="true">
         <a [routerLink]="menuData.path">
           <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
           <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>

@@ -27,5 +27,6 @@
     </pro-base-menu>
   </div>
 
-  <ng-container *ngTemplateOutlet="rightContentRender"></ng-container>
+  <ng-container [ngTemplateOutlet]="rightContentRender"
+                [ngTemplateOutletContext]="{ $implicit: {theme: theme,layout: 'topmenu'} }"></ng-container>
 </div>

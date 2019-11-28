@@ -10,8 +10,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {Settings} from '../core/default-settings';
-import {NzMessageService, NzModalService} from "ng-zorro-antd";
-import {SettingsService} from "../core/settings.service";
+import {NzMessageService} from 'ng-zorro-antd';
+import {SettingsService} from '../core/settings.service';
 
 interface SettingItemProps {
   title: string;
@@ -55,7 +55,7 @@ export class SettingDrawerComponent implements OnInit {
 
   constructor(private zone: NgZone,
               private cdr: ChangeDetectorRef,
-              private settingsService:SettingsService,
+              private settingsService: SettingsService,
               private messageService: NzMessageService) {
   }
 
@@ -124,16 +124,15 @@ export class SettingDrawerComponent implements OnInit {
       this.layoutSetting[3].disabled = value === 'topmenu' ? true : false;
     }
     if (key === 'fixedHeader') {
-      if(value){
+      if (value) {
         this.layoutSetting[2].disabled = false;
-      }else{
+      } else {
         this.settings.autoHideHeader = false;
         this.layoutSetting[2].disabled = true;
       }
     }
-    this.settingsService.setSettings(key,value);
+    this.settingsService.setSettings(key, value);
     this.onSettingChange.emit(this.settings);
-    console.log(this.layoutSetting);
   }
 
   togglerContent() {
