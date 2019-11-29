@@ -101,6 +101,7 @@
                  [theme]="navTheme"
                  [openKeys]="openKeys"
                  [selectedKey]="selectedKey"
-                 [collapsed]="isMobile ? false : collapsed">
+                 [collapsed]="isMobile ? false : collapsed"
+                 (openChange)="menuOpenChange($event)">
   </pro-base-menu>
 </ng-template>
