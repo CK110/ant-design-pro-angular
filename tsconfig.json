@@ -24,8 +24,6 @@
       "@shared/*": [ "src/app/shared/*" ],
       "@core": [ "src/app/core" ],
       "@core/*": [ "src/app/core/*" ],
-      "@delon/acl": [ "src/app/acl" ],
-      "@delon/acl/*": [ "src/app/acl/*" ],
       "@page": [ "src/app/page" ],
       "@page/*": [ "src/app/page/*" ],
       "@env/*": [ "src/environments/*" ]
