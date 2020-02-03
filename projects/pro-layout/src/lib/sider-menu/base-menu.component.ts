@@ -1,12 +1,13 @@
 import {
-  ChangeDetectionStrategy,
+  AfterViewInit,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter,
-  Input,
+  Input, OnInit,
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import {ACLType} from '@delon/acl';
+import {ACLService, ACLType} from '@delon/acl';
 
 export interface RouterData {
   name?: string;
@@ -36,7 +37,7 @@ export interface MenuDataItem {
   exportAs: 'proBaseMenu',
   preserveWhitespaces: false
 })
-export class BaseMenuComponent {
+export class BaseMenuComponent implements OnInit, AfterViewInit {
 
   @Input() style: { [key: string]: string };
   @Input() mode = 'inline';
@@ -48,7 +49,19 @@ export class BaseMenuComponent {
   @Input() openKeys: Array<string> = [];
   @Output() openChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private aclService: ACLService,
+              private cdf: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit(): void {
+    this.aclService.change.subscribe((change: ACLType | boolean | null) => {
+      if (change) {
+        this.cdf.markForCheck();
+      }
+    })
+  }
+
+  ngOnInit(): void {
   }
 
   onOpenChange(status, menuData) {

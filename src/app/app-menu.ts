@@ -56,7 +56,7 @@ export const menuData: MenuDataItem[] = [
     ]
   },
   {
-    name: '个人页', icon: 'user', locale: 'menu.account', path: '/account',
+    name: '个人页', icon: 'user', locale: 'menu.account', path: '/account', guard: {ability: [1, 2]},
     children: [
       {name: '个人中心', locale: 'menu.account.center', path: '/account/center'},
       {

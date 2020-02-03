@@ -23,8 +23,9 @@ export class StartupService {
       //   ()=>{},
       //   ()=>{resolve(null);})
 
-      this.translateService.setTranslation('zh-CN',pro_zh_CN);
+      this.translateService.setTranslation('zh-CN', pro_zh_CN);
       this.translateService.setDefaultLang('zh-CN');
+      this.aclService.setAbility([1, 2])
       resolve(null)
     });
   }
