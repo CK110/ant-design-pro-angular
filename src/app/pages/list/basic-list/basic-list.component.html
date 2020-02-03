@@ -1,3 +1,132 @@
-<pro-page-header-wrapper title="我的名字">
-  BasicListComponent
+<pro-page-header-wrapper>
+  <div class="standardList">
+    <nz-card [nzBordered]="false">
+      <nz-row>
+        <nz-col nzSm="8" nzXs="24">
+          <ng-container [ngTemplateOutlet]="infoTemplate"
+                        [ngTemplateOutletContext]="{$implicit:{title: '我的待办',value:'8个任务',bordered:true}}">
+          </ng-container>
+        </nz-col>
+        <nz-col nzSm="8" nzXs="24">
+          <ng-container [ngTemplateOutlet]="infoTemplate"
+                        [ngTemplateOutletContext]="{$implicit:{title: '本周任务平均处理时间',value:'32分钟',bordered:true}}">
+          </ng-container>
+        </nz-col>
+        <nz-col nzSm="8" nzXs="24">
+          <ng-container [ngTemplateOutlet]="infoTemplate"
+                        [ngTemplateOutletContext]="{$implicit:{title: '本周完成任务数',value:'24个任务',bordered:true}}">
+          </ng-container>
+        </nz-col>
+      </nz-row>
+    </nz-card>
+
+    <nz-card class="listCard"
+             [nzBordered]="false"
+             nzTitle="基本列表"
+             style="margin-top: 24px"
+             [nzBodyStyle]="{padding: '0 32px 40px 32px' }"
+             [nzExtra]="extraContentTemplate">
+      <button nz-button
+              nzType="dashed"
+              style="width: 100%;
+              margin-bottom: 8px"
+              (click)="showModal()">
+        <i nz-icon nzType="plus"></i>添加
+      </button>
+      <nz-list [nzDataSource]="list" [nzLoading]="loading" [nzRenderItem]="item" [nzPagination]="pagination">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent" [nzActions]="[edit, op]">
+            <ng-template #edit>
+              <a (click)="showEditModal(item)">编辑</a>
+            </ng-template>
+            <ng-template #op>
+              <a class="ant-dropdown-link" nz-dropdown [nzDropdownMenu]="opMenu">
+                更多
+                <i nz-icon nzType="down"></i>
+              </a>
+              <nz-dropdown-menu #opMenu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>编辑</li>
+                  <li nz-menu-item>删除</li>
+                </ul>
+              </nz-dropdown-menu>
+            </ng-template>
+            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="item.subDescription" [nzAvatar]="nzAvatar">
+              <ng-template #nzTitle>
+                <a href="{{ item.href }}" target="_blank">{{ item.title }}</a>
+              </ng-template>
+              <ng-template #nzAvatar>
+                <nz-avatar [nzSrc]="item.logo" nzSize="large" [nzShape]="'square'"></nz-avatar>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent>
+              <div class="listContent">
+                <div class="listContentItem">
+                  <span>Owner</span>
+                  <p>{{ item.owner }}</p>
+                </div>
+                <div class="listContentItem">
+                  开始时间
+                  <p>2019-11-16 03:32</p>
+                </div>
+                <div class="listContentItem">
+                  <nz-progress [nzPercent]="item.percent" [nzStatus]="item.status" [nzStrokeWidth]="6"></nz-progress>
+                </div>
+              </div>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+        <ng-template #pagination>
+          <nz-pagination [nzTotal]="50" [nzPageSize]="5" (nzPageIndexChange)="getData()"></nz-pagination>
+        </ng-template>
+      </nz-list>
+      <!--      <nz-list nzSize="large"-->
+      <!--               [nzLoading]="loading"-->
+      <!--               [nzPagination]="paginationProps"-->
+      <!--               [nzDataSource]="list" [nzRenderItem]="itemTemplate">-->
+      <!--        <ng-template #itemTemplate let-item>-->
+      <!--          <nz-list-item [nzActions]="actionsTemplate">-->
+      <!--            <ng-template #actionsTemplate>-->
+      <!--              <a (click)="showEditModal(item)">编辑</a>-->
+      <!--              <a nz-button nz-dropdown [nzDropdownMenu]="menu">-->
+      <!--                更多<i nz-icon nzType="down"></i>-->
+      <!--              </a>-->
+      <!--              <nz-dropdown-menu #menu="nzDropdownMenu">-->
+      <!--                <ul nz-menu>-->
+      <!--                  <li nz-menu-item>删除</li>-->
+      <!--                  <li nz-menu-item>批量删除</li>-->
+      <!--                </ul>-->
+      <!--              </nz-dropdown-menu>-->
+      <!--            </ng-template>-->
+      <!--            <nz-list-item-meta [nzAvatar]="item.logo"-->
+      <!--                               [nzTitle]="item.title"-->
+      <!--                               [nzDescription]="item.subDescription">-->
+      <!--            </nz-list-item-meta>-->
+      <!--          </nz-list-item>-->
+      <!--        </ng-template>-->
+      <!--      </nz-list>-->
+    </nz-card>
+  </div>
 </pro-page-header-wrapper>
+
+
+<ng-template #infoTemplate let-info>
+  <div class="headerInfo">
+    <span>{{info.title}}</span>
+    <p>{{info.value}}</p>
+    <em *ngIf="info.bordered"></em>
+  </div>
+</ng-template>
+
+<ng-template #extraContentTemplate>
+  <div class="extraContent">
+    <nz-radio-group [nzButtonStyle]="'all'">
+      <label nz-radio-button nzValue="all">全部</label>
+      <label nz-radio-button nzValue="progress">进行中</label>
+      <label nz-radio-button nzValue="waiting">等待中</label>
+    </nz-radio-group>
+    <nz-input-group nzSuffixIcon="search" class="extraContentSearch">
+      <input type="text" nz-input placeholder="请输入"/>
+    </nz-input-group>
+  </div>
+</ng-template>

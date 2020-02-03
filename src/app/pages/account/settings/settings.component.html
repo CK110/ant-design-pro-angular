@@ -1,0 +1,20 @@
+<pro-grid-content>
+  <div class="main">
+    <div class="leftMenu">
+      <ul nz-menu [nzMode]="mode">
+        <li nz-menu-item *ngFor="let item of menuMap">
+          {{menuMap[item]}}
+        </li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="title">
+        {{menuMap[selectKey]}}
+      </div>
+      <ng-container *ngIf="selectKey==='base'"></ng-container>
+      <ng-container *ngIf="selectKey==='security'"></ng-container>
+      <ng-container *ngIf="selectKey==='binding'"></ng-container>
+      <ng-container *ngIf="selectKey==='notification'"></ng-container>
+    </div>
+  </div>
+</pro-grid-content>

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -13,7 +12,6 @@ import {
   selector: 'pro-header-search',
   templateUrl: 'header-search.component.html',
   styleUrls: ['header-search.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderSearchComponent implements OnInit {
 

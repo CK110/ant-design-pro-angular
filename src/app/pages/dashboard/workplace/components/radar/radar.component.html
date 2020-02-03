@@ -1,0 +1,22 @@
+<ng-container *nzStringTemplateOutlet="title">
+  <h4>{{title}}</h4>
+</ng-container>
+<div #container></div>
+<div *ngIf="hasLegend" nz-row class="legend">
+  <ng-container *ngFor="let item of legendData;let i=index">
+    <div nz-col
+         [nzSpan]="24 / legendData.length"
+         (click)="handleLegendClick(item, i)">
+      <div class="legendItem">
+        <p>
+          <span class="dot"
+                [ngStyle]="{'background-color': !item.checked ? '#aaa' : item.color}">
+          </span>
+          <span>{{item.name}}</span>
+        </p>
+        <h6>{{item.value}}</h6>
+      </div>
+    </div>
+  </ng-container>
+</div>
+

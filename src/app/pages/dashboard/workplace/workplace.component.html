@@ -1,1 +1,136 @@
-workplace.component.html
+<pro-page-header-wrapper [content]="pageHeaderContentTemplate" [extraContent]="extraContentTemplate">
+  <div nz-row nzGutter="24">
+    <div nz-col nzXl="16" nzLg="24" nzMd="24" nzSm="24" nzXs="24">
+      <nz-card class="projectList"
+               style="margin-bottom: 24px"
+               nzTitle="进行中的项目"
+               nzBordered="false"
+               [nzExtra]="cardExtraTemplate"
+               [nzLoading]="projectLoading"
+               [nzBodyStyle]="{padding: 0}">
+        <ng-container *ngFor="let item of projectNotice">
+          <div nz-card-grid class="projectGrid">
+            <nz-card [nzBodyStyle]="{padding: 0}" [nzBordered]="false">
+              <ng-template #titleTemplate>
+                <div class="cardTitle">
+                  <nz-avatar nzSize="small" [nzSrc]="item.logo"></nz-avatar>
+                  <a [href]="item.href">{{item.title}}</a>
+                </div>
+              </ng-template>
+              <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="item.description"></nz-card-meta>
+              <div class="projectItemContent">
+                <a>{{item.member || ''}}</a>
+                <span *ngIf="item.updatedAt" class="datetime" [title]="item.updatedAt">
+                  {{fromNow(item.updatedAt)}}
+                </span>
+              </div>
+            </nz-card>
+          </div>
+        </ng-container>
+      </nz-card>
+      <nz-card [nzBodyStyle]="{padding: 0}"
+               [nzBordered]="false"
+               class="activeCard"
+               nzTitle="动态"
+               [nzLoading]="activitiesLoading">
+        <nz-list [nzLoading]="activitiesLoading"
+                 [nzRenderItem]="renderActivities"
+                 [nzDataSource]="activities"
+                 class="activitiesList"
+                 nzSize="large">
+          <ng-template #renderActivities let-item>
+            <nz-list-item>
+              <ng-template #avatar>
+                <nz-avatar [nzSrc]="item.user.avatar"></nz-avatar>
+              </ng-template>
+              <ng-template #title>
+              <span>
+                <a class="username">{{item.user.name}}</a>
+                &nbsp;
+                <span class="event" [innerHTML]="renderTemplate(item)"></span>
+              </span>
+              </ng-template>
+              <nz-list-item-meta [nzAvatar]="avatar" [nzTitle]="title"></nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+      </nz-card>
+    </div>
+
+    <div nz-col nzXl="8" nzLg="24" nzMd="24" nzSm="24" nzXs="24">
+      <nz-card style="margin-bottom: 24px"
+               nzTitle="快速开始 / 便捷导航"
+               [nzBordered]="false"
+               [nzBodyStyle]="{padding:0}">
+        <!--        <app-editable-link-group [links]="links"></app-editable-link-group>-->
+      </nz-card>
+      <nz-card style="margin-bottom: 24px"
+               nzTitle="XX 指数"
+               [nzBordered]="false"
+               [nzLoading]="radarData && radarData.length === 0">
+        <div class="chart">
+          <app-g2-radar *ngIf="radarData" [data]="radarData" [height]="343" [hasLegend]="true"></app-g2-radar>
+        </div>
+      </nz-card>
+      <nz-card style="padding-top:  12px;padding-bottom: 12px"
+               nzTitle="团队"
+               [nzBordered]="false"
+               [nzLoading]="projectLoading">
+        <div class="members">
+          <div nz-row nzGutter="48">
+            <ng-container *ngFor="let item of projectNotice">
+              <div nz-col nzSpan="12">
+                <a [href]="item.href">
+                  <nz-avatar [nzSrc]="item.logo" nzSize="small"></nz-avatar>
+                  <span class="member">{{item.member}}</span>
+                </a>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</pro-page-header-wrapper>
+
+
+<ng-template #pageHeaderContentTemplate>
+  <ng-container *ngIf="!currentUser">
+    <nz-skeleton [nzAvatar]="true"></nz-skeleton>
+  </ng-container>
+  <ng-container *ngIf="currentUser">
+    <div class="pageHeaderContent">
+      <div class="avatar">
+        <nz-avatar nzSize="large" [nzSrc]="currentUser.avatar"></nz-avatar>
+      </div>
+      <div class="content">
+        <div class="contentTitle">
+          早安，
+          {{currentUser.name}}
+          ，祝你开心每一天！
+        </div>
+        <div>
+          {{currentUser.title}} |{{currentUser.group}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #extraContentTemplate>
+  <div class="extraContent">
+    <div class="statItem">
+      <nz-statistic nzTitle="项目数" nzValue="56"></nz-statistic>
+    </div>
+    <div class="statItem">
+      <nz-statistic nzTitle="团队内排名" nzValue="8" nzSuffix="/ 24"></nz-statistic>
+    </div>
+    <div class="statItem">
+      <nz-statistic nzTitle="项目访问" nzValue="2223"></nz-statistic>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #cardExtraTemplate>
+  <a href="/">全部项目</a>
+</ng-template>

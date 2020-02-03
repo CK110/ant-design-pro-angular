@@ -1,0 +1,14 @@
+<pro-grid-content [contentWidth]="settings.contentWidth">
+  <app-introduce-row></app-introduce-row>
+  <app-sales-card *ngIf="analysisData.salesData" [salesData]="analysisData.salesData"></app-sales-card>
+  <div nz-row nzGutter="24" nzType="flex" style="margin-top: 24px">
+    <div nz-col nzXl="12" nzLg="24" nzMd="24" nzSm="24" nzXs="24">
+      <app-top-search></app-top-search>
+    </div>
+    <div nz-col nzXl="12" nzLg="24" nzMd="24" nzSm="24" nzXs="24">
+      <app-proportion-sales></app-proportion-sales>
+    </div>
+  </div>
+  <app-offline-data></app-offline-data>
+</pro-grid-content>
+

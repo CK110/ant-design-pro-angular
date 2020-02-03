@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {CurrentUser} from '../../../models/user';
 
 export interface GlobalHeaderRightProps {
@@ -9,7 +9,7 @@ export interface GlobalHeaderRightProps {
 @Component({
   selector: 'pro-avatar-dropdown',
   templateUrl: 'avatar-dropdown.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class AvatarDropdownComponent implements OnInit {
 

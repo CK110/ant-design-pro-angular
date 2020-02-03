@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {SettingsService} from '@pro-layout';
+import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-user-layout',

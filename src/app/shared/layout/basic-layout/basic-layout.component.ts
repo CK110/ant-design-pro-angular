@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectorRef,
   Component,
   OnInit, TemplateRef, ViewChild,
   ViewEncapsulation
@@ -13,9 +13,7 @@ import themeColorClient from '../../components/setting-drawer/theme-color-client
 @Component({
   selector: 'app-basic-layout',
   templateUrl: 'basic-layout.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  exportAs: 'appBasicLayout',
   preserveWhitespaces: false,
   host: {
     '[class.colorweak]': 'settings.colorWeak',

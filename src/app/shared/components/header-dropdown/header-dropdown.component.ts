@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef, ViewEncapsulation} from '@angular/core';
 
 export interface HeaderDropdownProps {
   overlayClassName?: string;
@@ -10,7 +10,7 @@ export interface HeaderDropdownProps {
   selector: 'pro-header-dropdown',
   templateUrl: 'header-dropdown.component.html',
   styleUrls: ['header-dropdown.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proHeaderDropdown',
   preserveWhitespaces: false

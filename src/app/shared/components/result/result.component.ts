@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -31,7 +30,7 @@ export type ResultStatusType = ExceptionStatusType | keyof typeof IconMap;
   selector: 'pro-result',
   templateUrl: 'result.component.html',
   styleUrls: ['result.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proResult',
   preserveWhitespaces: false

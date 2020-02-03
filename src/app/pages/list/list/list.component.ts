@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-query-list',
   templateUrl: 'list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class ListComponent implements OnInit {
 

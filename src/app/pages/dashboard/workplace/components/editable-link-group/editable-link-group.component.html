@@ -1,0 +1,11 @@
+<div class="linkGroup">
+  <a *ngFor="let link of links" [href]="link.href">{{ link.title }}</a>
+  <button nz-button
+          nzType="primary"
+          nzSize="small"
+          [nzGhost]="true"
+          (click)="onAdd.emit($event)">
+    <i nz-icon nzType="plus"></i>
+    添加
+  </button>
+</div>

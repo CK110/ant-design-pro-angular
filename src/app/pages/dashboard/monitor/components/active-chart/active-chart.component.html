@@ -1,0 +1,36 @@
+<div class="activeChart">
+  <nz-statistic nzTitle="目标评估" nzValue="有望达到预期"></nz-statistic>
+  <div style="margin-top: 32px">
+    <!--    <app-mini-area [animate]="false"-->
+    <!--                   [line]="true"-->
+    <!--                   borderWidth="2"-->
+    <!--                   height="84"-->
+    <!--                   scale="{y: {tickCount: 3}}"-->
+    <!--                   yAxis="{tickLine: undefined,label: undefined,title: undefined,line: undefined,}"-->
+    <!--                   [data]="activeData">-->
+    <!--    </app-mini-area>-->
+  </div>
+
+  <div *ngIf="activeData">
+    <div class="activeChartGrid">
+      <p>xxx 亿元</p>
+      <p>xxx 亿元</p>
+    </div>
+    <div class="dashedLine">
+      <div class="line"></div>
+    </div>
+    <div class="dashedLine">
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="activeData">
+    <div class="activeChartLegend">
+      <span>00:00</span>
+      <span>12:00</span>
+      <span>23:00</span>
+      <!--      <span>{{activeData[Math.floor(activeData.length / 2)].x}}</span>-->
+      <!--      <span>{{activeData[activeData.length - 1].x}}</span>-->
+    </div>
+  </ng-container>
+</div>

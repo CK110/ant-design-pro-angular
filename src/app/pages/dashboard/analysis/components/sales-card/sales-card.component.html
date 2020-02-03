@@ -1,0 +1,61 @@
+<nz-card [nzLoading]="loading" [nzBordered]="false" [nzBodyStyle]="{padding: 0}">
+  <div class="salesCard">
+    <nz-tabset [nzTabBarExtraContent]="tabBarExtraContentTemplate" nzSize="large"
+               [nzTabBarStyle]="{'margin-bottom': '24px'}">
+      <nz-tab nzTitle="销售额">
+        <div nz-row nzType="flex">
+          <div nz-col nzXl="16" nzLg="12" nzMd="12" nzSm="24" nzXs="24">
+            <div class="salesBar">
+              <g2-bar height="295" title="销售趋势" [data]="salesData"></g2-bar>
+            </div>
+          </div>
+          <div nz-col nzXl="8" nzLg="12" nzMd="12" nzSm="24" nzXs="24">
+            <div class="salesRank">
+              <h4 class="rankingTitle">门店销售额排名</h4>
+              <ul class="rankingList">
+                <li *ngFor="let item of rankingListData;let i = index">
+                  <span class="rankingItemNumber" [ngClass]="i < 3 ? 'active' : ''">{{i + 1}}</span>
+                  <span class="rankingItemTitle">{{item.title}}</span>
+                  <span class="rankingItemValue">{{item.total | currency:'CNY':'symbol-narrow':'4.0-2'}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="访问量">
+        <div nz-row nzType="flex">
+          <div nz-col nzXl="16" nzLg="12" nzMd="12" nzSm="24" nzXs="24">
+            <div class="salesBar">
+<!--              <g2-bar height="295" title="访问量趋势" [data]="salesData"></g2-bar>-->
+            </div>
+          </div>
+          <div nz-col nzXl="8" nzLg="12" nzMd="12" nzSm="24" nzXs="24">
+            <div class="salesRank">
+              <h4 class="rankingTitle">门店访问量排名</h4>
+              <ul class="rankingList">
+                <li *ngFor="let item of rankingListData;let i = index">
+                  <span class="rankingItemNumber" [ngClass]="i < 3 ? 'active' : ''">{{i + 1}}</span>
+                  <span class="rankingItemTitle">{{item.title}}</span>
+                  <span class="rankingItemValue">{{item.total | currency:'CNY':'symbol-narrow':'4.0-2'}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</nz-card>
+
+<ng-template #tabBarExtraContentTemplate>
+  <div class="salesExtraWrap">
+    <div class="salesExtra">
+      <a (click)="selectDate('today')">今日</a>
+      <a (click)="selectDate('week')">本周</a>
+      <a (click)="selectDate('month')">本月</a>
+      <a (click)="selectDate('month')">全年</a>
+    </div>
+    <nz-range-picker style="width: 256px"></nz-range-picker>
+  </div>
+</ng-template>

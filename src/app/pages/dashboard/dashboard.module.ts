@@ -1,18 +1,17 @@
 import {NgModule} from '@angular/core';
-
 import {SharedModule} from "../../shared/shared.module";
-import {AnalysicComponent} from "./analysic/analysic.component";
-import {MonitorComponent} from "./monitor/monitor.component";
-import {WorkplaceComponent} from "./workplace/workplace.component";
 import {DashboardRoutingModule} from "./dashboard-routing.module";
+import {MonitorComponents} from "./monitor";
+import {WorkplaceComponents} from "./workplace";
+import {AnalysisComponents} from "./analysis";
 
 @NgModule({
   imports: [SharedModule, DashboardRoutingModule],
   exports: [],
   declarations: [
-    AnalysicComponent,
-    MonitorComponent,
-    WorkplaceComponent
+    ...WorkplaceComponents,
+    ...MonitorComponents,
+    ...AnalysisComponents,
   ]
 })
 export class DashboardModule {

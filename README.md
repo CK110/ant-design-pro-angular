@@ -53,7 +53,7 @@ export class AppModule {
 | `[locale]` | x | x | x | x |
 | `[settings]` | x | x | x | x |
 | `[siderWidth]` | 侧边菜单宽度 | `number` | 256 |
-| `[collapsed]` | 控制菜单的收起和展开 | `boolean` | true |
+| `[collapsed]` | 控制菜单的收起和展开 | `boolean` | false |
 | `[onCollapse]` | 菜单的折叠收起事件	 | `EventEmitter<boolean>` | - |
 | `[headerRender]` | 自定义头的 render 方法 | `TemplateRef<void>` | - |
 | `[rightContentRender]` | 自定义头右部的 render 方法 | `TemplateRef<void>` | - |
@@ -123,8 +123,5 @@ export interface MenuDataItem {
 - [ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)
 - [@delon/auth](https://ng-alain.com/auth/getting-started/zh)
 - [@delon/acl](https://ng-alain.com/acl/getting-started/zh)
-- [@delon/chart](https://ng-alain.com/chart/getting-started/zh)
 - [@delon/mock](https://ng-alain.com/mock/getting-started/zh)
 - [@ngx-translate/core](https://github.com/ngx-translate/core)
-
-

@@ -1,5 +1,180 @@
 <pro-page-header-wrapper>
   <nz-card [nzBordered]="false">
+    <div class="tableList">
+      <div class="tableListForm">
+        <ng-container [ngTemplateOutlet]="renderFormTemplate"></ng-container>
+      </div>
 
+      <div class="tableListOperator">
+        <button nz-button nzType="primary" (click)="handleModalVisible(true)">
+          <i nz-icon nzType="plus"></i>新建
+        </button>
+        <ng-container *ngIf="selectedRows.length > 0">
+          <span>
+            <button nz-button>批量操作</button>
+            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+              更多操作
+            </button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item>删除</li>
+                <li nz-menu-item>批量删除</li>
+              </ul>
+            </nz-dropdown-menu>
+          </span>
+        </ng-container>
+      </div>
+
+      <!--      <StandardTable-->
+      <!--        selectedRows={selectedRows}-->
+      <!--        loading={loading}-->
+      <!--        data={data}-->
+      <!--        columns={this.columns}-->
+      <!--        onSelectRow={this.handleSelectRows}-->
+      <!--        onChange={this.handleStandardTableChange}-->
+      <!--      />-->
+      <nz-table #basicTable
+                [nzData]="data"
+                [nzFrontPagination]="false"
+                [nzTotal]="page.total"
+                [nzPageIndex]="page.current"
+                [nzPageSize]="page.pageSize"
+                [nzShowPagination]="true"
+                (nzPageIndexChange)="loadata()"
+                (nzPageSizeChange)="loadata(true)">
+        <thead>
+        <tr>
+          <th nzShowCheckbox (nzCheckedChange)="checkAll($event)">
+          </th>
+          <th>规则名称</th>
+          <th>描述</th>
+          <th nzShowSort
+              nzSortKey="callNo">
+            服务调用次数
+          </th>
+          <th nzShowFilter
+              [nzFilters]="statusFilters"
+              (nzFilterChange)="statusFiltersChange($event, status)">
+            状态
+          </th>
+          <th>上次调度时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td nzShowCheckbox
+              [nzDisabled]="data.disabled">
+          </td>
+          <td>{{data.name}}</td>
+          <td>{{data.title}}</td>
+          <td>{{data.callNo}} 万</td>
+          <td>
+            {{data.status}}
+          </td>
+          <td>{{data.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+          <td>
+            <a>配置</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>订阅警报</a>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
   </nz-card>
 </pro-page-header-wrapper>
+
+<ng-template #renderFormTemplate>
+  <form nz-form nzLayout="inline" (ngSubmit)="handleSearch()">
+    <div nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
+      <nz-col nzMd="8" nzSm="24">
+        <nz-form-item>
+          <nz-form-label nzFor="name">规则名称</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="请输入" [(ngModel)]="form.name" [ngModelOptions]="{standalone: true}">
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <nz-col nzMd="8" nzSm="24">
+        <nz-form-item>
+          <nz-form-label nzFor="status">使用状态</nz-form-label>
+          <nz-form-control>
+            <nz-select [(ngModel)]="form.status" style="width: 100%;" [ngModelOptions]="{standalone: true}">
+              <nz-option nzValue="0" nzLabel="关闭"></nz-option>
+              <nz-option nzValue="1" nzLabel="运行中"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <ng-container *ngIf="expandForm">
+        <nz-col nzMd="8" nzSm="24">
+          <nz-form-item>
+            <nz-form-label nzFor="number">调用次数</nz-form-label>
+            <nz-form-control>
+              <nz-input-number placeholder="请输入" [(ngModel)]="form.number" style="width: 100%"
+                               [ngModelOptions]="{standalone: true}"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzMd="8" nzSm="24">
+          <nz-form-item>
+            <nz-form-label nzFor="name">更新日期</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="请输入更新日期" style="width: 100%;" [(ngModel)]="form.date"
+                     [ngModelOptions]="{standalone: true}">
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzMd="8" nzSm="24">
+          <nz-form-item>
+            <nz-form-label nzFor="status3">使用状态</nz-form-label>
+            <nz-form-control>
+              <nz-select [(ngModel)]="form.status3" style="width: 100%;" [ngModelOptions]="{standalone: true}">
+                <nz-option nzValue="0" nzLabel="关闭"></nz-option>
+                <nz-option nzValue="1" nzLabel="运行中"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzMd="8" nzSm="24">
+          <nz-form-item>
+            <nz-form-label nzFor="status4">使用状态</nz-form-label>
+            <nz-form-control>
+              <nz-select [(ngModel)]="form.status4" style="width: 100%;" [ngModelOptions]="{standalone: true}">
+                <nz-option nzValue="0" nzLabel="关闭"></nz-option>
+                <nz-option nzValue="1" nzLabel="运行中"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </ng-container>
+      <nz-col nzMd="8" nzSm="24" *ngIf="!expandForm">
+          <span class="submitButtons">
+            <button nz-button nzType="primary" type="submit">
+              查询
+            </button>
+            <button nz-button style="margin-left: 8px" (click)="handleFormReset()">
+              重置
+            </button>
+            <a style="margin-left: 8px" (click)="toggleForm()">
+              展开 <i nz-icon nzType="down"></i>
+            </a>
+          </span>
+      </nz-col>
+    </div>
+    <div style="overflow: hidden" *ngIf="expandForm">
+      <div style="float: right;margin-bottom: 24px">
+        <button nz-button nzType="primary" type="submit">
+          查询
+        </button>
+        <button nz-button style="margin-left: 8px" (click)="handleFormReset()">
+          重置
+        </button>
+        <a style="margin-left: 8px" (click)="toggleForm()">
+          收起 <i nz-icon nzType="up"></i>
+        </a>
+      </div>
+    </div>
+  </form>
+</ng-template>
