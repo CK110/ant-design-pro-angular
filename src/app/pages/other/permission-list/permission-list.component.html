@@ -1,1 +1,6 @@
-permission-list.component.html
+<pro-page-header-wrapper>
+  <div *aclIf="{ability: [1, 2]}">权限</div>
+
+  <button nz-button (click)="addRight()">添加权限</button>
+  <button nz-button (click)="clearRight()">清空权限</button>
+</pro-page-header-wrapper>
