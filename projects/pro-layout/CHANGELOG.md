@@ -1,5 +1,8 @@
 # 更新日志
 
+### 0.0.7
+- menuDataItem增加external以支持新标签页打开第三方URL
+
 ### 0.0.6
 - `menu`没有根据`delon acl`的变化更新
 

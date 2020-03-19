@@ -53,6 +53,7 @@ export interface MenuDataItem {
   locale?: string;
   path: string;
   guard?: ACLType;
+  external?: boolean;
   children?: MenuDataItem[];
   [key: string]: any;
 }
