@@ -23,6 +23,7 @@ export interface MenuDataItem {
   locale?: string;
   path: string;
   guard?: ACLType;
+  external?: boolean;
   children?: MenuDataItem[];
 
   [key: string]: any;
@@ -62,6 +63,7 @@ export class BaseMenuComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log(this.menuData);
   }
 
   onOpenChange(status, menuData) {
