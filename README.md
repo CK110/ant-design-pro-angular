@@ -114,6 +114,7 @@ export interface MenuDataItem {
   path: string;
   guard?: ACLType;
   external?: boolean;
+  externalClick?: (menuDataItem: MenuDataItem) => void;
   children?: MenuDataItem[];
   [key: string]: any;
 }

@@ -35,11 +35,18 @@
                     <li nz-menu-item
                         *aclIf="menuData.guard"
                         [nzMatchRouter]="true">
-                      <a *ngIf="menuData.external" [href]="menuData.path" target="_blank">
-                        <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
-                        <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
-                        <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
-                      </a>
+                      <ng-container *ngIf="menuData.external">
+                        <a *ngIf="!menuData.externalClick" [href]="menuData.path" target="_blank">
+                          <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+                          <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                          <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                        </a>
+                        <a *ngIf="menuData.externalClick" (click)="menuData.externalClick(menuData)">
+                          <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+                          <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                          <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                        </a>
+                      </ng-container>
                       <a *ngIf="!menuData.external" [routerLink]="menuData.path">
                         <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                         <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
@@ -54,11 +61,18 @@
               <li nz-menu-item
                   *aclIf="menuData.guard"
                   [nzMatchRouter]="true">
-                <a *ngIf="menuData.external" [href]="menuData.path" target="_blank">
-                  <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
-                  <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
-                  <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
-                </a>
+                <ng-container *ngIf="menuData.external">
+                  <a *ngIf="!menuData.externalClick" [href]="menuData.path" target="_blank">
+                    <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+                    <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                    <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                  </a>
+                  <a *ngIf="menuData.externalClick" (click)="menuData.externalClick(menuData)">
+                    <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+                    <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+                    <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+                  </a>
+                </ng-container>
                 <a *ngIf="!menuData.external" [routerLink]="menuData.path">
                   <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
                   <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
@@ -74,11 +88,19 @@
       <li nz-menu-item
           *aclIf="menuData.guard"
           [nzMatchRouter]="true">
-        <a *ngIf="menuData.external" [href]="menuData.path" target="_blank">
-          <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
-          <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
-          <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
-        </a>
+        <ng-container *ngIf="menuData.external">
+          <a *ngIf="!menuData.externalClick" [href]="menuData.path" target="_blank">
+            <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+            <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+            <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+          </a>
+          <a *ngIf="menuData.externalClick" (click)="menuData.externalClick(menuData)">
+            <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
+            <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>
+            <span *ngIf="!(menuData.locale)">{{ menuData.name }}</span>
+          </a>
+        </ng-container>
+
         <a *ngIf="!menuData.external" [routerLink]="menuData.path">
           <i *ngIf="menuData.icon" nz-icon [nzType]="menuData.icon"></i>
           <span *ngIf="menuData.locale">{{ menuData.locale | translate }}</span>

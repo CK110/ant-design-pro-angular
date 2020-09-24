@@ -23,7 +23,8 @@ export interface MenuDataItem {
   locale?: string;
   path: string;
   guard?: ACLType;
-  external?: boolean;
+  external?: boolean; // 通过新标签打开外部连接
+  externalClick?: (menuDataItem: MenuDataItem) => void; // 自定义如何打开外部连接
   children?: MenuDataItem[];
 
   [key: string]: any;

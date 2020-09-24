@@ -77,7 +77,13 @@ export const menuData: MenuDataItem[] = [
       {name: '用户列表', path: '/other/user-list'},
       {name: '角色列表', path: '/other/role-list'},
       {name: '权限列表', path: '/other/permission-list'},
-      {name: '百度', path: 'https://www.baidu.com/', external: true}
+      {name: '百度', path: 'https://www.baidu.com/', external: true},
+      {
+        name: '百度', path: 'https://www.baidu.com/', external: true,
+        externalClick: (menuDataItem: MenuDataItem) => {
+          console.log(menuDataItem);
+        }
+      }
     ]
   },
 ];
