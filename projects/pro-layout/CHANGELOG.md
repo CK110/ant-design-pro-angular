@@ -1,5 +1,8 @@
 # 更新日志
 
+### 0.0.9
+- 菜单展开增加路由监听
+
 ### 0.0.8
 - menuDataItem增加externalClick以支持自己控制如何打开第三方URL
 
