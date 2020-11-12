@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {GlobalFooterProps} from '../global-footer/global-footer.component';
-import {NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ContentWidth} from '../core/default-settings';
 import {InputBoolean, InputNumber} from 'ng-zorro-antd';
 import {MenuDataItem} from '../sider-menu/base-menu.component';
@@ -81,6 +81,7 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private breakpointObserver: BreakpointObserver,
               private cdf: ChangeDetectorRef,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {
   }
 
@@ -98,6 +99,13 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
         this.cdf.markForCheck();
         // }
       });
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.openKeys = urlToList(this.router.url);
+      this.cdf.markForCheck();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
