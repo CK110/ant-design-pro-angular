@@ -61,9 +61,12 @@
             </div>
           </ng-template>
         </ng-template>
+        <ng-container *ngIf="fixedHeader && reuseTab">
+          <pro-reuse-tab></pro-reuse-tab>
+        </ng-container>
       </nz-header>
 
-      <nz-content class="ant-pro-basicLayout-content" [style.padding-top]="!fixedHeader? '0px': ''">
+      <nz-content class="ant-pro-basicLayout-content" [style.padding-top]="getContentPaddingTop()">
         <ng-content></ng-content>
       </nz-content>
 

@@ -15,6 +15,7 @@ import {ThemeColorComponent} from './setting-drawer/theme-color/theme-color.comp
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DelonACLModule} from "@delon/acl";
 import {TranslateModule} from "@ngx-translate/core";
+import {ReuseTabModule} from "./reuse-tab/reuse-tab.module";
 
 const Layouts = [
   GlobalHeaderComponent,
@@ -39,7 +40,8 @@ const Layouts = [
     NgZorroAntdModule,
     DelonACLModule,
     NzAddOnModule,
-    TranslateModule
+    TranslateModule,
+    ReuseTabModule
   ],
   exports: [
     ...Layouts

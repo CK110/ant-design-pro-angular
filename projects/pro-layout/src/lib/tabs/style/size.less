@@ -1,0 +1,41 @@
+@import '~ng-zorro-antd/style/themes/default.less';
+@import '~ng-zorro-antd/style/mixins/index';
+@import 'index';
+
+.@{pro-tab-prefix-cls} {
+  &-small {
+    > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        padding: @pro-tabs-horizontal-padding-sm;
+        font-size: @pro-tabs-title-font-size-sm;
+      }
+    }
+  }
+
+  &-large {
+    > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        padding: @pro-tabs-horizontal-padding-lg;
+        font-size: @pro-tabs-title-font-size-lg;
+      }
+    }
+  }
+
+  &-card {
+    &.@{pro-tab-prefix-cls}-small {
+      > .@{pro-tab-prefix-cls}-nav {
+        .@{pro-tab-prefix-cls}-tab {
+          padding: @pro-tabs-card-horizontal-padding-sm;
+        }
+      }
+    }
+
+    &.@{pro-tab-prefix-cls}-large {
+      > .@{pro-tab-prefix-cls}-nav {
+        .@{pro-tab-prefix-cls}-tab {
+          padding: @pro-tabs-card-horizontal-padding-lg;
+        }
+      }
+    }
+  }
+}

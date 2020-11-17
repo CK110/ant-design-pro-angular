@@ -74,7 +74,10 @@
           </td>
           <td>{{data.updatedAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
           <td>
-            <a>配置</a>
+            <a (click)="toDetail(data)">配置1</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a [routerLink]="['/list/table-list',data.name]">配置2</a>
+            <!--            <a [routerLink]="['../table-list-detail', {a: 3, b:2}]">配置2</a>-->
             <nz-divider nzType="vertical"></nz-divider>
             <a>订阅警报</a>
           </td>

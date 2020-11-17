@@ -31,6 +31,8 @@ export interface Settings {
 
   logo: string;
 
+  reuseTab: boolean;
+
   [key: string]: any;
 }
 
@@ -45,5 +47,6 @@ const defaultSettings: Settings = {
   fixedHeader: false,
   autoHideHeader: false,
   fixSiderbar: false,
+  reuseTab: true,
 };
 export default defaultSettings;

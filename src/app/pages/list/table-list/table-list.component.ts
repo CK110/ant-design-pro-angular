@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TableListData, TableListItem, TableListPagination} from "./data";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-table-list',
@@ -34,7 +35,9 @@ export class TableListComponent implements OnInit {
   selectedRows: any[] = [];
 
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -81,6 +84,12 @@ export class TableListComponent implements OnInit {
 
   statusFiltersChange(event: any, status: any) {
 
+  }
+
+  toDetail(data) {
+    this.router.navigate(['/list/table-list-detail'], {
+      queryParams: {name: data.name}
+    });
   }
 
 }

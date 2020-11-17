@@ -15,6 +15,9 @@ import {UserModule} from "./pages/user/user.module";
 import {DelonMockModule} from "@delon/mock";
 import * as MOCKDATA from '../../_mock';
 import {PRO_LAYOUT} from "@pro-layout";
+import {RouteReuseStrategy} from "@angular/router";
+import {ReuseTabStrategy} from "@pro-layout";
+import {ReuseTabService} from "@pro-layout";
 
 
 export function StartupServiceFactory(startupService: StartupService) {
@@ -57,11 +60,13 @@ registerLocaleData(zh);
         primaryColor: '#1890FF',
         layout: 'sidemenu',
         contentWidth: 'Fluid',
-        fixedHeader: false,
+        fixedHeader: true,
         autoHideHeader: false,
-        fixSiderbar: false
+        fixSiderbar: true,
+        reuseTab: true
       }
-    }
+    },
+    {provide: RouteReuseStrategy, useClass: ReuseTabStrategy, deps: [ReuseTabService],},
   ],
   bootstrap: [AppComponent]
 })

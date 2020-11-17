@@ -1,0 +1,14 @@
+<pro-tabset #tabset
+            nzType="editable-card"
+            [nzSize]="'small'"
+            [nzHideAdd]="true"
+            [(nzSelectedIndex)]="pos"
+            (nzClose)="myClose($event)">
+  <ng-container  *ngFor="let i of list; let index = index" >
+    <pro-tab [nzTitle]="titleTemplate" [nzClosable]="i.closable" (nzClick)="_to(index)" (nzContextmenu)="openMenu($event,i)">
+      <ng-template #titleTemplate>
+        {{i.title}}
+      </ng-template>
+    </pro-tab>
+  </ng-container>
+</pro-tabset>

@@ -1,0 +1,20 @@
+@import '~ng-zorro-antd/style/themes/default.less';
+@import '~ng-zorro-antd/style/mixins/index';
+
+@pro-tab-prefix-cls: ~'@{ant-prefix}-pro-tabs';
+
+// card style
+.@{pro-tab-prefix-cls} {
+  &&-card &-card-bar &-tab &-close-x {
+    .@{pro-tab-prefix-cls}-rtl& {
+      margin-right: 3px;
+      margin-left: -5px;
+    }
+  }
+
+  &-extra-content {
+    .@{pro-tab-prefix-cls}-rtl & {
+      float: left !important;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {CurrentUser} from '../../../models/user';
+import {Router} from "@angular/router";
 
 export interface GlobalHeaderRightProps {
   currentUser?: CurrentUser;
@@ -17,7 +18,8 @@ export class AvatarDropdownComponent implements OnInit {
   @Input() currentUser: GlobalHeaderRightProps['currentUser'];
   @Input() menu = true;
 
-  constructor(private cdf: ChangeDetectorRef) {
+  constructor(private cdf: ChangeDetectorRef,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -28,5 +30,6 @@ export class AvatarDropdownComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigate(['/user/login'],{ replaceUrl: true }).then();
   }
 }

@@ -8,6 +8,7 @@ import {ApplicationsComponent} from "./list/applications/applications.component"
 import {TableListComponent} from "./table-list/table-list.component";
 import {SharedModule} from "../../shared/shared.module";
 import {ListRoutingModule} from "./list-routing.module";
+import {TableListDetailComponent} from "./table-list/table-list-detail.component";
 
 @NgModule({
   imports: [SharedModule, ListRoutingModule],
@@ -19,7 +20,8 @@ import {ListRoutingModule} from "./list-routing.module";
     ProjectsComponent,
     ArticlesComponent,
     ApplicationsComponent,
-    TableListComponent
+    TableListComponent,
+    TableListDetailComponent
   ],
   providers: [],
 })

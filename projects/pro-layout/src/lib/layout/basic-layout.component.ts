@@ -68,6 +68,9 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
   // 是否禁用移动端模式，有的管理系统不需要移动端模式，此属性设置为true即可
   // @Input() @InputBoolean() disableMobile: boolean;
 
+  // 多标签
+  @Input() @InputBoolean() reuseTab: boolean = true;
+
   // wrapper
   @Input() menuData: MenuDataItem[];
   isMobile = false;
@@ -165,5 +168,16 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
   onDrawerClose(event: Event) {
     this.collapsed = !this.collapsed;
+  }
+
+  getContentPaddingTop(){
+    if(this.fixedHeader && this.reuseTab){
+      return "110px";
+    }
+    if(!this.fixedHeader){
+      return '0px'
+    }else{
+      return ''
+    }
   }
 }

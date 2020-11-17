@@ -3,5 +3,6 @@
   "dest": "../../dist/pro-layout",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": ["resize-observer-polyfill"]
 }

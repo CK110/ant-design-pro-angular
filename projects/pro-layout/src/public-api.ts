@@ -14,3 +14,19 @@ export * from './lib/sider-menu/base-menu.component';
 export * from './lib/top-nav-header/top-nav-header.component';
 
 export * from './lib/pro-layout.module';
+
+export * from './lib/reuse-tab/reuse-tab-menu.component';
+export * from './lib/reuse-tab/reuse-tab-menu.service';
+export * from './lib/reuse-tab/reuse-tab.interface';
+export * from './lib/reuse-tab/reuse-tab.module';
+export * from './lib/reuse-tab/reuse-tab.service';
+export * from './lib/reuse-tab/reuse-tab.strategy';
+export * from './lib/reuse-tab/scroll.service';
+
+export * from './lib/tabs/index';
+
+
+
+
+
+

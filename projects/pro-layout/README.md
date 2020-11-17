@@ -17,6 +17,7 @@ yarn add pro-layout
                   [autoHideHeader]="settings.autoHideHeader"
                   [layout]="settings.layout"
                   [menuData]="menuData"
+                  [reuseTab]="settings.reuseTab"
                   [rightContentRender]="rightContentRender"
                   [links]="footer.links"
                   [copyright]="copyRightTemplate">
@@ -39,7 +40,8 @@ yarn add pro-layout
       contentWidth: 'Fluid',
       fixedHeader: false,
       autoHideHeader: false,
-      fixSiderbar: false
+      fixSiderbar: false,
+      reuseTab: true,
     }
   }
 ```
@@ -66,6 +68,7 @@ export interface RouterData {
   name?: string;
   locale?: string;
   guard?: ACLType;
+  reuse?: boolean
   [key: string]: any;
 }
 ```

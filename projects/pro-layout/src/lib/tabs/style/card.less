@@ -1,0 +1,97 @@
+@import '~ng-zorro-antd/style/themes/default.less';
+@import '~ng-zorro-antd/style/mixins/index';
+@import 'index';
+
+.@{pro-tab-prefix-cls}-card {
+  > .@{pro-tab-prefix-cls}-nav,
+  > div > .@{pro-tab-prefix-cls}-nav {
+    .@{pro-tab-prefix-cls}-tab {
+      margin: 0;
+      padding: @pro-tabs-card-horizontal-padding;
+      background: @pro-tabs-card-head-background;
+      border: @border-width-base @border-style-base @border-color-split;
+      transition: all @animation-duration-slow @ease-in-out;
+
+      &-active {
+        color: @pro-tabs-card-active-color;
+        background: @component-background;
+      }
+    }
+
+    .@{pro-tab-prefix-cls}-ink-bar {
+      visibility: hidden;
+    }
+  }
+
+  // ========================== Top & Bottom ==========================
+  &.@{pro-tab-prefix-cls}-top,
+  &.@{pro-tab-prefix-cls}-bottom {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab:not(:last-of-type) {
+        margin-right: @pro-tabs-card-gutter;
+      }
+    }
+  }
+
+  &.@{pro-tab-prefix-cls}-top {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        border-radius: @border-radius-base @border-radius-base 0 0;
+
+        &-active {
+          border-bottom-color: @component-background;
+        }
+      }
+    }
+  }
+  &.@{pro-tab-prefix-cls}-bottom {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        border-radius: 0 0 @border-radius-base @border-radius-base;
+
+        &-active {
+          border-top-color: @component-background;
+        }
+      }
+    }
+  }
+
+  // ========================== Left & Right ==========================
+  &.@{pro-tab-prefix-cls}-left,
+  &.@{pro-tab-prefix-cls}-right {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab:not(:last-of-type) {
+        margin-bottom: @pro-tabs-card-gutter;
+      }
+    }
+  }
+
+  &.@{pro-tab-prefix-cls}-left {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+
+        &-active {
+          border-right-color: @component-background;
+        }
+      }
+    }
+  }
+  &.@{pro-tab-prefix-cls}-right {
+    > .@{pro-tab-prefix-cls}-nav,
+    > div > .@{pro-tab-prefix-cls}-nav {
+      .@{pro-tab-prefix-cls}-tab {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+
+        &-active {
+          border-left-color: @component-background;
+        }
+      }
+    }
+  }
+}
