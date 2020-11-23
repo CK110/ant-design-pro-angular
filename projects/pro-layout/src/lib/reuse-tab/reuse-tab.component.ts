@@ -151,9 +151,13 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private updateTitle(res: ReuseTabNotify): void {
-    const item = this.list.find(w => w.url === res!.url);
+    const item = this.list.find(w => {
+      const urlWithParams = this.router.serializeUrl(this.router.createUrlTree([w.url], {queryParams: w.queryParams}));
+      return urlWithParams === res.url
+    });
     if (!item) return;
     item.title = this.genTit(res!.title!);
+    console.log(this.list);
     this.cdr.detectChanges();
   }
 
@@ -267,6 +271,9 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     this.reuseTabService.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
       switch (res && res.active) {
         case 'title':
+          if (this.list && this.list.length === 0) {
+            this.genList(res);
+          }
           this.updateTitle(res);
           return;
         case 'override':

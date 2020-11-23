@@ -26,8 +26,8 @@ export class ReuseTabService {
   private _keepingScroll = false;
   private _cachedChange = new BehaviorSubject<ReuseTabNotify | null>(null);
   private _cached: ReuseTabCached[] = [];
-  private _titleCached: { [url: string]: ReuseTitle } = {};
-  private _closableCached: { [url: string]: boolean } = {};
+  private _titleCached: { [urlWithQueryParams: string]: ReuseTitle } = {};
+  private _closableCached: { [urlWithQueryParams: string]: boolean } = {};
   private _router$: Unsubscribable;
   private removeUrlBuffer: string | null;
   private removeQueryParamBuffer: any;
@@ -51,6 +51,18 @@ export class ReuseTabService {
   /** 当前路由地址 */
   get curUrl(): string {
     return this.getUrl(this.snapshot);
+  }
+
+  /** 当前路由跳转参数 **/
+  get curQueryParams(): any {
+    return this.snapshot.queryParams;
+  }
+
+  /** url和路由参数 **/
+  get curUrlWithQueryParams(): string {
+    const router = this.injector.get(Router);
+    const urlWithQueryParams = router.serializeUrl(router.createUrlTree([this.curUrl], {queryParams: this.curQueryParams}));
+    return urlWithQueryParams;
   }
 
   /** 允许最多复用多少个页面，取值范围 `2-500`，值发生变更时会强制关闭且忽略可关闭条件 */
@@ -89,13 +101,13 @@ export class ReuseTabService {
 
   /** 自定义当前标题 */
   set title(value: string | ReuseTitle) {
-    const url = this.curUrl;
+    const urlWithQueryParams = this.curUrlWithQueryParams;
     if (typeof value === 'string') value = {name: value};
-    this._titleCached[url] = value;
+    this._titleCached[urlWithQueryParams] = value;
     this.di('update current tag title: ', value);
     this._cachedChange.next({
       active: 'title',
-      url,
+      url: urlWithQueryParams,
       title: value,
       list: this._cached,
     });
@@ -230,8 +242,10 @@ export class ReuseTabService {
    * @param route 指定路由快照
    */
   getTitle(url: string, route?: ActivatedRouteSnapshot): ReuseTitle {
-    if (this._titleCached[url]) {
-      return this._titleCached[url];
+    const router = this.injector.get(Router);
+    const urlWithQueryParams = router.serializeUrl(router.createUrlTree([url], {queryParams: route.queryParams}));
+    if (this._titleCached[urlWithQueryParams]) {
+      return this._titleCached[urlWithQueryParams];
     }
     if (route && route.data && (route.data.name || route.data.locale)) {
       return {
@@ -251,8 +265,8 @@ export class ReuseTabService {
 
   /** 自定义当前 `closable` 状态 */
   set closable(value: boolean) {
-    const url = this.curUrl;
-    this._closableCached[url] = value;
+    const urlWithQueryParams = this.curUrlWithQueryParams;
+    this._closableCached[urlWithQueryParams] = value;
     this.di('update current tag closable: ', value);
     this._cachedChange.next({
       active: 'closable',
@@ -271,7 +285,11 @@ export class ReuseTabService {
    * @param route 指定路由快照
    */
   getClosable(url: string, route?: ActivatedRouteSnapshot): boolean {
-    if (typeof this._closableCached[url] !== 'undefined') return this._closableCached[url];
+    if (typeof this._closableCached[url] !== 'undefined') {
+      const router = this.injector.get(Router);
+      const urlWithQueryParams = router.serializeUrl(router.createUrlTree([url], {queryParams: route.queryParams}));
+      return this._closableCached[urlWithQueryParams];
+    }
 
     if (route && route.data && typeof route.data.reuseClosable === 'boolean') return route.data.reuseClosable;
 
