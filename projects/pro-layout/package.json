@@ -1,6 +1,6 @@
 {
   "name": "pro-layout",
-  "version": "0.0.14",
+  "version": "0.0.18",
   "dependencies": {
     "resize-observer-polyfill": "^1.5.1"
   },
