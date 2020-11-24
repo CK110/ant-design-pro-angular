@@ -120,6 +120,19 @@ export interface MenuDataItem {
 }
 ```
 
+### 路由配置data
+
+```
+{
+  name?: string; // 名称
+  locale?: string; // 国际化名称
+  reuse?: boolean; // 使用路由多标签
+  reuseClosable?: boolean; // 是否可以关闭
+  reuseRefreshable?: boolean; // 是否可以刷新
+  reuseKeepingScroll?: booolean; // 是否可以关闭
+}
+```
+
 ## 依赖项目
 
 - [ng-zorro-antd](https://github.com/NG-ZORRO/ng-zorro-antd)

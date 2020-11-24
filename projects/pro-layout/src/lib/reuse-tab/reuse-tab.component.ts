@@ -18,7 +18,7 @@ import {
   ReuseItem,
   ReuseTabCached,
   ReuseTabNotify,
-  ReuseTabRouteParamMatchMode, ReuseTitle
+  ReuseTitle
 } from "./reuse-tab.interface";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DOCUMENT} from "@angular/common";
@@ -57,6 +57,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   @Input() @InputNumber() tabMaxWidth: number;
   @Input() excludes: RegExp[];
   @Input() @InputBoolean() allowClose = true;
+  @Input() @InputBoolean() allowRefresh = true;
   @Input() @InputBoolean() keepingScroll = false;
 
   @Input()
@@ -67,7 +68,6 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   @Input() tabBarExtraContent: TemplateRef<void>;
   @Input() tabBarGutter: number;
   @Input() tabBarStyle: { [key: string]: string };
-  @Input() routeParamMatchMode: ReuseTabRouteParamMatchMode = 'strict';
   @Output() readonly change = new EventEmitter<ReuseItem>();
   @Output() readonly close = new EventEmitter<ReuseItem | null>();
 
@@ -101,6 +101,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
       queryParams: snapshotTrue.queryParams,
       title: this.genTit(this.reuseTabService.getTitle(url, snapshotTrue)),
       closable: this.allowClose && this.reuseTabService.count > 0 && this.reuseTabService.getClosable(url, snapshotTrue),
+      refreshable: this.allowRefresh && this.reuseTabService.getRefreshable(url, snapshotTrue),
       active: false,
       last: false,
       index: 0,
@@ -115,7 +116,8 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
           queryParams: item._snapshot.queryParams,
           title: this.genTit(item.title),
           closable: this.allowClose && item.closable && this.reuseTabService.count > 0,
-          index,
+          refreshable: this.allowRefresh && item.refreshable,
+          index: index,
           active: false,
           last: false,
         } as ReuseItem),
@@ -162,7 +164,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private refresh(item: ReuseItem): void {
-    this.reuseTabService.runHook('_onReuseInit', this.pos === item.index ? this.reuseTabService.componentRef : item.index, 'refresh');
+    this.reuseTabService.runHook('onReuseInit', this.pos === item.index ? this.reuseTabService.componentRef : item.index, 'refresh');
   }
 
   // #region UI
@@ -235,7 +237,6 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openMenu(event, item: ReuseItem): void {
-    console.log(event);
     this.reuseTabContextService.show.next({
       event: event,
       item: item,
@@ -299,7 +300,6 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: { [P in keyof this]?: SimpleChange } & SimpleChanges): void {
     if (changes.max) this.reuseTabService.max = this.max;
     if (changes.excludes) this.reuseTabService.excludes = this.excludes;
-    if (changes.routeParamMatchMode) this.reuseTabService.routeParamMatchMode = this.routeParamMatchMode;
     if (changes.keepingScroll) {
       this.reuseTabService.keepingScroll = this.keepingScroll;
       this.reuseTabService.keepingScrollContainer = this._keepingScrollContainer;

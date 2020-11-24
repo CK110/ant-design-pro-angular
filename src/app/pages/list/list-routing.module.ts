@@ -11,8 +11,22 @@ import {TableListDetailComponent} from "./table-list/table-list-detail.component
 
 const routes: Routes = [
   {path: '', redirectTo: 'table-list', pathMatch: 'full'},
-  { path: 'table-list', component: TableListComponent, data: {name: '查询表格'}},
-  {path: 'table-list-detail', component: TableListDetailComponent, data: {name: '查询表格详情',routeParamMatchMode:'strict'}},
+  {
+    path: 'table-list', component: TableListComponent, data: {
+      name: '查询表格',
+      keepingScroll: true
+    }
+  },
+  {
+    path: 'table-list-detail', component: TableListDetailComponent,
+    data: {
+      name: '查询表格详情',
+      reuse: true,
+      reuseClosable: true,
+      reuseKeepingScroll: true,
+      reuseRefreshable: false
+    }
+  },
   {path: 'basic-list', component: BasicListComponent, data: {name: '标准列表'}},
   {path: 'card-list', component: CardListComponent, data: {name: '卡片列表'},},
   {

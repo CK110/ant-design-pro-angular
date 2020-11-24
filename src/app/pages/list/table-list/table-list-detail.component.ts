@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TableListData, TableListItem, TableListPagination} from "./data";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from "@pro-layout";
 
 @Component({
   selector: 'app-table-list',
@@ -9,42 +10,11 @@ import {ActivatedRoute, Router} from "@angular/router";
       name:{{name}}
       <input nz-input>
       <br>
-      <h4>1. nzTab</h4>
-<!--      <nz-tabset>-->
-<!--          <nz-tab nzTitle="Tab 1">-->
-<!--              Content of Tab Pane 1-->
-<!--          </nz-tab>-->
-<!--          <pro-tab nzTitle="Tab 2">-->
-<!--              Content of Tab Pane 2-->
-<!--          </pro-tab>-->
-<!--          <pro-tab nzTitle="Tab 3">-->
-<!--              Content of Tab Pane 3-->
-<!--          </pro-tab>-->
-<!--      </nz-tabset>-->
-      
-<!--      <h4>1. 基本</h4>-->
-<!--      <pro-tabset>-->
-<!--          <pro-tab nzTitle="Tab 1">-->
-<!--              Content of Tab Pane 1-->
-<!--          </pro-tab>-->
-<!--          <pro-tab nzTitle="Tab 2">-->
-<!--              Content of Tab Pane 2-->
-<!--          </pro-tab>-->
-<!--          <pro-tab nzTitle="Tab 3">-->
-<!--              Content of Tab Pane 3-->
-<!--          </pro-tab>-->
-<!--      </pro-tabset>-->
-<!--      <br>-->
-<!--      <h4>2. 禁用</h4>-->
-<!--      <nz-tabset>-->
-<!--          <nz-tab *ngFor="let tab of tabs2" [nzTitle]="tab.name" [nzDisabled]="tab.disabled">-->
-<!--              {{ tab.name }}-->
-<!--          </nz-tab>-->
-<!--      </nz-tabset>-->
-<!--      <br>-->
+      <button nz-button (click)="refresh()">刷新</button>
   `,
 })
-export class TableListDetailComponent implements OnInit {
+export class TableListDetailComponent implements OnInit, ReuseComponentInstance {
+
 
   name: string;
 
@@ -64,13 +34,41 @@ export class TableListDetailComponent implements OnInit {
   ];
 
   constructor(public router: Router,
+              public reuseTabService: ReuseTabService,
               private activatedRoute: ActivatedRoute,) {
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.name = queryParams.name;
     });
+    // console.log("curUrl:" + this.reuseTabService.curUrl);
+    // console.log("curQueryParams:" + this.reuseTabService.curQueryParams);
+    // console.log("curUrlWithQueryParams:" + this.reuseTabService.curUrlWithQueryParams);
+    // console.log(this.reuseTabService.items);
+    // this.reuseTabService.title = '新名称';
   }
 
   ngOnInit(): void {
+    console.log('ngOnInit');
   }
+
+  onReuseInit(type: ReuseHookOnReuseInitType) {
+    console.log('onReuseInit');
+    if (type === 'init') {
+      console.log('init');
+
+    }
+    if (type === 'refresh') {
+      console.log('refresh');
+    }
+  }
+
+  refresh() {
+    this.reuseTabService.refresh();
+  }
+
+  onReuseDestroy(){
+    console.log('onReuseDestroy');
+  }
+
+  destroy: () => void;
 
 }

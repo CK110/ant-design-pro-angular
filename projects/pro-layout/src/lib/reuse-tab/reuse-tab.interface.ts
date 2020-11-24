@@ -1,7 +1,5 @@
 import {ActivatedRouteSnapshot, Params} from '@angular/router';
 
-export type ReuseTabRouteParamMatchMode = 'strict' | 'loose';
-
 export interface ReuseTitle {
   name?: string;
   locale?: string;
@@ -9,17 +7,14 @@ export interface ReuseTitle {
 
 export interface ReuseTabCached {
   title: ReuseTitle;
-
   url: string;
-
   /** 是否允许关闭，默认：`true` */
   closable?: boolean;
-
+  /** 是否允许刷新，默认：`true` */
+  refreshable?: boolean;
   /** 当前滚动条位置 */
   position?: [number, number] | null;
-
   _snapshot: ActivatedRouteSnapshot;
-
   _handle: ReuseComponentHandle;
 }
 
@@ -39,6 +34,7 @@ export interface ReuseItem {
   queryParams: Params | null;
   title: string;
   closable: boolean;
+  refreshable: boolean;
   index: number;
   active: boolean;
   last: boolean;
@@ -65,12 +61,14 @@ export interface ReuseComponentRef {
   instance: ReuseComponentInstance;
 }
 
-export type ReuseHookTypes = '_onReuseInit' | '_onReuseDestroy';
+export type ReuseHookTypes = 'onReuseInit' | 'onReuseDestroy';
 
 export type ReuseHookOnReuseInitType = 'init' | 'refresh';
 
 export interface ReuseComponentInstance {
-  _onReuseInit: (type: ReuseHookOnReuseInitType) => void;
-  _onReuseDestroy: () => void;
+  /** 再次进入页面触发init, 刷新菜单触发refresh **/
+  onReuseInit: (type: ReuseHookOnReuseInitType) => void;
+  /** 切换标签时触发 **/
+  onReuseDestroy: () => void;
   destroy: () => void;
 }

@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, Unsubscribable} from "rxjs";
 import {
   ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes,
   ReuseTabCached,
-  ReuseTabNotify, ReuseTabRouteParamMatchMode,
+  ReuseTabNotify,
   ReuseTitle
 } from "./reuse-tab.interface";
 import {
@@ -34,7 +34,6 @@ export class ReuseTabService {
   private positionBuffer: { [url: string]: [number, number] } = {};
   componentRef: ReuseComponentRef;
   debug = false;
-  routeParamMatchMode: ReuseTabRouteParamMatchMode = 'strict';
   /** 排除规则，限 `mode=URL` */
   excludes: RegExp[] = [];
 
@@ -296,6 +295,12 @@ export class ReuseTabService {
     return true;
   }
 
+  getRefreshable(url: string, route?: ActivatedRouteSnapshot){
+    if (route && route.data && typeof route.data.reuseRefreshable === 'boolean') return route.data.reuseClosable;
+
+    return true;
+  }
+
   /**
    * 清空 `closable` 缓存
    */
@@ -375,6 +380,7 @@ export class ReuseTabService {
   }
 
   runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number, type: ReuseHookOnReuseInitType = 'init'): void {
+    // 非当前页
     if (typeof comp === 'number') {
       const item = this._cached[comp];
       comp = item._handle.componentRef;
@@ -387,7 +393,7 @@ export class ReuseTabService {
     if (typeof fn !== 'function') {
       return;
     }
-    if (method === '_onReuseInit') {
+    if (method === 'onReuseInit') {
       fn.call(compThis, type);
     } else {
       (fn as () => void).call(compThis);
@@ -418,6 +424,7 @@ export class ReuseTabService {
     const item: ReuseTabCached = {
       title: this.getTitle(url, _snapshot),
       closable: this.getClosable(url, _snapshot),
+      refreshable: this.getRefreshable(url, _snapshot),
       position: this.getKeepingScroll(url, _snapshot) ? this.positionBuffer[url] : null,
       url,
       _snapshot,
@@ -438,7 +445,7 @@ export class ReuseTabService {
     this.di('#store', isAdd ? '[new]' : '[override]', url);
 
     if (_handle && _handle.componentRef) {
-      this.runHook('_onReuseDestroy', _handle.componentRef);
+      this.runHook('onReuseDestroy', _handle.componentRef);
     }
 
     if (!isAdd) {
@@ -459,7 +466,7 @@ export class ReuseTabService {
       const compRef = data!._handle.componentRef;
       if (compRef) {
         this.componentRef = compRef;
-        this.runHook('_onReuseInit', compRef);
+        this.runHook('onReuseInit', compRef);
       }
     } else {
       this._cachedChange.next({active: 'add', url, list: this._cached});
@@ -509,7 +516,7 @@ export class ReuseTabService {
    * 2. 组件 `keepingScroll` 值
    */
   getKeepingScroll(url: string, route?: ActivatedRouteSnapshot): boolean {
-    if (route && route.data && typeof route.data.keepingScroll === 'boolean') return route.data.keepingScroll;
+    if (route && route.data && typeof route.data.reuseKeepingScroll === 'boolean') return route.data.reuseKeepingScroll;
 
     return this.keepingScroll;
   }
