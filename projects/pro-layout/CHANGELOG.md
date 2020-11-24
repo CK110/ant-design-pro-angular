@@ -1,5 +1,8 @@
 # 更新日志
 
+### 0.0.19
+- reuseTab增加refreshable配置
+
 ### 0.0.18
 - 增加reuseTab,queryParam来区分路由
 
