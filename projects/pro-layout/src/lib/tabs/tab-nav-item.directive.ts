@@ -6,14 +6,14 @@
 import { FocusableOption } from '@angular/cdk/a11y';
 import { Directive, ElementRef, Input } from '@angular/core';
 
-import { NzTabComponent } from './tab.component';
+import { ProTabComponent } from './tab.component';
 
 @Directive({
-  selector: '[nzTabNavItem]'
+  selector: '[ProTabNavItem]'
 })
-export class NzTabNavItemDirective implements FocusableOption {
+export class ProTabNavItemDirective implements FocusableOption {
   @Input() disabled: boolean = false;
-  @Input() tab!: NzTabComponent;
+  @Input() tab!: ProTabComponent;
   @Input() active: boolean = false;
   private el!: HTMLElement;
   private parentElement!: HTMLElement;

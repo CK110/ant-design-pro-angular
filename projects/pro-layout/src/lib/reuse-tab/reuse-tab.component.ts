@@ -25,7 +25,7 @@ import {DOCUMENT} from "@angular/common";
 import {ReuseTabService} from "./reuse-tab.service";
 import {debounceTime, takeUntil} from "rxjs/operators";
 import {ReuseTabMenuService} from "./reuse-tab-menu.service";
-import {NzTabSetComponent} from "../tabs";
+import {ProTabSetComponent} from "../tabs";
 
 @Component({
   selector: 'pro-reuse-tab',
@@ -43,7 +43,7 @@ import {NzTabSetComponent} from "../tabs";
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
 
-  @ViewChild('tabset', {static: true}) private tabset: NzTabSetComponent;
+  @ViewChild('tabset', {static: true}) private tabset: ProTabSetComponent;
   private unsubscribe$ = new Subject<void>();
   private updatePos$ = new Subject<void>();
   private _keepingScrollContainer: Element;

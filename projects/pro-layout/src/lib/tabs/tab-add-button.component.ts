@@ -6,7 +6,7 @@
 import { Component, ElementRef, Input, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'nz-tab-add-button, button[nz-tab-add-button]',
+  selector: 'pro-tab-add-button, button[pro-tab-add-button]',
   template: `
     <ng-container *nzStringTemplateOutlet="addIcon; let icon">
       <i nz-icon [nzType]="icon" nzTheme="outline"></i>
@@ -18,7 +18,7 @@ import { Component, ElementRef, Input, TemplateRef } from '@angular/core';
     type: 'button'
   }
 })
-export class NzTabAddButtonComponent {
+export class ProTabAddButtonComponent {
   @Input() addIcon: string | TemplateRef<any> = 'plus';
 
   private readonly element: HTMLElement;

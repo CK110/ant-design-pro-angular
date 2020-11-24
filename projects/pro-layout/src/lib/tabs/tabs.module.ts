@@ -12,34 +12,34 @@ import { NgModule } from '@angular/core';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-import { NzTabAddButtonComponent } from './tab-add-button.component';
-import { NzTabBodyComponent } from './tab-body.component';
-import { NzTabCloseButtonComponent } from './tab-close-button.component';
-import { NzTabLinkDirective, NzTabLinkTemplateDirective } from './tab-link.directive';
-import { NzTabNavBarComponent } from './tab-nav-bar.component';
-import { NzTabNavItemDirective } from './tab-nav-item.directive';
-import { NzTabNavOperationComponent } from './tab-nav-operation.component';
-import { NzTabScrollListDirective } from './tab-scroll-list.directive';
-import { NzTabComponent } from './tab.component';
-import { NzTabDirective } from './tab.directive';
-import { NzTabsInkBarDirective } from './tabs-ink-bar.directive';
-import { NzTabSetComponent } from './tabset.component';
+import { ProTabAddButtonComponent } from './tab-add-button.component';
+import { ProTabBodyComponent } from './tab-body.component';
+import { ProTabCloseButtonComponent } from './tab-close-button.component';
+import { ProTabLinkDirective, ProTabLinkTemplateDirective } from './tab-link.directive';
+import { ProTabNavBarComponent } from './tab-nav-bar.component';
+import { ProTabNavItemDirective } from './tab-nav-item.directive';
+import { ProTabNavOperationComponent } from './tab-nav-operation.component';
+import { ProTabScrollListDirective } from './tab-scroll-list.directive';
+import { ProTabComponent } from './tab.component';
+import { ProTabDirective } from './tab.directive';
+import { ProTabsInkBarDirective } from './tabs-ink-bar.directive';
+import { ProTabSetComponent } from './tabset.component';
 import {NzAddOnModule} from "ng-zorro-antd";
 
 const DIRECTIVES = [
-  NzTabSetComponent,
-  NzTabComponent,
-  NzTabNavBarComponent,
-  NzTabNavItemDirective,
-  NzTabsInkBarDirective,
-  NzTabScrollListDirective,
-  NzTabNavOperationComponent,
-  NzTabAddButtonComponent,
-  NzTabCloseButtonComponent,
-  NzTabDirective,
-  NzTabBodyComponent,
-  NzTabLinkDirective,
-  NzTabLinkTemplateDirective
+  ProTabSetComponent,
+  ProTabComponent,
+  ProTabNavBarComponent,
+  ProTabNavItemDirective,
+  ProTabsInkBarDirective,
+  ProTabScrollListDirective,
+  ProTabNavOperationComponent,
+  ProTabAddButtonComponent,
+  ProTabCloseButtonComponent,
+  ProTabDirective,
+  ProTabBodyComponent,
+  ProTabLinkDirective,
+  ProTabLinkTemplateDirective
 ];
 
 @NgModule({
@@ -56,4 +56,4 @@ const DIRECTIVES = [
     NzDropDownModule
   ]
 })
-export class NzTabsModule {}
+export class ProTabsModule {}

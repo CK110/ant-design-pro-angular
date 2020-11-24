@@ -14,10 +14,10 @@ import { TabTemplateContext } from './interfaces';
  * Fix https://github.com/angular/angular/issues/8563
  */
 @Directive({
-  selector: 'ng-template[nzTabLink]',
-  exportAs: 'nzTabLinkTemplate'
+  selector: 'ng-template[ProTabLink]',
+  exportAs: 'ProTabLinkTemplate'
 })
-export class NzTabLinkTemplateDirective {
+export class ProTabLinkTemplateDirective {
   constructor(@Host() public templateRef: TemplateRef<TabTemplateContext>) {}
 }
 
@@ -25,17 +25,17 @@ export class NzTabLinkTemplateDirective {
  * This component is for catching `routerLink` directive.
  */
 @Directive({
-  selector: 'a[nz-tab-link]',
-  exportAs: 'nzTabLink'
+  selector: 'a[pro-tab-link]',
+  exportAs: 'ProTabLink'
 })
-export class NzTabLinkDirective {
+export class ProTabLinkDirective {
   constructor(
     @Optional() @Self() public routerLink?: RouterLink,
     @Optional() @Self() public routerLinkWithHref?: RouterLinkWithHref,
-    @Optional() nzTabLinkTemplateDirective?: NzTabLinkTemplateDirective
+    @Optional() ProTabLinkTemplateDirective?: ProTabLinkTemplateDirective
   ) {
-    if (!nzTabLinkTemplateDirective) {
-      warnDeprecation(`'a[nz-tab-link]' is deprecated. Please use 'ng-template[nzTabLink] > a[nz-tab-link]' instead.`);
+    if (!ProTabLinkTemplateDirective) {
+      warnDeprecation(`'a[pro-tab-link]' is deprecated. Please use 'ng-template[ProTabLink] > a[pro-tab-link]' instead.`);
     }
   }
 }

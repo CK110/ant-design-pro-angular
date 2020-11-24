@@ -17,11 +17,11 @@ import {
 } from '@angular/core';
 
 
-import { NzTabNavItemDirective } from './tab-nav-item.directive';
+import { ProTabNavItemDirective } from './tab-nav-item.directive';
 
 @Component({
-  selector: 'nz-tab-nav-operation',
-  exportAs: 'nzTabNavOperation',
+  selector: 'pro-tab-nav-operation',
+  exportAs: 'ProTabNavOperation',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -32,7 +32,7 @@ import { NzTabNavItemDirective } from './tab-nav-item.directive';
       type="button"
       tabindex="-1"
       aria-hidden="true"
-      nzOverlayClassName="nz-tabs-dropdown"
+      nzOverlayClassName="pro-tabs-dropdown"
       #dropdownTrigger="nzDropdown"
       [nzDropdownMenu]="menu"
       [nzOverlayStyle]="{ minWidth: '46px' }"
@@ -58,20 +58,20 @@ import { NzTabNavItemDirective } from './tab-nav-item.directive';
         </li>
       </ul>
     </nz-dropdown-menu>
-    <button *ngIf="addable" nz-tab-add-button [addIcon]="addIcon" (click)="addClicked.emit()"></button>
+    <button *ngIf="addable" pro-tab-add-button [addIcon]="addIcon" (click)="addClicked.emit()"></button>
   `,
   host: {
     class: 'ant-pro-tabs-nav-operations',
     '[class.ant-pro-tabs-nav-operations-hidden]': 'items.length === 0'
   }
 })
-export class NzTabNavOperationComponent implements OnDestroy {
-  @Input() items: NzTabNavItemDirective[] = [];
+export class ProTabNavOperationComponent implements OnDestroy {
+  @Input() items: ProTabNavItemDirective[] = [];
   @Input() addable: boolean = false;
   @Input() addIcon: string | TemplateRef<any> = 'plus';
 
   @Output() readonly addClicked = new EventEmitter<void>();
-  @Output() readonly selected = new EventEmitter<NzTabNavItemDirective>();
+  @Output() readonly selected = new EventEmitter<ProTabNavItemDirective>();
   closeAnimationWaitTimeoutId = -1;
   menuOpened = false;
 
@@ -80,7 +80,7 @@ export class NzTabNavOperationComponent implements OnDestroy {
     this.element = this.elementRef.nativeElement;
   }
 
-  onSelect(item: NzTabNavItemDirective): void {
+  onSelect(item: ProTabNavItemDirective): void {
     if (!item.disabled) {
       // ignore nzCanDeactivate
       item.tab.nzClick.emit();
@@ -88,7 +88,7 @@ export class NzTabNavOperationComponent implements OnDestroy {
     }
   }
 
-  onContextmenu(item: NzTabNavItemDirective, e: MouseEvent): void {
+  onContextmenu(item: ProTabNavItemDirective, e: MouseEvent): void {
     if (!item.disabled) {
       item.tab.nzContextmenu.emit(e);
     }

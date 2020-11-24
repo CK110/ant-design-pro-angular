@@ -6,8 +6,8 @@
 import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: '[nz-tab-body]',
-  exportAs: 'nzTabBody',
+  selector: '[pro-tab-body]',
+  exportAs: 'ProTabBody',
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,7 +27,7 @@ import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulati
     '[style.display]': '!tabPaneAnimated ? active ? null : "none" : null'
   }
 })
-export class NzTabBodyComponent {
+export class ProTabBodyComponent {
   @Input() content: TemplateRef<void> | null = null;
   @Input() active = false;
   @Input() tabPaneAnimated = true;

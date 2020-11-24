@@ -42,8 +42,8 @@ import {
   NzTabScrollEvent,
   NzTabType
 } from './interfaces';
-import {NzTabNavBarComponent} from './tab-nav-bar.component';
-import {NzTabComponent, NZ_TAB_SET} from './tab.component';
+import {ProTabNavBarComponent} from './tab-nav-bar.component';
+import {ProTabComponent, PRO_TAB_SET} from './tab.component';
 
 
 let nextId = 0;
@@ -56,12 +56,12 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
-      provide: NZ_TAB_SET,
-      useExisting: NzTabSetComponent
+      provide: PRO_TAB_SET,
+      useExisting: ProTabSetComponent
     }
   ],
   template: `
-      <nz-tabs-nav
+      <pro-tabs-nav
               *ngIf="tabs.length"
               [ngStyle]="nzTabBarStyle"
               [selectedIndex]="nzSelectedIndex || 0"
@@ -95,20 +95,20 @@ let nextId = 0;
                       [tab]="tab"
                       [active]="nzSelectedIndex === i"
                       class="ant-pro-tabs-tab-btn"
-                      nzTabNavItem
+                      ProTabNavItem
                       cdkMonitorElementFocus
               >
                   <ng-container
                           *nzStringTemplateOutlet="tab.label; context: { visible: true }">{{ tab.label }}</ng-container>
                   <button
-                          nz-tab-close-button
+                          pro-tab-close-button
                           *ngIf="tab.nzClosable && closable && !tab.nzDisabled"
                           [closeIcon]="tab.nzCloseIcon"
                           (click)="onClose(i, $event)"
                   ></button>
               </div>
           </div>
-      </nz-tabs-nav>
+      </pro-tabs-nav>
       <div class="ant-pro-tabs-content-holder">
           <div
                   class="ant-pro-tabs-content"
@@ -120,7 +120,7 @@ let nextId = 0;
                   [style.margin-left.%]="tabPaneAnimated ? -(nzSelectedIndex || 0) * 100 : null"
           >
               <div
-                      nz-tab-body
+                      pro-tab-body
                       *ngFor="let tab of tabs; let i = index"
                       [active]="nzSelectedIndex == i && !nzHideAll"
                       [content]="tab.content"
@@ -145,7 +145,7 @@ let nextId = 0;
     '[class.ant-pro-tabs-large]': `nzSize === 'large'`
   }
 })
-export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy, AfterContentInit, OnChanges {
+export class ProTabSetComponent implements OnInit, AfterContentChecked, OnDestroy, AfterContentInit, OnChanges {
 
   @Input()
   get nzSelectedIndex(): number | null {
@@ -221,11 +221,11 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
 
   // Pick up only direct descendants under ivy rendering engine
   // We filter out only the tabs that belong to this tab set in `tabs`.
-  @ContentChildren(NzTabComponent, {descendants: true}) allTabs: QueryList<NzTabComponent> = new QueryList<NzTabComponent>();
-  @ViewChild(NzTabNavBarComponent, {static: false}) tabNavBarRef!: NzTabNavBarComponent;
+  @ContentChildren(ProTabComponent, {descendants: true}) allTabs: QueryList<ProTabComponent> = new QueryList<ProTabComponent>();
+  @ViewChild(ProTabNavBarComponent, {static: false}) tabNavBarRef!: ProTabNavBarComponent;
 
   // All the direct tabs for this tab set
-  tabs: QueryList<NzTabComponent> = new QueryList<NzTabComponent>();
+  tabs: QueryList<ProTabComponent> = new QueryList<ProTabComponent>();
 
   private readonly tabSetId!: number;
   private destroy$ = new Subject<void>();
@@ -241,10 +241,10 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
 
   ngOnInit(): void {
     if (this.nzOnNextClick.observers.length) {
-      warnDeprecation(`(nzOnNextClick) of nz-tabset is not support, will be removed in 11.0.0`);
+      warnDeprecation(`(nzOnNextClick) of pro-tabset is not support, will be removed in 11.0.0`);
     }
     if (this.nzOnPrevClick.observers.length) {
-      warnDeprecation(`(nzOnPrevClick) of nz-tabset is not support, will be removed in 11.0.0`);
+      warnDeprecation(`(nzOnPrevClick) of pro-tabset is not support, will be removed in 11.0.0`);
     }
   }
 
@@ -315,7 +315,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
     }
 
     // Setup the position for each tab and optionally setup an origin on the next selected tab.
-    this.tabs.forEach((tab: NzTabComponent, index: number) => {
+    this.tabs.forEach((tab: ProTabComponent, index: number) => {
       tab.position = index - indexToSelect;
 
       // If there is already a selected tab, then set up an origin for the next selected tab
@@ -369,7 +369,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
   }
 
   private subscribeToAllTabChanges(): void {
-    this.allTabs.changes.pipe(startWith(this.allTabs)).subscribe((tabs: QueryList<NzTabComponent>) => {
+    this.allTabs.changes.pipe(startWith(this.allTabs)).subscribe((tabs: QueryList<ProTabComponent>) => {
       this.tabs.reset(tabs.filter(tab => tab.closestTabSet === this));
       this.tabs.notifyOnChanges();
     });
@@ -379,7 +379,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
     return of(true);
   }
 
-  clickNavItem(tab: NzTabComponent, index: number): void {
+  clickNavItem(tab: ProTabComponent, index: number): void {
     if (!tab.nzDisabled) {
       // ignore nzCanDeactivate
       tab.nzClick.emit();
@@ -387,7 +387,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
     }
   }
 
-  contextmenuNavItem(tab: NzTabComponent, e: MouseEvent): void {
+  contextmenuNavItem(tab: ProTabComponent, e: MouseEvent): void {
     if (!tab.nzDisabled) {
       // ignore nzCanDeactivate
       tab.nzContextmenu.emit(e);
@@ -405,7 +405,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
     });
   }
 
-  getTabIndex(tab: NzTabComponent, index: number): number | null {
+  getTabIndex(tab: ProTabComponent, index: number): number | null {
     if (tab.nzDisabled) {
       return null;
     }
@@ -413,7 +413,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
   }
 
   getTabContentId(i: number): string {
-    return `nz-tabs-${this.tabSetId}-tab-${i}`;
+    return `pro-tabs-${this.tabSetId}-tab-${i}`;
   }
 
   private setUpRouter(): void {
@@ -462,7 +462,7 @@ export class NzTabSetComponent implements OnInit, AfterContentChecked, OnDestroy
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('nzShowPagination')) {
-      warnDeprecation(`[nzOnPrevClick] of nz-tabset is not support, will be removed in 11.0.0`);
+      warnDeprecation(`[nzOnPrevClick] of pro-tabset is not support, will be removed in 11.0.0`);
     }
   }
 }

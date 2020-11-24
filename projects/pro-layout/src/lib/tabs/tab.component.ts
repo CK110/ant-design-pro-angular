@@ -26,13 +26,13 @@ import { Subject } from 'rxjs';
 
 import { InputBoolean } from 'ng-zorro-antd';
 
-import { NzTabLinkDirective, NzTabLinkTemplateDirective } from './tab-link.directive';
-import { NzTabDirective } from './tab.directive';
+import { ProTabLinkDirective, ProTabLinkTemplateDirective } from './tab-link.directive';
+import { ProTabDirective } from './tab.directive';
 
 /**
  * Used to provide a tab set to a tab without causing a circular dependency.
  */
-export const NZ_TAB_SET = new InjectionToken<any>('NZ_TAB_SET');
+export const PRO_TAB_SET = new InjectionToken<any>('PRO_TAB_SET');
 
 @Component({
   selector: 'pro-tab',
@@ -42,12 +42,12 @@ export const NZ_TAB_SET = new InjectionToken<any>('NZ_TAB_SET');
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-template #tabLinkTemplate>
-      <ng-content select="[nz-tab-link]"></ng-content>
+      <ng-content select="[pro-tab-link]"></ng-content>
     </ng-template>
     <ng-template #contentTemplate><ng-content></ng-content></ng-template>
   `
 })
-export class NzTabComponent implements OnChanges, OnDestroy, OnInit {
+export class ProTabComponent implements OnChanges, OnDestroy, OnInit {
 
   @Input() nzTitle: string | TemplateRef<TabTemplateContext> = '';
   @Input() @InputBoolean() nzClosable = false;
@@ -64,9 +64,9 @@ export class NzTabComponent implements OnChanges, OnDestroy, OnInit {
    * @breaking-change 11.0.0
    */
   @ViewChild('tabLinkTemplate', { static: true }) tabLinkTemplate!: TemplateRef<void>;
-  @ContentChild(NzTabLinkTemplateDirective, { static: false }) nzTabLinkTemplateDirective!: NzTabLinkTemplateDirective;
-  @ContentChild(NzTabDirective, { static: false, read: TemplateRef }) template: TemplateRef<void> | null = null;
-  @ContentChild(NzTabLinkDirective, { static: false }) linkDirective!: NzTabLinkDirective;
+  @ContentChild(ProTabLinkTemplateDirective, { static: false }) ProTabLinkTemplateDirective!: ProTabLinkTemplateDirective;
+  @ContentChild(ProTabDirective, { static: false, read: TemplateRef }) template: TemplateRef<void> | null = null;
+  @ContentChild(ProTabLinkDirective, { static: false }) linkDirective!: ProTabLinkDirective;
   @ViewChild('contentTemplate', { static: true }) contentTemplate!: TemplateRef<any>;
 
   isActive: boolean = false;
@@ -79,10 +79,10 @@ export class NzTabComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   get label(): string | TemplateRef<any> {
-    return this.nzTitle || this.nzTabLinkTemplateDirective.templateRef || this.tabLinkTemplate;
+    return this.nzTitle || this.ProTabLinkTemplateDirective.templateRef || this.tabLinkTemplate;
   }
 
-  constructor(@Inject(NZ_TAB_SET) public closestTabSet: any) {}
+  constructor(@Inject(PRO_TAB_SET) public closestTabSet: any) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const { nzTitle, nzDisabled, nzForceRender } = changes;

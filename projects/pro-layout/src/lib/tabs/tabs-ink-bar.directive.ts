@@ -11,13 +11,13 @@ import { NzTabPositionMode } from './interfaces';
 import {reqAnimFrame} from "ng-zorro-antd";
 
 @Directive({
-  selector: 'nz-tabs-ink-bar, [nz-tabs-ink-bar]',
+  selector: 'pro-tabs-ink-bar, [pro-tabs-ink-bar]',
   host: {
     class: 'ant-pro-tabs-ink-bar',
     '[class.ant-pro-tabs-ink-bar-animated]': '_animated'
   }
 })
-export class NzTabsInkBarDirective {
+export class ProTabsInkBarDirective {
   @Input() position: NzTabPositionMode = 'horizontal';
   @Input() animated = true;
 

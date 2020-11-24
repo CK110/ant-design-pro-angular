@@ -7,7 +7,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
 
 
 @Component({
-  selector: 'nz-tab-close-button, button[nz-tab-close-button]',
+  selector: 'pro-tab-close-button, button[pro-tab-close-button]',
   template: `
     <ng-container *nzStringTemplateOutlet="closeIcon; let icon">
       <i nz-icon [nzType]="closeIcon" nzTheme="outline"></i>
@@ -19,7 +19,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
     type: 'button'
   }
 })
-export class NzTabCloseButtonComponent {
+export class ProTabCloseButtonComponent {
   @Input() closeIcon: string | TemplateRef<any> = 'close';
 
   constructor() {}

@@ -36,10 +36,10 @@ import { auditTime, takeUntil } from 'rxjs/operators';
 
 
 import { NzTabPositionMode, NzTabScrollEvent, NzTabScrollListOffsetEvent } from './interfaces';
-import { NzTabAddButtonComponent } from './tab-add-button.component';
-import { NzTabNavItemDirective } from './tab-nav-item.directive';
-import { NzTabNavOperationComponent } from './tab-nav-operation.component';
-import { NzTabsInkBarDirective } from './tabs-ink-bar.directive';
+import { ProTabAddButtonComponent } from './tab-add-button.component';
+import { ProTabNavItemDirective } from './tab-nav-item.directive';
+import { ProTabNavOperationComponent } from './tab-nav-operation.component';
+import { ProTabsInkBarDirective } from './tabs-ink-bar.directive';
 import {NzResizeObserver} from "../core/resize-observers.service";
 import {reqAnimFrame} from "ng-zorro-antd";
 
@@ -47,8 +47,8 @@ const RESIZE_SCHEDULER = typeof requestAnimationFrame !== 'undefined' ? animatio
 const CSS_TRANSFORM_TIME = 150;
 
 @Component({
-  selector: 'nz-tabs-nav',
-  exportAs: 'nzTabsNav',
+  selector: 'pro-tabs-nav',
+  exportAs: 'ProTabsNav',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -61,19 +61,19 @@ const CSS_TRANSFORM_TIME = 150;
       [class.ant-pro-tabs-nav-wrap-ping-bottom]="pingBottom"
       #navWarp
     >
-      <div class="ant-pro-tabs-nav-list" #navList nzTabScrollList (offsetChange)="onOffsetChange($event)" (tabScroll)="tabScroll.emit($event)">
+      <div class="ant-pro-tabs-nav-list" #navList ProTabScrollList (offsetChange)="onOffsetChange($event)" (tabScroll)="tabScroll.emit($event)">
         <ng-content></ng-content>
-        <button *ngIf="showAddButton" nz-tab-add-button [addIcon]="addIcon" (click)="addClicked.emit()"></button>
-        <div nz-tabs-ink-bar [hidden]="hideBar" [position]="position" [animated]="inkBarAnimated"></div>
+        <button *ngIf="showAddButton" pro-tab-add-button [addIcon]="addIcon" (click)="addClicked.emit()"></button>
+        <div pro-tabs-ink-bar [hidden]="hideBar" [position]="position" [animated]="inkBarAnimated"></div>
       </div>
     </div>
-    <nz-tab-nav-operation
+    <pro-tab-nav-operation
       (addClicked)="addClicked.emit()"
       (selected)="onSelectedFromMenu($event)"
       [addIcon]="addIcon"
       [addable]="addable"
       [items]="hiddenItems"
-    ></nz-tab-nav-operation>
+    ></pro-tab-nav-operation>
     <div class="ant-pro-tabs-extra-content" *ngIf="extraTemplate">
       <ng-template [ngTemplateOutlet]="extraTemplate"></ng-template>
     </div>
@@ -84,7 +84,7 @@ const CSS_TRANSFORM_TIME = 150;
     '(keydown)': 'handleKeydown($event)'
   }
 })
-export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContentChecked, OnDestroy, OnChanges {
+export class ProTabNavBarComponent implements OnInit, AfterViewInit, AfterContentChecked, OnDestroy, OnChanges {
 
   @Output() readonly indexFocused: EventEmitter<number> = new EventEmitter<number>();
   @Output() readonly selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
@@ -115,10 +115,10 @@ export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContent
 
   @ViewChild('navWarp', { static: true }) navWarpRef!: ElementRef<HTMLElement>;
   @ViewChild('navList', { static: true }) navListRef!: ElementRef<HTMLElement>;
-  @ViewChild(NzTabNavOperationComponent, { static: true }) operationRef!: NzTabNavOperationComponent;
-  @ViewChild(NzTabAddButtonComponent, { static: false }) addBtnRef!: NzTabAddButtonComponent;
-  @ViewChild(NzTabsInkBarDirective, { static: true }) inkBar!: NzTabsInkBarDirective;
-  @ContentChildren(NzTabNavItemDirective, { descendants: true }) items!: QueryList<NzTabNavItemDirective>;
+  @ViewChild(ProTabNavOperationComponent, { static: true }) operationRef!: ProTabNavOperationComponent;
+  @ViewChild(ProTabAddButtonComponent, { static: false }) addBtnRef!: ProTabAddButtonComponent;
+  @ViewChild(ProTabsInkBarDirective, { static: true }) inkBar!: ProTabsInkBarDirective;
+  @ContentChildren(ProTabNavItemDirective, { descendants: true }) items!: QueryList<ProTabNavItemDirective>;
 
   /** Tracks which element has focus; used for keyboard navigation */
   get focusIndex(): number {
@@ -145,9 +145,9 @@ export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContent
   pingRight = false;
   pingTop = false;
   pingBottom = false;
-  hiddenItems: NzTabNavItemDirective[] = [];
+  hiddenItems: ProTabNavItemDirective[] = [];
 
-  private keyManager!: FocusKeyManager<NzTabNavItemDirective>;
+  private keyManager!: FocusKeyManager<ProTabNavItemDirective>;
   private destroy$ = new Subject<void>();
   private _selectedIndex = 0;
   private wrapperWidth = 0;
@@ -180,7 +180,7 @@ export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContent
       this.updateScrollListPosition();
       this.alignInkBarToSelectedTab();
     };
-    this.keyManager = new FocusKeyManager<NzTabNavItemDirective>(this.items)
+    this.keyManager = new FocusKeyManager<ProTabNavItemDirective>(this.items)
       .withHorizontalOrientation(this.getLayoutDirection())
       .withWrap();
     this.keyManager.updateActiveItem(0);
@@ -222,7 +222,7 @@ export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContent
     this.destroy$.complete();
   }
 
-  onSelectedFromMenu(tab: NzTabNavItemDirective): void {
+  onSelectedFromMenu(tab: ProTabNavItemDirective): void {
     const tabIndex = this.items.toArray().findIndex(e => e === tab);
     if (tabIndex !== -1) {
       this.keyManager.updateActiveItem(tabIndex);
@@ -298,7 +298,7 @@ export class NzTabNavBarComponent implements OnInit, AfterViewInit, AfterContent
     return !!tab && !tab.disabled;
   }
 
-  private scrollToTab(tab: NzTabNavItemDirective): void {
+  private scrollToTab(tab: ProTabNavItemDirective): void {
     if (!this.items.find(e => e === tab)) {
       return;
     }

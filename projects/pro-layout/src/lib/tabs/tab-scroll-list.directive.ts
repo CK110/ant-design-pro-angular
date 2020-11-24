@@ -15,9 +15,9 @@ const REFRESH_INTERVAL = 20;
 const SPEED_OFF_MULTIPLE = 0.995 ** REFRESH_INTERVAL;
 
 @Directive({
-  selector: '[nzTabScrollList]'
+  selector: '[ProTabScrollList]'
 })
-export class NzTabScrollListDirective implements OnInit, OnDestroy {
+export class ProTabScrollListDirective implements OnInit, OnDestroy {
   lastWheelDirection: 'x' | 'y' | null = null;
   lastWheelTimestamp = 0;
   lastTimestamp = 0;
