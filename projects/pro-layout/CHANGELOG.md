@@ -1,5 +1,8 @@
 # 更新日志
 
+### 0.0.20
+- 修改 zorro V10 tab 文件名，防止与v8 tab冲突
+
 ### 0.0.19
 - reuseTab增加refreshable配置
 
