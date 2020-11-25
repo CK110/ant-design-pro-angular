@@ -221,12 +221,13 @@ export class ReuseTabService {
    * 强制关闭当前路由（包含不可关闭状态），并重新导航至 `newUrl` 路由
    */
   replace(newUrl: string, queryParams: any): void {
-    const url = this.curUrl;
-    if (this.exists(url, queryParams)) {
-      this.close(url, queryParams, true);
+    const curUrl = this.curUrl;
+    const curQueryParams= this.curQueryParams;
+    if (this.exists(curUrl, curQueryParams)) {
+      this.close(curUrl, curQueryParams, true);
     } else {
-      this.removeUrlBuffer = url;
-      this.removeQueryParamBuffer = queryParams;
+      this.removeUrlBuffer = curUrl;
+      this.removeQueryParamBuffer = curQueryParams;
     }
     this.injector.get<Router>(Router).navigate([newUrl], {queryParams: queryParams}).then();
   }

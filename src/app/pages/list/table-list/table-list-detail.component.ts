@@ -11,6 +11,8 @@ import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from 
       <input nz-input>
       <br>
       <button nz-button (click)="refresh()">刷新</button>
+      <button nz-button (click)="result()">结果页</button>
+
   `,
 })
 export class TableListDetailComponent implements OnInit, ReuseComponentInstance {
@@ -71,4 +73,8 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
 
   destroy: () => void;
 
+  result(){
+    this.reuseTabService.replace('/result/success',{});
+    // this.router.navigateByUrl('/result/success');
+  }
 }
