@@ -9,7 +9,7 @@ import {
   OnInit,
   Output, SimpleChange, SimpleChanges,
   TemplateRef,
-  ViewChild, ViewEncapsulation
+  ViewChild, ViewEncapsulation, ViewRef
 } from '@angular/core';
 import {InputBoolean, InputNumber} from "ng-zorro-antd";
 import {Subject} from "rxjs";
@@ -265,7 +265,9 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
       // https://github.com/ng-alain/ng-alain/issues/1736
       this.tabset.nzSelectedIndex = pos;
       this.list = ls;
-      this.cdr.detectChanges();
+      if (this.cdr && !(this.cdr as ViewRef).destroyed) {
+        this.cdr.detectChanges();
+      }
     });
 
     // 路由缓存变化订阅

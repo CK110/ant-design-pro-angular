@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router:Router) {
     this.form = this.formBuilder.group({
       userName: [null, [Validators.required, Validators.minLength(4)]],
       password: [null, Validators.required],
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-
+    this.router.navigate(['/']);
   }
 
   getCaptcha(event) {

@@ -58,9 +58,9 @@ const routes: Routes = [
     path: 'user',
     component: UserLayoutComponent,
     children: [
-      {path: 'login', component: LoginComponent, data: {name: '登录'}},
-      {path: 'register', component: RegisterComponent, data: {name: '注册'}},
-      {path: 'register-result', component: RegisterResultComponent, data: {name: '注册结果'}}
+      {path: 'login', component: LoginComponent, data: {name: '登录', reuse: false}},
+      {path: 'register', component: RegisterComponent, data: {name: '注册', reuse: false}},
+      {path: 'register-result', component: RegisterResultComponent, data: {name: '注册结果', reuse: false}}
     ]
   },
   {path: '**', redirectTo: 'exception/404'},

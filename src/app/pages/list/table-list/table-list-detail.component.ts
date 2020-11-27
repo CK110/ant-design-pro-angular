@@ -20,6 +20,7 @@ import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from 
       <button nz-button (click)="refreshPage()">刷新列表页</button>
       <button nz-button (click)="replace()">重定向结果页</button>
       <button nz-button (click)="closeToList()">closeToList</button>
+      <button nz-button (click)="toLogin()">toLogin</button>
 
   `,
 })
@@ -110,5 +111,11 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
 
   closeToList() {
     this.reuseTabService.closeCurAndToList('/list/table-list', {})
+  }
+
+  toLogin(){
+    this.router.navigate(['/user/login']).then(()=>{
+      this.reuseTabService.clear(true);
+    });
   }
 }
