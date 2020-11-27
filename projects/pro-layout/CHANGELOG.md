@@ -1,5 +1,8 @@
 # 更新日志
 
+### 0.0.23
+- fix ViewDestroyed detectChanges error 
+
 ### 0.0.22
 - 修复关闭替他标签异常
 
