@@ -112,6 +112,6 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
   }
 
   closeToList() {
-    this.reuseTabService.closeCurrentAndToList('/list/table-list', {})
+    this.reuseTabService.closeCurAndToList('/list/table-list', {})
   }
 }

@@ -148,15 +148,15 @@ export class ReuseTabService {
    * @param toUrl
    * @param queryParams
    */
-  closeCurrentAndToList(toUrl: string, queryParams: any) {
-    // 关闭当前页
-    const activatedRoute:ActivatedRoute = this.injector.get<ActivatedRoute>(ActivatedRoute);
-    this.close(this.getUrl(activatedRoute.snapshot),activatedRoute.snapshot.queryParams,true);
-
+  closeCurAndToList(toUrl: string, queryParams: any) {
+    const curUrl = this.curUrl;
+    const curQueryParams = this.curQueryParams;
     this.injector.get<Router>(Router).navigate([toUrl], {queryParams: queryParams})
       .then(() => {
-        // 刷新列表页
+        // 刷新To列表页
         this.refreshPage(toUrl, queryParams);
+        // 关闭Cur当前页
+        this.close(curUrl, curQueryParams, true);
       });
   }
 
@@ -330,7 +330,7 @@ export class ReuseTabService {
     return true;
   }
 
-  getRefreshable(url: string, route?: ActivatedRouteSnapshot){
+  getRefreshable(url: string, route?: ActivatedRouteSnapshot) {
     if (route && route.data && typeof route.data.reuseRefreshable === 'boolean') return route.data.reuseClosable;
 
     return true;
