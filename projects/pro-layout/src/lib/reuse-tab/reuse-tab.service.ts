@@ -135,8 +135,41 @@ export class ReuseTabService {
     this.destroy(item._handle);
 
     this._cached.splice(idx, 1);
-    delete this._titleCached[url];
+
+    // 删除标题缓存
+    const router = this.injector.get(Router);
+    const urlWithQueryParams = router.serializeUrl(router.createUrlTree([item.url], {queryParams: item._snapshot.queryParams}));
+    delete this._titleCached[urlWithQueryParams];
     return true;
+  }
+
+  /**
+   * 常用于添加(修改)完成后关闭页面并跳转到列表页，并刷新列表页
+   * @param toUrl
+   * @param queryParams
+   */
+  closeCurrentAndToList(toUrl: string, queryParams: any) {
+    // 关闭当前页
+    const activatedRoute:ActivatedRoute = this.injector.get<ActivatedRoute>(ActivatedRoute);
+    this.close(this.getUrl(activatedRoute.snapshot),activatedRoute.snapshot.queryParams,true);
+
+    this.injector.get<Router>(Router).navigate([toUrl], {queryParams: queryParams})
+      .then(() => {
+        // 刷新列表页
+        this.refreshPage(toUrl, queryParams);
+      });
+  }
+
+  /**
+   * 刷新指定页面，页面需要实现Hook。
+   * @param url: 全路径
+   * @param queryParams
+   */
+  refreshPage(url: string, queryParams: any): void {
+    const reuseTabCached: ReuseTabCached = this.get(url, queryParams);
+    if (reuseTabCached) {
+      this.runHook('onReuseInit', reuseTabCached._handle.componentRef, "refresh");
+    }
   }
 
   /**
@@ -148,7 +181,7 @@ export class ReuseTabService {
     this.removeUrlBuffer = url;
     this.removeQueryParamBuffer = queryParams;
     this.remove(url, queryParams, includeNonCloseable);
-    this._cachedChange.next({active: 'close', url, list: this._cached});
+    this._cachedChange.next({active: 'close', url, queryParams, list: this._cached});
     this.di('close tag', url);
     return true;
   }
@@ -165,7 +198,7 @@ export class ReuseTabService {
     }
     this.removeUrlBuffer = null;
     this.removeQueryParamBuffer = {};
-    this._cachedChange.next({active: 'closeRight', url, list: this._cached});
+    this._cachedChange.next({active: 'closeRight', url, queryParams, list: this._cached});
     this.di('close right tages', url);
     return true;
   }
@@ -203,8 +236,8 @@ export class ReuseTabService {
    * [ '/a/2', '/a/3', '/a/4', '/a/5', '/a/1' ]
    * ```
    */
-  move(url: string, position: number): void {
-    const start = this._cached.findIndex(w => w.url === url);
+  private move(url: string, queryParams: any, position: number): void {
+    const start = this._cached.findIndex(w => w.url === url && this.queryParamsEqual(queryParams, w._snapshot.queryParams));
     if (start === -1) return;
     const data = this._cached.slice();
     data.splice(position < 0 ? data.length + position : position, 0, data.splice(start, 1)[0]);
@@ -212,6 +245,7 @@ export class ReuseTabService {
     this._cachedChange.next({
       active: 'move',
       url,
+      queryParams,
       position,
       list: this._cached,
     });
@@ -222,7 +256,7 @@ export class ReuseTabService {
    */
   replace(newUrl: string, queryParams: any): void {
     const curUrl = this.curUrl;
-    const curQueryParams= this.curQueryParams;
+    const curQueryParams = this.curQueryParams;
     if (this.exists(curUrl, curQueryParams)) {
       this.close(curUrl, curQueryParams, true);
     } else {
@@ -410,8 +444,9 @@ export class ReuseTabService {
    */
   shouldDetach(route: ActivatedRouteSnapshot): boolean {
     if (this.hasInValidRoute(route)) return false;
-    this.di('#shouldDetach', this.can(route), this.getUrl(route));
-    return this.can(route);
+    const ret = this.can(route);
+    this.di('#shouldDetach', ret, this.getUrl(route));
+    return ret;
   }
 
   /**
@@ -439,7 +474,9 @@ export class ReuseTabService {
       }
       this._cached.push(item);
     } else {
-      this._cached[idx] = item;
+      if (_handle) {
+        this._cached[idx] = item;
+      }
     }
     this.removeUrlBuffer = null;
     this.removeQueryParamBuffer = {};
@@ -470,7 +507,7 @@ export class ReuseTabService {
         this.runHook('onReuseInit', compRef);
       }
     } else {
-      this._cachedChange.next({active: 'add', url, list: this._cached});
+      this._cachedChange.next({active: 'add', url, queryParams: route.queryParams, list: this._cached});
     }
     return ret;
   }

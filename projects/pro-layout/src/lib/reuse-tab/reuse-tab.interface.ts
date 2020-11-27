@@ -22,6 +22,7 @@ export interface ReuseTabNotify {
   /** 事件类型 */
   active: 'add' | 'override' | 'title' | 'clear' | 'closable' | 'close' | 'closeRight' | 'move' | 'refresh';
   url?: string;
+  queryParams?: Params;
   title?: ReuseTitle;
   item?: ReuseTabCached;
   list?: ReuseTabCached[];
@@ -66,9 +67,9 @@ export type ReuseHookTypes = 'onReuseInit' | 'onReuseDestroy';
 export type ReuseHookOnReuseInitType = 'init' | 'refresh';
 
 export interface ReuseComponentInstance {
-  /** 再次进入页面触发init, 刷新菜单触发refresh **/
+  /** 再次进入标签页时触发，有2中类型init和refresh **/
   onReuseInit: (type: ReuseHookOnReuseInitType) => void;
-  /** 切换标签时触发 **/
+  /** 标签页离开时触发 **/
   onReuseDestroy: () => void;
   destroy: () => void;
 }

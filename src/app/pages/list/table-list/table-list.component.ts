@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TableListData, TableListItem, TableListPagination} from "./data";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ReuseHookOnReuseInitType} from "@pro-layout";
 
 @Component({
   selector: 'app-table-list',
@@ -42,6 +43,17 @@ export class TableListComponent implements OnInit {
 
   ngOnInit() {
     this.loadata();
+  }
+
+  onReuseInit(type: ReuseHookOnReuseInitType) {
+    console.log('onReuseInit');
+    if (type === 'init') {
+      console.log('init');
+
+    }
+    if (type === 'refresh') {
+      console.log('refresh');
+    }
   }
 
   loadata(reset: boolean = false) {

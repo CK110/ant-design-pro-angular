@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {TableListData, TableListItem, TableListPagination} from "./data";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from "@pro-layout";
 
@@ -10,8 +8,18 @@ import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from 
       name:{{name}}
       <input nz-input>
       <br>
+      <button nz-button (click)="get('items')">getItems</button>
+      <button nz-button (click)="get('count')">getCount</button>
+      <button nz-button (click)="get('title')">setTitle</button>
+      <button nz-button (click)="get('index')">getIndex</button>
+
+      <button nz-button (click)="get('close')">close</button>
+
+
       <button nz-button (click)="refresh()">刷新</button>
       <button nz-button (click)="result()">结果页</button>
+      <button nz-button (click)="refreshPage()">触发列表页刷新hook</button>
+      <button nz-button (click)="closeToList()">closeToList</button>
 
   `,
 })
@@ -54,27 +62,56 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
 
   onReuseInit(type: ReuseHookOnReuseInitType) {
     console.log('onReuseInit');
+    console.log('type');
     if (type === 'init') {
       console.log('init');
-
     }
     if (type === 'refresh') {
       console.log('refresh');
     }
   }
 
+  get(type) {
+    if (type === 'items') {
+      console.log(this.reuseTabService.items);
+    }
+    if (type === 'count') {
+      console.log(this.reuseTabService.count);
+    }
+    if (type === 'title') {
+      this.reuseTabService.title = '新名称';
+    }
+    if (type === 'index') {
+      console.log(this.reuseTabService.index('/list/table-list', {}))
+    }
+    if (type === 'close') {
+      this.reuseTabService.close('/list/table-list',{});
+    }
+
+  }
+
   refresh() {
     this.reuseTabService.refresh();
   }
 
-  onReuseDestroy(){
+  onReuseDestroy() {
     console.log('onReuseDestroy');
   }
 
   destroy: () => void;
 
-  result(){
-    this.reuseTabService.replace('/result/success',{});
+  result() {
+    this.reuseTabService.replace('/result/success', {});
     // this.router.navigateByUrl('/result/success');
+  }
+
+  refreshPage() {
+    this.router.navigate(['/list/table-list']).then(() => {
+      this.reuseTabService.refreshPage('/list/table-list', {});
+    });
+  }
+
+  closeToList() {
+    this.reuseTabService.closeCurrentAndToList('/list/table-list', {})
   }
 }
