@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
+import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from '@angular/router';
 import { ReuseTabService } from './reuse-tab.service';
 
 export class ReuseTabStrategy implements RouteReuseStrategy {
@@ -9,7 +9,7 @@ export class ReuseTabStrategy implements RouteReuseStrategy {
     return this.reuseTabService.shouldDetach(route);
   }
   /** 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象 */
-  store(route: ActivatedRouteSnapshot, handle: {}): void {
+  store(route: ActivatedRouteSnapshot,handle: DetachedRouteHandle | null): void {
     this.reuseTabService.store(route, handle);
   }
   /** 若 path 在缓存中有的都认为允许还原路由 */
@@ -17,7 +17,7 @@ export class ReuseTabStrategy implements RouteReuseStrategy {
     return this.reuseTabService.shouldAttach(route);
   }
   /** 从缓存中获取快照，若无则返回nul */
-  retrieve(route: ActivatedRouteSnapshot): {} | null {
+  retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
     return this.reuseTabService.retrieve(route);
   }
   /** 进入路由触发，判断是否同一路由 */

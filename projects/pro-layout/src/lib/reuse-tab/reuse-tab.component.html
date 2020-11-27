@@ -2,7 +2,7 @@
             nzType="editable-card"
             [nzSize]="'small'"
             [nzHideAdd]="true"
-            [(nzSelectedIndex)]="pos"
+            [nzSelectedIndex]="pos"
             (nzClose)="myClose($event)">
   <ng-container  *ngFor="let i of list; let index = index" >
     <pro-tab [nzTitle]="titleTemplate" [nzClosable]="i.closable" (nzClick)="_to(index)" (nzContextmenu)="openMenu($event,i)">

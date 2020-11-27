@@ -16,9 +16,9 @@ import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from 
       <button nz-button (click)="get('close')">close</button>
 
 
-      <button nz-button (click)="refresh()">刷新</button>
-      <button nz-button (click)="result()">结果页</button>
-      <button nz-button (click)="refreshPage()">触发列表页刷新hook</button>
+      <button nz-button (click)="refresh()">刷新当前页</button>
+      <button nz-button (click)="refreshPage()">刷新列表页</button>
+      <button nz-button (click)="replace()">重定向结果页</button>
       <button nz-button (click)="closeToList()">closeToList</button>
 
   `,
@@ -91,7 +91,7 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
   }
 
   refresh() {
-    this.reuseTabService.refresh();
+    this.reuseTabService.refreshPage(this.reuseTabService.getUrl(this.activatedRoute.snapshot),this.activatedRoute.snapshot.queryParams);
   }
 
   onReuseDestroy() {
@@ -100,15 +100,12 @@ export class TableListDetailComponent implements OnInit, ReuseComponentInstance 
 
   destroy: () => void;
 
-  result() {
+  replace() {
     this.reuseTabService.replace('/result/success', {});
-    // this.router.navigateByUrl('/result/success');
   }
 
   refreshPage() {
-    this.router.navigate(['/list/table-list']).then(() => {
-      this.reuseTabService.refreshPage('/list/table-list', {});
-    });
+    this.reuseTabService.refreshPage('/list/table-list', {});
   }
 
   closeToList() {

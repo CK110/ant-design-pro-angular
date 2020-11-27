@@ -149,15 +149,13 @@ export class ReuseTabService {
    * @param queryParams
    */
   closeCurAndToList(toUrl: string, queryParams: any) {
-    const curUrl = this.curUrl;
-    const curQueryParams = this.curQueryParams;
-    this.injector.get<Router>(Router).navigate([toUrl], {queryParams: queryParams})
-      .then(() => {
-        // 刷新To列表页
-        this.refreshPage(toUrl, queryParams);
-        // 关闭Cur当前页
-        this.close(curUrl, curQueryParams, true);
-      });
+    // 缓存当前页数据
+    const activatedRoute: ActivatedRoute = this.injector.get<ActivatedRoute>(ActivatedRoute);
+    // 刷新列表页并跳转
+    this.refreshPage(toUrl, queryParams);
+    this.injector.get<Router>(Router).navigate([toUrl], {queryParams: queryParams}).then();
+    // 关闭当前页
+    this.close(this.getUrl(activatedRoute.snapshot), activatedRoute.snapshot.queryParams, true,false);
   }
 
   /**
@@ -166,9 +164,17 @@ export class ReuseTabService {
    * @param queryParams
    */
   refreshPage(url: string, queryParams: any): void {
-    const reuseTabCached: ReuseTabCached = this.get(url, queryParams);
-    if (reuseTabCached) {
-      this.runHook('onReuseInit', reuseTabCached._handle.componentRef, "refresh");
+    if (this.curUrl === url && this.queryParamsEqual(this.curQueryParams, queryParams)) {
+      if (this.componentRef) {
+        this.runHook('onReuseInit', this.componentRef, "refresh");
+      } else {
+        console.info('无法刷新未被缓存过的当前页');
+      }
+    } else {
+      const reuseTabCached: ReuseTabCached = this.get(url, queryParams);
+      if (reuseTabCached && reuseTabCached._handle) {
+        this.runHook('onReuseInit', reuseTabCached._handle.componentRef, "refresh");
+      }
     }
   }
 
@@ -177,11 +183,13 @@ export class ReuseTabService {
    *
    * @param [includeNonCloseable=false] 是否强制包含不可关闭
    */
-  close(url: string, queryParams: any, includeNonCloseable: boolean = false): boolean {
+  close(url: string, queryParams: any, includeNonCloseable: boolean = false, autoPos: boolean = true): boolean {
     this.removeUrlBuffer = url;
     this.removeQueryParamBuffer = queryParams;
     this.remove(url, queryParams, includeNonCloseable);
-    this._cachedChange.next({active: 'close', url, queryParams, list: this._cached});
+    if(autoPos){
+      this._cachedChange.next({active: 'close', url, queryParams, list: this._cached});
+    }
     this.di('close tag', url);
     return true;
   }
@@ -474,9 +482,7 @@ export class ReuseTabService {
       }
       this._cached.push(item);
     } else {
-      if (_handle) {
-        this._cached[idx] = item;
-      }
+      this._cached[idx] = item;
     }
     this.removeUrlBuffer = null;
     this.removeQueryParamBuffer = {};
