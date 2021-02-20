@@ -9,19 +9,19 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
-import {GlobalFooterProps} from '../global-footer/global-footer.component';
+import {GlobalFooterProps} from './global-footer.component';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ContentWidth} from '../core/default-settings';
 import {InputBoolean, InputNumber} from 'ng-zorro-antd';
-import {MenuDataItem} from '../sider-menu/base-menu.component';
+import {MenuDataItem} from './base-menu.component';
 import {urlToList} from '../utils/path-tools';
 import {filter, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
 @Component({
   selector: 'pro-basic-layout',
-  templateUrl: 'basic-layout.component.html',
-  styleUrls: ['basic-layout.component.less', 'header.component.less'],
+  templateUrl: './basic-layout.component.html',
+  // styleUrls: ['./style/entry.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proBasicLayout',
@@ -170,13 +170,13 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
     this.collapsed = !this.collapsed;
   }
 
-  getContentPaddingTop(){
-    if(this.fixedHeader && this.reuseTab){
+  getContentPaddingTop() {
+    if (this.fixedHeader && this.reuseTab) {
       return "110px";
     }
-    if(!this.fixedHeader){
+    if (!this.fixedHeader) {
       return '0px'
-    }else{
+    } else {
       return ''
     }
   }

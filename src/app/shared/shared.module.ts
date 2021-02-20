@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NgZorroAntdModule, NzAddOnModule} from 'ng-zorro-antd';
+import {NgZorroAntdModule, NzOutletModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {Components} from './components';
@@ -16,7 +16,7 @@ const Modules = [
   RouterModule,
 
   NgZorroAntdModule,
-  NzAddOnModule,
+  NzOutletModule,
   ProLayoutModule,
   DelonACLModule,
   TranslateModule

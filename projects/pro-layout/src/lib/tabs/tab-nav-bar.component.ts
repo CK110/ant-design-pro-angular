@@ -116,7 +116,7 @@ export class ProTabNavBarComponent implements OnInit, AfterViewInit, AfterConten
   @ViewChild('navWarp', { static: true }) navWarpRef!: ElementRef<HTMLElement>;
   @ViewChild('navList', { static: true }) navListRef!: ElementRef<HTMLElement>;
   @ViewChild(ProTabNavOperationComponent, { static: true }) operationRef!: ProTabNavOperationComponent;
-  @ViewChild(ProTabAddButtonComponent, { static: false }) addBtnRef!: ProTabAddButtonComponent;
+  @ViewChild(ProTabAddButtonComponent) addBtnRef!: ProTabAddButtonComponent;
   @ViewChild(ProTabsInkBarDirective, { static: true }) inkBar!: ProTabsInkBarDirective;
   @ContentChildren(ProTabNavItemDirective, { descendants: true }) items!: QueryList<ProTabNavItemDirective>;
 

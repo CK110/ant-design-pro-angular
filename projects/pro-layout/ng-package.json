@@ -2,7 +2,28 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/pro-layout",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "ng-zorro-antd": "ng-zorro-antd",
+      "ng-zorro-antd/core/outlet": "ng-zorro-antd/core/outlet",
+      "ng-zorro-antd/dropdown": "ng-zorro-antd/dropdown",
+      "ng-zorro-antd/menu": "ng-zorro-antd/menu",
+      "ng-zorro-antd/icon": "ng-zorro-antd/icon",
+      "ng-zorro-antd/layout": "ng-zorro-antd/layout",
+      "ng-zorro-antd/drawer": "ng-zorro-antd/drawer",
+      "ng-zorro-antd/page-header": "ng-zorro-antd/page-header",
+      "ng-zorro-antd/breadcrumb": "ng-zorro-antd/breadcrumb",
+      "ng-zorro-antd//dropdown": "ng-zorro-antd/dropdown",
+      "ng-zorro-antd/tabs": "ng-zorro-antd/tabs",
+      "resize-observer-polyfill": "resize-observer-polyfill"
+    }
   },
-  "whitelistedNonPeerDependencies": ["resize-observer-polyfill"]
+  "whitelistedNonPeerDependencies": [
+    "resize-observer-polyfill",
+    "ng-zorro-antd"
+  ],
+  "assets": [
+    "style.less",
+    "./src/lib/*/*/*.less"
+  ]
 }

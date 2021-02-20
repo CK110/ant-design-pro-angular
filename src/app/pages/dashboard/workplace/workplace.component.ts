@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {distanceInWordsToNow} from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import {HttpClient} from "@angular/common/http";
 import {ActivitiesType, AnalysisData, CurrentUser, NoticeType} from "./data.d";
 
@@ -70,7 +70,7 @@ export class WorkplaceComponent implements OnInit {
   }
 
   fromNow(time: any) {
-    return distanceInWordsToNow(time);
+    return formatDistanceToNow(time);
   }
 
   renderTemplate(item: ActivitiesType) {

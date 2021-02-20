@@ -64,9 +64,9 @@ export class ProTabComponent implements OnChanges, OnDestroy, OnInit {
    * @breaking-change 11.0.0
    */
   @ViewChild('tabLinkTemplate', { static: true }) tabLinkTemplate!: TemplateRef<void>;
-  @ContentChild(ProTabLinkTemplateDirective, { static: false }) ProTabLinkTemplateDirective!: ProTabLinkTemplateDirective;
-  @ContentChild(ProTabDirective, { static: false, read: TemplateRef }) template: TemplateRef<void> | null = null;
-  @ContentChild(ProTabLinkDirective, { static: false }) linkDirective!: ProTabLinkDirective;
+  @ContentChild(ProTabLinkTemplateDirective) ProTabLinkTemplateDirective!: ProTabLinkTemplateDirective;
+  @ContentChild(ProTabDirective, { read: TemplateRef }) template: TemplateRef<void> | null = null;
+  @ContentChild(ProTabLinkDirective) linkDirective!: ProTabLinkDirective;
   @ViewChild('contentTemplate', { static: true }) contentTemplate!: TemplateRef<any>;
 
   isActive: boolean = false;

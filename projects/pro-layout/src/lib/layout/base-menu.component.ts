@@ -33,7 +33,6 @@ export interface MenuDataItem {
 @Component({
   selector: 'pro-base-menu',
   templateUrl: 'base-menu.component.html',
-  styleUrls: ['base-menu.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proBaseMenu',

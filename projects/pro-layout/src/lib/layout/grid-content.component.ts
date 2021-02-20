@@ -3,8 +3,11 @@ import {ContentWidth} from '../core/default-settings';
 
 @Component({
   selector: 'pro-grid-content',
-  templateUrl: 'grid-content.component.html',
-  styleUrls: ['grid-content.component.less'],
+  template: `
+    <div class="ant-pro-grid-content" [ngClass]="{'wide': contentWidth === 'Fixed'}">
+        <ng-content></ng-content>
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proGridContent',

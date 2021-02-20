@@ -18,6 +18,7 @@ import {PRO_LAYOUT} from "@pro-layout";
 import {RouteReuseStrategy} from "@angular/router";
 import {ReuseTabStrategy} from "@pro-layout";
 import {ReuseTabService} from "@pro-layout";
+import {ALAIN_CONFIG, AlainConfig} from "@delon/util";
 
 
 export function StartupServiceFactory(startupService: StartupService) {
@@ -25,6 +26,10 @@ export function StartupServiceFactory(startupService: StartupService) {
 }
 
 registerLocaleData(zh);
+
+const alainConfig: AlainConfig = {
+  mock: {data: MOCKDATA},
+};
 
 @NgModule({
   declarations: [
@@ -46,7 +51,7 @@ registerLocaleData(zh);
     UserModule,
 
     // mock
-    DelonMockModule.forRoot({data: MOCKDATA, log: true})
+    DelonMockModule.forRoot()
   ],
   providers: [
     StartupService,
@@ -66,7 +71,8 @@ registerLocaleData(zh);
         reuseTab: true
       }
     },
-    {provide: RouteReuseStrategy, useClass: ReuseTabStrategy, deps: [ReuseTabService],},
+    {provide: RouteReuseStrategy, useClass: ReuseTabStrategy, deps: [ReuseTabService]},
+    {provide: ALAIN_CONFIG, useValue: alainConfig}
   ],
   bootstrap: [AppComponent]
 })

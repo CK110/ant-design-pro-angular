@@ -5,9 +5,9 @@ import ngEn from '@angular/common/locales/en';
 import ngPt from '@angular/common/locales/pt';
 
 import {zh_CN, zh_TW, en_US, pt_BR, NzI18nService} from 'ng-zorro-antd';
-import * as df_zh_cn from 'date-fns/locale/zh_cn';
-import * as df_zh_tw from 'date-fns/locale/zh_tw';
-import * as df_en from 'date-fns/locale/en';
+import * as df_zh_cn from 'date-fns/locale/zh-CN';
+import * as df_zh_tw from 'date-fns/locale/zh-TW';
+import * as df_en from 'date-fns/locale/en-US/index';
 import * as df_pt from 'date-fns/locale/pt';
 
 import {default as pro_zh_CN} from '../../../locales/zh-CN';

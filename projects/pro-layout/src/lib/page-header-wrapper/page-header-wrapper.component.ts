@@ -37,7 +37,6 @@ export const DefaultLocation: BreadcrumbOption = {
 @Component({
   selector: 'pro-page-header-wrapper',
   templateUrl: 'page-header-wrapper.component.html',
-  styleUrls: ['page-header-wrapper.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'proPageHeaderWrapper',

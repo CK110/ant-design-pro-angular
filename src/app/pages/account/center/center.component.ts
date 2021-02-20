@@ -10,7 +10,7 @@ import {CurrentUser} from "./_mock";
 })
 export class CenterComponent implements OnInit {
 
-  @ViewChild('tagInput', { static: false })
+  @ViewChild('tagInput')
   private tagInput: ElementRef;
   tagValue = '';
   inputVisible:boolean = false;

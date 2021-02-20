@@ -85,15 +85,15 @@
 
 <ng-template #siderMenuTemplate>
   <div class="ant-pro-sider-menu-logo" id="logo" (click)="onMenuHeaderClick.emit($event)">
-    <ng-container *ngTemplateOutlet="menuHeaderRender ? menuHeaderRender: defaultHeaderTemplate"
-                  [ngTemplateOutlet]="{logo:logo,title:title}"></ng-container>
-    <ng-template #defaultHeaderTemplate>
+    <ng-container *ngTemplateOutlet="defaultHeaderTemplate; context: {$implicit: {logo:logo,title:title}}">
+    </ng-container>
+    <ng-template #defaultHeaderTemplate let-context>
       <a href="/">
-        <ng-container *nzStringTemplateOutlet="logo">
-          <img [src]="logo" alt="logo"/>
+        <ng-container *nzStringTemplateOutlet="context.logo">
+          <img [src]="context.logo" alt="logo"/>
         </ng-container>
         <h1>
-          <ng-container *nzStringTemplateOutlet="title">{{title}}</ng-container>
+          <ng-container *nzStringTemplateOutlet="context.title">{{context.title}}</ng-container>
         </h1>
       </a>
     </ng-template>

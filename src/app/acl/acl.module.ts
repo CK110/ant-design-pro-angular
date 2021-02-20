@@ -14,7 +14,7 @@ const COMPONENTS = [ACLDirective, ACLIfDirective];
   exports: [...COMPONENTS],
 })
 export class DelonACLModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DelonACLModule> {
     return {
       ngModule: DelonACLModule,
       providers: [ACLService],

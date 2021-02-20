@@ -222,7 +222,7 @@ export class ProTabSetComponent implements OnInit, AfterContentChecked, OnDestro
   // Pick up only direct descendants under ivy rendering engine
   // We filter out only the tabs that belong to this tab set in `tabs`.
   @ContentChildren(ProTabComponent, {descendants: true}) allTabs: QueryList<ProTabComponent> = new QueryList<ProTabComponent>();
-  @ViewChild(ProTabNavBarComponent, {static: false}) tabNavBarRef!: ProTabNavBarComponent;
+  @ViewChild(ProTabNavBarComponent) tabNavBarRef!: ProTabNavBarComponent;
 
   // All the direct tabs for this tab set
   tabs: QueryList<ProTabComponent> = new QueryList<ProTabComponent>();

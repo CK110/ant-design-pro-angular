@@ -24,7 +24,7 @@ import { ProTabComponent } from './tab.component';
 import { ProTabDirective } from './tab.directive';
 import { ProTabsInkBarDirective } from './tabs-ink-bar.directive';
 import { ProTabSetComponent } from './tabset.component';
-import {NzAddOnModule} from "ng-zorro-antd";
+import {NzOutletModule} from "ng-zorro-antd";
 
 const DIRECTIVES = [
   ProTabSetComponent,
@@ -49,7 +49,7 @@ const DIRECTIVES = [
     CommonModule,
     ObserversModule,
     NzIconModule,
-    NzAddOnModule,
+    NzOutletModule,
     PlatformModule,
     A11yModule,
     ScrollingModule,
