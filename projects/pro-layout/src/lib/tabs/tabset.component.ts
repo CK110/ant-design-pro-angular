@@ -29,9 +29,7 @@ import {NavigationEnd, Router, RouterLink, RouterLinkWithHref} from '@angular/ro
 import {merge, Observable, of, Subject, Subscription} from 'rxjs';
 import {delay, filter, first, startWith, takeUntil} from 'rxjs/operators';
 
-import {PREFIX, warnDeprecation} from 'ng-zorro-antd';
-import {NzSizeLDSType} from 'ng-zorro-antd';
-import {InputBoolean} from 'ng-zorro-antd';
+
 
 import {
   NzAnimatedInterface,
@@ -44,6 +42,9 @@ import {
 } from './interfaces';
 import {ProTabNavBarComponent} from './tab-nav-bar.component';
 import {ProTabComponent, PRO_TAB_SET} from './tab.component';
+import {NzSizeLDSType} from "ng-zorro-antd/core/types";
+import {InputBoolean} from "ng-zorro-antd/core/util";
+import {PREFIX, warnDeprecation} from "ng-zorro-antd/core/logger";
 
 
 let nextId = 0;

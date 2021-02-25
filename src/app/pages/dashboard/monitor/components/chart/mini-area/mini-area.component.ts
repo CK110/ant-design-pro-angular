@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, NgZone, ViewChild} from '@angular/core';
-import {inNextTick} from "ng-zorro-antd";
+import {inNextTick} from "ng-zorro-antd/core/util";
 // @ts-ignore
 import G2, {Chart} from '@antv/g2';
 

@@ -12,7 +12,7 @@ import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {GlobalFooterProps} from './global-footer.component';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ContentWidth} from '../core/default-settings';
-import {InputBoolean, InputNumber} from 'ng-zorro-antd';
+import {InputBoolean, InputNumber} from 'ng-zorro-antd/core/util';
 import {MenuDataItem} from './base-menu.component';
 import {urlToList} from '../utils/path-tools';
 import {filter, takeUntil} from 'rxjs/operators';

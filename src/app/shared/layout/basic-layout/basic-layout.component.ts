@@ -8,7 +8,6 @@ import {
 import {menuData} from '../../../app-menu';
 import {Settings} from '@pro-layout';
 import {SettingsService} from '@pro-layout';
-import themeColorClient from '../../components/setting-drawer/theme-color-client';
 
 @Component({
   selector: 'app-basic-layout',

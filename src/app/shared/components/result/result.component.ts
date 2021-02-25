@@ -8,7 +8,7 @@ import {
   TemplateRef,
   ViewChild, ViewEncapsulation
 } from '@angular/core';
-import {isEmpty} from "ng-zorro-antd";
+import { isNil } from 'ng-zorro-antd/core/util';
 
 export const IconMap = {
   'success': 'check-circle',
@@ -63,7 +63,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   checkContent() {
-    if (isEmpty(this.contentTemplate.nativeElement)) {
+    if (isNil(this.contentTemplate.nativeElement)) {
       this.renderer.setStyle(this.contentTemplate.nativeElement, 'display', 'none');
     } else {
       this.renderer.removeStyle(this.contentTemplate.nativeElement, 'display');

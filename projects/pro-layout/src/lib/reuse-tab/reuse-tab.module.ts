@@ -4,7 +4,7 @@ import {ReuseTabMenuComponent} from "./reuse-tab-menu.component";
 import {ReuseTabComponent} from "./reuse-tab.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {NzMenuModule} from "ng-zorro-antd";
+import {NzMenuModule} from "ng-zorro-antd/menu";
 import {ProTabsModule} from "../tabs/tabs.module";
 
 @NgModule({

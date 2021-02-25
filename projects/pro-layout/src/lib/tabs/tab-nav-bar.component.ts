@@ -41,7 +41,7 @@ import { ProTabNavItemDirective } from './tab-nav-item.directive';
 import { ProTabNavOperationComponent } from './tab-nav-operation.component';
 import { ProTabsInkBarDirective } from './tabs-ink-bar.directive';
 import {NzResizeObserver} from "../core/resize-observers.service";
-import {reqAnimFrame} from "ng-zorro-antd";
+import {reqAnimFrame} from "ng-zorro-antd/core/polyfill";
 
 const RESIZE_SCHEDULER = typeof requestAnimationFrame !== 'undefined' ? animationFrameScheduler : asapScheduler;
 const CSS_TRANSFORM_TIME = 150;

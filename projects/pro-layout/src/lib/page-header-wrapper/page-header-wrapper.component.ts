@@ -10,7 +10,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {isEmpty} from 'ng-zorro-antd';
+import { isNil } from 'ng-zorro-antd/core/util';
 import {ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET, Router} from '@angular/router';
 import {filter, takeUntil, startWith} from 'rxjs/operators';
 import {Subject} from 'rxjs';
@@ -99,7 +99,7 @@ export class PageHeaderWrapperComponent implements OnInit, AfterViewInit, OnDest
   }
 
   checkContent() {
-    if (isEmpty(this.contentTemplate.nativeElement)) {
+    if (isNil(this.contentTemplate.nativeElement)) {
       this.renderer.setStyle(this.contentTemplate.nativeElement, 'display', 'none');
     } else {
       this.renderer.removeStyle(this.contentTemplate.nativeElement, 'display');

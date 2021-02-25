@@ -4,11 +4,12 @@ import ngZhTw from '@angular/common/locales/zh-Hant';
 import ngEn from '@angular/common/locales/en';
 import ngPt from '@angular/common/locales/pt';
 
-import {zh_CN, zh_TW, en_US, pt_BR, NzI18nService} from 'ng-zorro-antd';
-import * as df_zh_cn from 'date-fns/locale/zh-CN';
-import * as df_zh_tw from 'date-fns/locale/zh-TW';
-import * as df_en from 'date-fns/locale/en-US/index';
-import * as df_pt from 'date-fns/locale/pt';
+import {en_US, NzI18nService, pt_BR, zh_CN, zh_TW} from "ng-zorro-antd/i18n";
+import zhCN from 'date-fns/locale/zh-CN';
+import zhTW from 'date-fns/locale/zh-TW';
+import enUS from 'date-fns/locale/en-US/index';
+import ptBR from 'date-fns/locale/pt-BR';
+
 
 import {default as pro_zh_CN} from '../../../locales/zh-CN';
 import {default as pro_zh_TW} from '../../../locales/zh-TW';
@@ -33,7 +34,7 @@ const LANGS: { [key: string]: LangData } = {
     label: '简体中文',
     ng: ngZh,
     zorro: zh_CN,
-    dateFns: df_zh_cn,
+    dateFns: zhCN,
     pro: pro_zh_CN,
     icon: '🇨🇳',
   },
@@ -41,7 +42,7 @@ const LANGS: { [key: string]: LangData } = {
     label: '繁体中文',
     ng: ngZhTw,
     zorro: zh_TW,
-    dateFns: df_zh_tw,
+    dateFns: zhTW,
     pro: pro_zh_TW,
     icon: '🇭🇰',
   },
@@ -49,7 +50,7 @@ const LANGS: { [key: string]: LangData } = {
     label: 'English',
     ng: ngEn,
     zorro: en_US,
-    dateFns: df_en,
+    dateFns: enUS,
     pro: pro_en_US,
     icon: '🇬🇧',
   },
@@ -57,7 +58,7 @@ const LANGS: { [key: string]: LangData } = {
     label: 'Português',
     ng: ngPt,
     zorro: pt_BR,
-    dateFns: df_pt,
+    dateFns: ptBR,
     pro: pro_pt_BR,
     icon: '🇧🇷',
   },

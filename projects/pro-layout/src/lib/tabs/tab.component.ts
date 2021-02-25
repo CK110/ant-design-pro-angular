@@ -24,7 +24,7 @@ import { TabTemplateContext } from './interfaces';
 
 import { Subject } from 'rxjs';
 
-import { InputBoolean } from 'ng-zorro-antd';
+import { InputBoolean } from 'ng-zorro-antd/core/util';
 
 import { ProTabLinkDirective, ProTabLinkTemplateDirective } from './tab-link.directive';
 import { ProTabDirective } from './tab.directive';

@@ -11,7 +11,6 @@ import {
   TemplateRef,
   ViewChild, ViewEncapsulation, ViewRef
 } from '@angular/core';
-import {InputBoolean, InputNumber} from "ng-zorro-antd";
 import {Subject} from "rxjs";
 import {
   ReuseContextCloseEvent,
@@ -26,6 +25,7 @@ import {ReuseTabService} from "./reuse-tab.service";
 import {debounceTime, takeUntil} from "rxjs/operators";
 import {ReuseTabMenuService} from "./reuse-tab-menu.service";
 import {ProTabSetComponent} from "../tabs";
+import {InputBoolean, InputNumber} from "ng-zorro-antd/core/util";
 
 @Component({
   selector: 'pro-reuse-tab',

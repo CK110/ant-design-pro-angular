@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NzMessageService} from "ng-zorro-antd";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-advanced-profile',

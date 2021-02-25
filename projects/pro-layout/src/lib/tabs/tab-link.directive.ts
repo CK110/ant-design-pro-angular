@@ -6,7 +6,7 @@
 import { Directive, Host, Optional, Self, TemplateRef } from '@angular/core';
 import { RouterLink, RouterLinkWithHref } from '@angular/router';
 
-import { warnDeprecation } from 'ng-zorro-antd';
+import {warnDeprecation} from "ng-zorro-antd/core/logger";
 
 import { TabTemplateContext } from './interfaces';
 

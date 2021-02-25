@@ -15,7 +15,13 @@
       "ng-zorro-antd/breadcrumb": "ng-zorro-antd/breadcrumb",
       "ng-zorro-antd//dropdown": "ng-zorro-antd/dropdown",
       "ng-zorro-antd/tabs": "ng-zorro-antd/tabs",
-      "resize-observer-polyfill": "resize-observer-polyfill"
+      "resize-observer-polyfill": "resize-observer-polyfill",
+      "@delon/acl": "@delon/acl",
+      "ng-zorro-antd/core/util": "ng-zorro-antd/core/util",
+      "ng-zorro-antd/core/util": "ng-zorro-antd/core/util",
+      "@ngx-translate/core": "@ngx-translate/core",
+      "ng-zorro-antd/core/logger": "ng-zorro-antd/core/logger",
+      "ng-zorro-antd/core/polyfill": "ng-zorro-antd/core/polyfill"
     }
   },
   "whitelistedNonPeerDependencies": [

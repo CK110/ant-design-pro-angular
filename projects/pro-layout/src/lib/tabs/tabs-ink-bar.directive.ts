@@ -8,7 +8,7 @@ import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 
 
 import { NzTabPositionMode } from './interfaces';
-import {reqAnimFrame} from "ng-zorro-antd";
+import {reqAnimFrame} from "ng-zorro-antd/core/polyfill";
 
 @Directive({
   selector: 'pro-tabs-ink-bar, [pro-tabs-ink-bar]',

@@ -7,7 +7,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {Chart} from '@antv/g2';
-import {inNextTick} from "ng-zorro-antd";
+import {inNextTick} from "ng-zorro-antd/core/util";
 
 declare var G2;
 

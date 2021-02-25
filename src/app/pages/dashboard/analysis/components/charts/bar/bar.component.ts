@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, Input, NgZone, ViewChild} from '@angular/core';
-import {inNextTick} from "ng-zorro-antd";
+import {inNextTick} from "ng-zorro-antd/core/util";
 
 declare var G2;
 

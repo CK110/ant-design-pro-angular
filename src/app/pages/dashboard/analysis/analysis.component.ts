@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NzMessageService} from "ng-zorro-antd";
+import {NzMessageService} from "ng-zorro-antd/message";
 import {SettingsService} from "@pro-layout";
 import {HttpClient} from "@angular/common/http";
 import {AnalysisData} from "./data";

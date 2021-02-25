@@ -20,11 +20,11 @@
       <nz-form-control [nzErrorTip]="passwordErrorTpl">
         <div
           nz-popover
-          [nzPlacement]="'right'"
-          [nzTrigger]="'focus'"
-          [(nzVisible)]="visible"
+          [nzPopoverPlacement]="'right'"
+          [nzPopoverTrigger]="'focus'"
+          [(nzPopoverVisible)]="visible"
           nzOverlayClassName="register-password-cdk"
-          [nzOverlayStyle]="{ 'width.px': 240 }">
+          [nzPopoverOverlayStyle]="{ 'width.px': 240 }">
           <nz-input-group nzSize="large" nz-popover nzAddonBeforeIcon="lock">
             <input nz-input type="password" formControlName="password"
                    [placeholder]="'user-register.password.placeholder' | translate"/>
