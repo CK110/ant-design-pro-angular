@@ -24,7 +24,7 @@
       "ng-zorro-antd/core/polyfill": "ng-zorro-antd/core/polyfill"
     }
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "resize-observer-polyfill",
     "ng-zorro-antd"
   ],

@@ -39,6 +39,9 @@
               "node_modules/@antv/g2/build/g2.js",
               "node_modules/@antv/data-set/dist/data-set.min.js",
               "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "date-fns"
             ]
           },
           "configurations": {
@@ -52,7 +55,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -139,7 +141,7 @@
       "prefix": "pro",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/pro-layout/tsconfig.lib.json",
             "project": "projects/pro-layout/ng-package.json"

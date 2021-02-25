@@ -97,9 +97,7 @@ export class RegisterComponent implements OnInit {
 
     const data = this.form.value;
     this.http.post('/register', data).subscribe(() => {
-      this.router.navigateByUrl('/passport/register-result', {
-        queryParams: {email: data.mail},
-      });
+      this.router.navigateByUrl('/passport/register-result', /* Removed unsupported properties by Angular migration: queryParams. */ {});
     });
   }
 
