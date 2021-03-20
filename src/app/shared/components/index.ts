@@ -23,5 +23,5 @@ export const Components = [
   PageLoadingComponent,
   NoticeIconComponent,
   ResultComponent,
-  NoticeListComponent,
+  NoticeListComponent
 ];

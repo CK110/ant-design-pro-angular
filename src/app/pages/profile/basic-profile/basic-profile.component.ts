@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-basic-profile',
@@ -8,13 +7,14 @@ import {SettingsService} from "@pro-layout";
 
 })
 export class BasicProfileComponent implements OnInit {
-  constructor(private settingsService: SettingsService) {
+  constructor() {
   }
 
   ngOnInit() {
   }
 
   get settings() {
-    return this.settingsService.settings;
+    return null;
+    // return this.settingsService.settings;
   }
 }

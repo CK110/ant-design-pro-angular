@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NzMessageService} from "ng-zorro-antd/message";
-import {SettingsService} from "@pro-layout";
 import {HttpClient} from "@angular/common/http";
 import {AnalysisData} from "./data";
 
@@ -14,7 +13,6 @@ export class AnalysisComponent implements OnInit {
   analysisData: any = {};
 
   constructor(private nzMessageService: NzMessageService,
-              private settingsService: SettingsService,
               private httpClient: HttpClient) {
   }
 
@@ -35,6 +33,7 @@ export class AnalysisComponent implements OnInit {
   }
 
   get settings() {
-    return this.settingsService.settings;
+    return null;
+    // return this.settingsService.settings;
   }
 }

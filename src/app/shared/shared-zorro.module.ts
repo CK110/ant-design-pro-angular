@@ -60,6 +60,9 @@ import {NzAnchorModule} from 'ng-zorro-antd/anchor';
 import {NzBackTopModule} from 'ng-zorro-antd/back-top';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzOutletModule} from 'ng-zorro-antd/core/outlet';
+import {LayoutModule as ProLayoutModule} from "pro-lib-test/layout";
+import {ReuseTabModule as ProReuseTabModule} from "pro-lib-test/reuse-tab";
+
 
 export const SHARED_ZORRO_MODULES = [
   NzOutletModule,
@@ -123,5 +126,8 @@ export const SHARED_ZORRO_MODULES = [
   NzSpinModule,
   NzAnchorModule,
   NzBackTopModule,
-  NzDividerModule
+  NzDividerModule,
+
+  ProLayoutModule,
+  ProReuseTabModule
 ];

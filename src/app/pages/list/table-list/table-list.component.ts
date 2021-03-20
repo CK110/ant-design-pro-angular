@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TableListData, TableListItem, TableListPagination} from "./data";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ReuseHookOnReuseInitType} from "@pro-layout";
+import {ReuseHookOnReuseInitType} from "pro-lib-test/reuse-tab";
 
 @Component({
   selector: 'app-table-list',

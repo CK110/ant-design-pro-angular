@@ -3,7 +3,6 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter, map, mergeMap} from "rxjs/operators";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
-import {SettingsService} from "@pro-layout";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,6 @@ export class AppComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private renderer: Renderer2,
               private httpClient: HttpClient,
-              private settingsService: SettingsService,
               private title: Title) {
   }
 
@@ -32,7 +30,7 @@ export class AppComponent implements OnInit {
       filter((route) => route.outlet === 'primary'),
       mergeMap((route) => route.data)
     ).subscribe((event) => {
-      this.title.setTitle(event['name'] + ' - ' + this.settingsService.settings.title);
+      this.title.setTitle(event['name'] + ' - ' + 'Ant Design Pro');
     });
 
     if (false) {

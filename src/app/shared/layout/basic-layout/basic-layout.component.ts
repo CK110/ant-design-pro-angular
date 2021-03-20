@@ -1,13 +1,10 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   OnInit, TemplateRef, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {menuData} from '../../../app-menu';
-import {Settings} from '@pro-layout';
-import {SettingsService} from '@pro-layout';
 
 @Component({
   selector: 'app-basic-layout',
@@ -15,7 +12,7 @@ import {SettingsService} from '@pro-layout';
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   host: {
-    '[class.colorweak]': 'settings.colorWeak',
+    '[class.colorweak]': 'false',
   }
 })
 export class BasicLayoutComponent implements OnInit, AfterViewInit {
@@ -23,19 +20,29 @@ export class BasicLayoutComponent implements OnInit, AfterViewInit {
   @ViewChild('linkIconTemplate', {static: true})
   linkIconTemplate: TemplateRef<void>;
 
-  settings: Settings;
+  settings: any;
 
   menuData = menuData;
 
   footer: any;
 
-  constructor(private settingService: SettingsService,
-              private cdr: ChangeDetectorRef) {
+  constructor() {
   }
 
   ngOnInit(): void {
 
-    this.settings = this.settingService.settings;
+    this.settings = {
+      title: 'Ant Design Pro',
+      logo: 'assets/logo.svg',
+      navTheme: 'dark',
+      primaryColor: '#1890FF',
+      layout: 'sidemenu',
+      contentWidth: 'Fluid',
+      fixedHeader: true,
+      autoHideHeader: false,
+      fixSiderbar: true,
+      reuseTab: true
+    };
 
     this.footer = {
       links: [

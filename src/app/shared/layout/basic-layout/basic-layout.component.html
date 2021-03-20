@@ -14,6 +14,7 @@
                   (onCollapse)="collapse($event)"
                   [links]="footer.links"
                   [copyright]="copyRightTemplate">
+  <pro-reuse-tab [allowRefresh]="false" [debug]="false"></pro-reuse-tab>
   <router-outlet></router-outlet>
 </pro-basic-layout>
 

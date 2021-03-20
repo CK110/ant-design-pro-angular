@@ -134,38 +134,37 @@
         }
       }
     },
-    "pro-layout": {
+    "pro-lib": {
       "projectType": "library",
-      "root": "projects/pro-layout",
-      "sourceRoot": "projects/pro-layout/src",
+      "root": "components",
       "prefix": "pro",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/pro-layout/tsconfig.lib.json",
-            "project": "projects/pro-layout/ng-package.json"
+            "tsConfig": "components/tsconfig.lib.json",
+            "project": "components/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/pro-layout/tsconfig.lib.prod.json"
+              "tsConfig": "components/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/pro-layout/src/test.ts",
-            "tsConfig": "projects/pro-layout/tsconfig.spec.json",
-            "karmaConfig": "projects/pro-layout/karma.conf.js"
+            "main": "components/test.ts",
+            "tsConfig": "components/tsconfig.spec.json",
+            "karmaConfig": "components/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/pro-layout/tsconfig.lib.json",
-              "projects/pro-layout/tsconfig.spec.json"
+              "components/tsconfig.lib.json",
+              "components/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

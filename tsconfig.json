@@ -19,7 +19,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@pro-layout": ["projects/pro-layout/src/public-api.ts"],
       "@shared": [ "src/app/shared" ],
       "@shared/*": [ "src/app/shared/*" ],
       "@core": [ "src/app/core" ],

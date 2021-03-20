@@ -14,10 +14,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {UserModule} from "./pages/user/user.module";
 import {DelonMockModule} from "@delon/mock";
 import * as MOCKDATA from '../../_mock';
-import {PRO_LAYOUT} from "@pro-layout";
 import {RouteReuseStrategy} from "@angular/router";
-import {ReuseTabStrategy} from "@pro-layout";
-import {ReuseTabService} from "@pro-layout";
+import {ReuseTabStrategy} from "pro-lib-test/reuse-tab";
+import {ReuseTabService} from "pro-lib-test/reuse-tab";
 import {ALAIN_CONFIG, AlainConfig} from "@delon/util";
 
 
@@ -56,21 +55,6 @@ const alainConfig: AlainConfig = {
   providers: [
     StartupService,
     {provide: APP_INITIALIZER, useFactory: StartupServiceFactory, deps: [StartupService], multi: true,},
-    {
-      provide: PRO_LAYOUT,
-      useValue: {
-        title: 'Ant Design Pro',
-        logo: 'assets/logo.svg',
-        navTheme: 'dark',
-        primaryColor: '#1890FF',
-        layout: 'sidemenu',
-        contentWidth: 'Fluid',
-        fixedHeader: true,
-        autoHideHeader: false,
-        fixSiderbar: true,
-        reuseTab: true
-      }
-    },
     {provide: RouteReuseStrategy, useClass: ReuseTabStrategy, deps: [ReuseTabService]},
     {provide: ALAIN_CONFIG, useValue: alainConfig}
   ],

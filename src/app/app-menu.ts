@@ -1,4 +1,4 @@
-import {MenuDataItem} from "@pro-layout";
+import {MenuDataItem} from "pro-lib-test/layout";
 
 export const menuData: MenuDataItem[] = [
   {

@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {MenuTheme} from '@pro-layout';
 
 @Component({
   selector: 'pro-right-content',
@@ -9,7 +8,7 @@ import {MenuTheme} from '@pro-layout';
 })
 export class RightContentComponent {
 
-  @Input() theme: MenuTheme;
+  @Input() theme: any;
   @Input() layout: string;
 
   constructor() {
