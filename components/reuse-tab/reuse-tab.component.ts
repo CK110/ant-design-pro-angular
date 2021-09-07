@@ -137,6 +137,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
           last: false,
         } as ReuseItem),
     );
+    this.reuseTabService.di(ls);
 
     const url = this.curUrl;
     let addCurrent = ls.findIndex(w => w.url === url && this.reuseTabService.queryParamsEqual(w.queryParams, this.curUrlQueryParam)) === -1;

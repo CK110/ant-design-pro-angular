@@ -407,7 +407,7 @@ export class ReuseTabService {
     if (_handle && _handle.componentRef && _handle.componentRef.destroy) _handle.componentRef.destroy();
   }
 
-  private di(...args: any[]): void {
+  public di(...args: any[]): void {
     if (!this.debug) return;
     console.warn(...args);
   }

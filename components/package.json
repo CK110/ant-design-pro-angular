@@ -1,6 +1,6 @@
 {
-  "name": "pro-lib-test",
-  "version": "11.0.1",
+  "name": "pro-layout",
+  "version": "0.0.32",
   "dependencies": {
     "tslib": "^2.0.0"
   },

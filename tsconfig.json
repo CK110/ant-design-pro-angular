@@ -19,6 +19,8 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "pro-layout/layout": ["components/layout/public-api.ts"],
+      "pro-layout/reuse-tab": ["components/reuse-tab/public-api.ts"],
       "@shared": [ "src/app/shared" ],
       "@shared/*": [ "src/app/shared/*" ],
       "@core": [ "src/app/core" ],

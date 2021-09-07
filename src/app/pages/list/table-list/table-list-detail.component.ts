@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from "pro-lib-test/reuse-tab";
+import {ReuseComponentInstance, ReuseHookOnReuseInitType, ReuseTabService} from "pro-layout/reuse-tab";
 
 @Component({
   selector: 'app-table-list',
