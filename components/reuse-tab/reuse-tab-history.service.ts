@@ -105,7 +105,7 @@ export class ReuseTabHistoryService {
   }
 
   private keyEqual(element1: ReuseItem, element2: ReuseItem) {
-    return (element1.url == element2.url) && (JSON.stringify(element1.queryParams) === JSON.stringify(element1.queryParams))
+    return (element1.url == element2.url) && (JSON.stringify(element1.queryParams) === JSON.stringify(element2.queryParams))
   }
 
 }
