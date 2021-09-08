@@ -15,6 +15,7 @@ import {
   ROUTER_CONFIGURATION
 } from "@angular/router";
 import {ScrollService} from "./scroll.service";
+import {ReuseTabHistoryService} from "./reuse-tab-history.service";
 
 @Injectable({
   providedIn: 'root'
@@ -135,6 +136,11 @@ export class ReuseTabService {
     this.destroy(item._handle);
 
     this._cached.splice(idx, 1);
+
+    this.reuseTabHistoryService.close({
+      url: item.url,
+      queryParams: item._snapshot.queryParams,
+    });
 
     // 删除标题缓存
     const router = this.injector.get(Router);
@@ -414,7 +420,8 @@ export class ReuseTabService {
 
   // #endregion
 
-  constructor(private injector: Injector) {
+  constructor(private injector: Injector,
+              private reuseTabHistoryService: ReuseTabHistoryService) {
   }
 
   init(): void {
@@ -495,6 +502,11 @@ export class ReuseTabService {
     if (!isAdd) {
       this._cachedChange.next({active: 'override', item, list: this._cached});
     }
+
+    this.reuseTabHistoryService.new({
+      url: item.url,
+      queryParams: item._snapshot.queryParams,
+    });
   }
 
   /**

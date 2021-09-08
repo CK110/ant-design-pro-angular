@@ -63,7 +63,7 @@ export class BaseMenuComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.menuData);
+    // console.log(this.menuData);
   }
 
   onOpenChange(status, menuData) {

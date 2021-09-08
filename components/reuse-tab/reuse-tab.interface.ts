@@ -33,12 +33,12 @@ export interface ReuseTabNotify {
 export interface ReuseItem {
   url: string;
   queryParams: Params | null;
-  title: string;
-  closable: boolean;
-  refreshable: boolean;
-  index: number;
-  active: boolean;
-  last: boolean;
+  title?: string;
+  closable?: boolean;
+  refreshable?: boolean;
+  index?: number;
+  active?: boolean;
+  last?: boolean;
 }
 
 export interface ReuseContextEvent {

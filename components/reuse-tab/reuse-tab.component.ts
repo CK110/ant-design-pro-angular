@@ -26,6 +26,7 @@ import {debounceTime, takeUntil} from "rxjs/operators";
 import {ReuseTabMenuService} from "./reuse-tab-menu.service";
 import {InputBoolean, InputNumber} from "ng-zorro-antd/core/util";
 import {NzTabSetComponent} from 'ng-zorro-antd/tabs';
+import {ReuseTabHistoryService} from "./reuse-tab-history.service";
 
 @Component({
   selector: 'pro-reuse-tab',
@@ -74,6 +75,8 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   @Input() @InputBoolean() allowClose = true;
   @Input() @InputBoolean() allowRefresh = true;
   @Input() @InputBoolean() keepingScroll = false;
+  @Input() @InputBoolean() tabLRU = true;
+
 
   @Input()
   set keepingScrollContainer(value: string | Element) {
@@ -93,6 +96,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
               private cdr: ChangeDetectorRef,
               private router: Router,
               private route: ActivatedRoute,
+              private reuseTabHistoryService: ReuseTabHistoryService,
               @Inject(DOCUMENT) private doc: any) {
   }
 
@@ -152,6 +156,16 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         // Should be actived next tab when closed is middle
         toPos = Math.max(0, curItem.index);
       }
+      if (this.tabLRU) {
+        const active = this.reuseTabHistoryService.findNextActive(curItem);
+        if (active) {
+          const activeItem = ls.find(w => w.url === active.url && this.reuseTabService.queryParamsEqual(w.queryParams, active.queryParams))!;
+          if(activeItem){
+            toPos = activeItem.index;
+          }
+        }
+      }
+      this.pos = toPos;
       this.router.navigate([ls[toPos].url], {queryParams: ls[toPos].queryParams});
     }
 
