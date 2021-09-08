@@ -15,8 +15,8 @@ import {UserModule} from "./pages/user/user.module";
 import {DelonMockModule} from "@delon/mock";
 import * as MOCKDATA from '../../_mock';
 import {RouteReuseStrategy} from "@angular/router";
-import {ReuseTabStrategy} from "pro-layout/reuse-tab";
-import {ReuseTabService} from "pro-layout/reuse-tab";
+import {ReuseTabStrategy} from "pro-layout";
+import {ReuseTabService} from "pro-layout";
 import {ALAIN_CONFIG, AlainConfig} from "@delon/util";
 
 
