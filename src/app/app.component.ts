@@ -3,6 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter, map, mergeMap} from "rxjs/operators";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
+import {ReuseTabHistoryService} from "../../components/reuse-tab/reuse-tab-history.service";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private renderer: Renderer2,
               private httpClient: HttpClient,
+              private reuseTabHistoryService: ReuseTabHistoryService,
               private title: Title) {
   }
 
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit {
       mergeMap((route) => route.data)
     ).subscribe((event) => {
       this.title.setTitle(event['name'] + ' - ' + 'Ant Design Pro');
+      console.log(`==tabStack== ${this.reuseTabHistoryService.toString()}`);
     });
 
     if (false) {

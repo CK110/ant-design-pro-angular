@@ -35,7 +35,6 @@
     "@ngx-translate/core": "^13.0.0",
     "mockjs": "^1.1.0",
     "ng-zorro-antd": "^11.1.0",
-    "pro-layout": "0.0.32",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.3",
     "tslib": "^2.0.0",

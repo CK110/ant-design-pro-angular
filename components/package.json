@@ -1,6 +1,6 @@
 {
   "name": "pro-layout",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "dependencies": {
     "tslib": "^2.0.0"
   },
