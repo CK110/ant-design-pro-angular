@@ -103,14 +103,16 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.openKeys = this.urlToList(this.router.url);
+      const tmp = this.urlToList(this.router.url);
+      this.openKeys = [...this.openKeys,...tmp];
       this.cdf.markForCheck();
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.layout) {
-      this.openKeys = this.urlToList(this.router.url);
+      const tmp = this.urlToList(this.router.url);
+      this.openKeys = [...this.openKeys,...tmp];
       console.log('ngOnChanges');
     }
   }
