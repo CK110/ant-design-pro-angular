@@ -47,7 +47,7 @@ export class BaseMenuComponent implements OnInit, AfterViewInit {
   @Input() collapsed: boolean;
   /** @deprecated */
   @Input() selectedKey: string;
-  @Input() openKeys: Array<string> = [];
+  @Input() openKeys: Set<string> = new Set<string>();
   @Output() openChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private aclService: ACLService,

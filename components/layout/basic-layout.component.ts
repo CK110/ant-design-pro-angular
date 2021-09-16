@@ -72,7 +72,7 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
   @Input() menuData: MenuDataItem[];
   isMobile = false;
   selectedKey: string;
-  openKeys: Array<string> = [];
+  openKeys: Set<string> = new Set<string>();
 
   visible = true;
   ticking = false;
@@ -103,23 +103,29 @@ export class BasicLayoutComponent implements OnInit, OnChanges, OnDestroy {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      const tmp = this.urlToList(this.router.url);
-      this.openKeys = [...this.openKeys,...tmp];
-      this.cdf.markForCheck();
+      const tmp:any[] = this.urlToList(this.router.url);
+      tmp.forEach((t:string)=>{
+        this.openKeys.add(t)
+      })
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.layout) {
+      console.log('layout ngOnChanges');
       const tmp = this.urlToList(this.router.url);
-      this.openKeys = [...this.openKeys,...tmp];
-      console.log('ngOnChanges');
+      this.openKeys.clear();
+      tmp.forEach((t:string)=>{
+        this.openKeys.add(t)
+      })
     }
   }
 
   menuOpenChange(event: { status: boolean; item: MenuDataItem }) {
     if (event.status) {
-      this.openKeys = this.urlToList(event.item.path);
+      this.openKeys.add(event.item.path);
+    }else{
+      this.openKeys.delete(event.item.path);
     }
   }
 
